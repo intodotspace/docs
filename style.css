@@ -16,7 +16,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: url("/images/space3.jpg") repeat;
+  background: url("/images/space4.jpg") repeat;
   background-size: cover;
   animation: driftStars 120s linear infinite;
   opacity: 0.4;
