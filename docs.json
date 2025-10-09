@@ -1,0 +1,85 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "maple",
+  "name": "Maple Starter Kit",
+  "colors": {
+    "primary": "#9A3412",
+    "light": "#EA580C",
+    "dark": "#9A3412"
+  },
+  "favicon": "/favicon.svg",
+  "appearance": {
+      "default": "dark",
+      "strict": true
+  },
+  "navigation": {
+      "groups": [
+          {
+              "group": "Introduction",
+              "pages": [
+                  "intro"
+              ]
+          },
+          {
+              "group": "About",
+              "pages": [
+                  "space/what-is-space",
+                  "space/why-did-we-build-this",
+                  "space/vision",
+                  "space/who-did-we-build-this-for"
+              ]
+          },
+          {
+              "group": "Features",
+              "pages": [
+                  {
+                      "group": "Central Limit Order Book",
+                      "pages": [
+                          "features/clob/example",
+                          "features/clob/advantages",
+                          "features/clob/makers-and-takers"
+                      ]
+                  },
+                  "features/markets",
+                  {
+                      "group": "Leverage",
+                      "pages": [
+                          "features/leverage/how-it-works",
+                          "features/leverage/funding-and-liquidation"
+                      ]
+                  },
+                  "features/market-resolution",
+                  "features/continuous-markets",
+                  "features/dynamic-fee-curve",
+                  "features/rewards",
+                  "features/multiple-outcomes"
+              ]
+          },
+          {
+              "group": "Getting Started",
+              "pages": [
+                  "getting-started/placing-market-order",
+                  "getting-started/placing-limit-order",
+                  "getting-started/managing-orders-and-positions"
+              ]
+          },
+          {
+              "group": "$SPACE",
+              "pages": [
+                  "$space/token-utility",
+                  "$space/tokenomics",
+                  "$space/flywheel-mechanism",
+                  "$space/the-big-bang"
+              ]
+          }
+      ]
+  },
+  "logo": "Untitled.jpg",
+  "footer": {
+    "socials": {
+      "x": "https://x.com/mintlify",
+      "github": "https://github.com/mintlify",
+      "linkedin": "https://www.linkedin.com/company/mintsearch"
+    }
+  }
+}
