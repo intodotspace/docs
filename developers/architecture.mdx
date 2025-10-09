@@ -1,0 +1,22 @@
+---
+title: "Architecture"
+description: "Chain: Solana
+
+Deterministic crypto-price markets resolved by Pyth/Switchboard TWAP; traded executed through CLOB
+
+Launchpad for community listings with CLOB (OpenBook/Pheonix) for high-volume markets; add centrally resolved sports/politics markets
+Leveraged prediction markets (2-10x) with mark price, liquidations, funding and insurance fund
+Implement zkML-based verifiable resolution for subjective markets (add two footnote references 1https://kudelskisecurity.com/modern-ciso-blog/zkml-verifiable-machine-learning-using-zero-knowledge-proof 2https://dl.acm.org/doi/10.1145/3627703.3650088)
+Different designs can be considered:
+Design 1: Mix of optimistic and ZK
+Subjective markets materials (like a text copied from a news article) gets to be published on-chain (in a form of a hash of the text) 
+The text can be challenged by the community within a reasonable timeframe (the timeframe is to be determined at deployment)
+If the challenging period results in a wrong outcome, it will always be obvious (there could be a difficulty for judgement of a market resolution, but definitely not a difficulty for judgement of a copy-paste from a news source), so admins would be able to treat it as a hacked market and respond accordingly.
+zkML takes the text, hashes it, compares it to the hash provided by the smart-contract, and provides a proof that the ML model responded in a certain way (YES/NO).
+Design 2: Mix of ZKML and ZKTLS (or a signature from a reliable news partner as an alternative): ZkTLS
+Subjective market materials are fetched from a news resource (with a whitelisted domain) and proof of such a fetch is generated with a zk circuit
+Market materials are provided to the zkML to generate the proof that the market description initially set resolves either to YES or NO or doesn’t resolve yet at all considering the text taken from the news resource
+The contract contains both the zkML proof that the market description resolves to YES considering the news, and additionally, the zkTLS proof that such news exists at all.
+This would be a pretty sophisticated system, for which the full feasibility isn’t fully evaluated (zkTLS could potentially eat quite a lot of computational efforts), but if feasible, it would for sure be a big technological breakthrough in the prediction markets area.
+Description of your new file."
+---
