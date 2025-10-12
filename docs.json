@@ -22,10 +22,10 @@
           {
               "group": "About",
               "pages": [
-                  "space/what-is-space",
-                  "space/why-did-we-build-this",
-                  "space/vision",
-                  "space/who-did-we-build-this-for"
+                  "about/what-is-space",
+                  "about/why-did-we-build-this",
+                  "about/vision",
+                  "about/who-did-we-build-this-for"
               ]
           },
           {
