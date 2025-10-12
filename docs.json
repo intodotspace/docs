@@ -35,12 +35,13 @@
           {
             "group": "Central Limit Order Book",
             "pages": [
+              "features/clob/clob",
               "features/clob/example",
               "features/clob/advantages",
+              "features/clob/share-minting-and-burning",
               "features/clob/makers-and-takers"
             ]
           },
-          "features/markets",
           {
             "group": "Leverage",
             "pages": [
@@ -48,11 +49,25 @@
               "features/leverage/funding-and-liquidation"
             ]
           },
+          {
+            "group": "Multi-Outcome Markets",
+            "pages": [
+              "features/multi-outcome-markets/overview",
+              "features/multi-outcome-markets/share-conversion-mechanism",
+              "features/multi-outcome-markets/hedging-across-multiple-outcomes"
+            ]
+          },
           "features/market-resolution",
           "features/continuous-markets",
           "features/dynamic-fee-curve",
-          "features/rewards",
-          "features/multiple-outcomes"
+          {
+            "group": "Rewards",
+            "pages": [
+              "features/rewards/points",
+              "features/rewards/liquidity-rewards"
+            ]
+          },
+          "features/markets"
         ]
       },
       {
