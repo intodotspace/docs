@@ -3,9 +3,9 @@
   "theme": "maple",
   "name": "Space",
   "colors": {
-    "primary": "#9A3412",
-    "light": "#EA580C",
-    "dark": "#9A3412"
+    "primary": "#2976CB",
+    "light": "#2976CB",
+    "dark": "#2976CB"
   },
   "appearance": {
     "default": "dark",
@@ -45,8 +45,7 @@
           {
             "group": "Leverage",
             "pages": [
-              "features/leverage/how-it-works",
-              "features/leverage/funding-and-liquidation"
+              "features/leverage/how-it-works"
             ]
           },
           {
@@ -67,7 +66,8 @@
               "features/rewards/liquidity-rewards"
             ]
           },
-          "features/markets"
+          "features/markets",
+          "features/blockchain"
         ]
       },
       {
@@ -82,8 +82,15 @@
         "group": "$SPACE",
         "pages": [
           "$space/token-utility",
+          {
+            "group": "Flywheel Mechanism",
+            "pages": [
+              "$space/flywheel-mechanism/overview",
+              "$space/flywheel-mechanism/fee-distribution",
+              "$space/flywheel-mechanism/the-flywheel-effect"
+            ]
+          },
           "$space/tokenomics",
-          "$space/flywheel-mechanism",
           "$space/the-big-bang"
         ]
       },
@@ -111,7 +118,8 @@
       }
     ]
   },
-  "logo": "/logo/space-logo.jpg",
+  "logo": "/logo/main-logo.png",
+  "favicon": "/logo/favicon.png",
   "footer": {
     "socials": {
       "x": "https://x.com/intodotspace"
