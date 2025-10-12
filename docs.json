@@ -16,7 +16,8 @@
           {
               "group": "Introduction",
               "pages": [
-                  "welcome"
+                  "introduction/welcome",
+                  "introduction/preface"
               ]
           },
           {
