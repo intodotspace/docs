@@ -8,93 +8,93 @@
     "dark": "#9A3412"
   },
   "appearance": {
-      "default": "dark",
-      "strict": true
+    "default": "dark",
+    "strict": true
   },
   "navigation": {
-      "groups": [
+    "groups": [
+      {
+        "group": "Introduction",
+        "pages": [
+          "introduction/welcome",
+          "introduction/preface"
+        ]
+      },
+      {
+        "group": "About",
+        "pages": [
+          "about/what-is-space",
+          "about/why-build-space",
+          "about/who-is-space-for",
+          "about/vision"
+        ]
+      },
+      {
+        "group": "Features",
+        "pages": [
           {
-              "group": "Introduction",
-              "pages": [
-                  "introduction/welcome",
-                  "introduction/preface"
-              ]
+            "group": "Central Limit Order Book",
+            "pages": [
+              "features/clob/example",
+              "features/clob/advantages",
+              "features/clob/makers-and-takers"
+            ]
+          },
+          "features/markets",
+          {
+            "group": "Leverage",
+            "pages": [
+              "features/leverage/how-it-works",
+              "features/leverage/funding-and-liquidation"
+            ]
+          },
+          "features/market-resolution",
+          "features/continuous-markets",
+          "features/dynamic-fee-curve",
+          "features/rewards",
+          "features/multiple-outcomes"
+        ]
+      },
+      {
+        "group": "Getting Started",
+        "pages": [
+          "getting-started/placing-market-order",
+          "getting-started/placing-limit-order",
+          "getting-started/managing-orders-and-positions"
+        ]
+      },
+      {
+        "group": "$SPACE",
+        "pages": [
+          "$space/token-utility",
+          "$space/tokenomics",
+          "$space/flywheel-mechanism",
+          "$space/the-big-bang"
+        ]
+      },
+      {
+        "group": "Developers",
+        "pages": [
+          "developers/architecture",
+          "developers/market-lifecycle",
+          {
+            "group": "Resolution Layer",
+            "pages": [
+              "developers/resolution-layer/deterministic",
+              "developers/resolution-layer/subjective"
+            ]
           },
           {
-              "group": "About",
-              "pages": [
-                  "about/what-is-space",
-                  "about/why-did-we-build-this",
-                  "about/vision",
-                  "about/who-did-we-build-this-for"
-              ]
+            "group": "Execution Layer",
+            "pages": [
+              "developers/execution-layer/launchpad",
+              "developers/execution-layer/clob-and-vamm"
+            ]
           },
-          {
-              "group": "Features",
-              "pages": [
-                  {
-                      "group": "Central Limit Order Book",
-                      "pages": [
-                          "features/clob/example",
-                          "features/clob/advantages",
-                          "features/clob/makers-and-takers"
-                      ]
-                  },
-                  "features/markets",
-                  {
-                      "group": "Leverage",
-                      "pages": [
-                          "features/leverage/how-it-works",
-                          "features/leverage/funding-and-liquidation"
-                      ]
-                  },
-                  "features/market-resolution",
-                  "features/continuous-markets",
-                  "features/dynamic-fee-curve",
-                  "features/rewards",
-                  "features/multiple-outcomes"
-              ]
-          },
-          {
-              "group": "Getting Started",
-              "pages": [
-                  "getting-started/placing-market-order",
-                  "getting-started/placing-limit-order",
-                  "getting-started/managing-orders-and-positions"
-              ]
-          },
-          {
-              "group": "$SPACE",
-              "pages": [
-                  "$space/token-utility",
-                  "$space/tokenomics",
-                  "$space/flywheel-mechanism",
-                  "$space/the-big-bang"
-              ]
-          },
-          {
-              "group": "Developers",
-              "pages": [
-                  "developers/architecture",
-                  "developers/market-lifecycle",
-                  {
-                      "group": "Resolution Layer",
-                      "pages": [
-                          "developers/resolution-layer/deterministic",
-                          "developers/resolution-layer/subjective"
-                      ]
-                  },
-                  {
-                      "group": "Execution Layer",
-                      "pages": [
-                          "developers/execution-layer/launchpad",
-                          "developers/execution-layer/clob-and-vamm"
-                      ]
-                  },
-                  "developers/security-and-risk-controls"
-              ]
-          }
-      ]
+          "developers/security-and-risk-controls"
+        ]
+      }
+    ]
   },
   "logo": "/logo/space-logo.jpg",
   "footer": {
