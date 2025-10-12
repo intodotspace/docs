@@ -1,0 +1,107 @@
+---
+title: "Leverage & Margin Trading"
+---
+Leverage multiplies exposure through margin trading on the CLOB. You borrow USDC from the platform to buy more shares than your collateral would normally allow.
+## How It Works
+Margin: \$100
+Leverage: 5x
+Position Size: \$500
+Shares at \$0.15: 3,333 shares
+
+If price → \$0.30: +\$500 profit (500% ROE)
+If price → \$0.12: Liquidation triggered
+## Key Parameters
+- **Initial Margin (IM):** 20% (required to open position)
+- **Maintenance Margin (MM):** 10% (required to keep position open)
+- **Max Leverage:** 10x
+
+## Position Sizing
+$$ \text{Position Size} = \text{Margin} \times \text{Leverage}$$
+
+$$ \text{Shares} = \text{Position Size} / \text{Entry Price} $$
+
+**Example:**
+**subheading or just bold??**
+\$100 margin × 5x = \$500 position
+\$500 / \$0.15 = 3,333 shares
+
+## Liquidation Price
+$$\text{Liquidation Price} = \text{Entry Price} - (\text{Margin} / \text{Shares})$$
+
+**Example:**
+Entry: \$0.15
+Margin: \$100
+Shares: 3,333
+Liquidation: \$0.15 - (\$100 / 3,333) = \$0.12
+If market price hits \$0.12, your equity equals maintenance margin and liquidation begins.
+
+## Partial Liquidation
+Liquidation happens in stages:
+<Steps>
+  <Step title="
+First trigger: liquidate 25% of position" titleSize="h3">
+  </Step>
+  <Step title="
+Apply 10% penalty to insurance fund" titleSize="h3">
+  </Step>
+  <Step title="
+Check if still underwater" titleSize="h3">
+  </Step>
+  <Step title="If yes: liquidate another 25%" titleSize="h3">
+  </Step>
+  <Step title="Full liquidation only if necessary" titleSize="h3">
+  </Step>
+</Steps>
+
+This prevents complete wipeout on brief volatility.
+
+## Profit & Loss
+PnL = (Exit Price - Entry Price) × Shares
+$$
+\text{PnL} = (\text{Exit Price} - \text{Entry Price}) \times \text{Shares}
+$$
+
+| Example (Win) | Value |
+|----------------|--------|
+| **Exit** | $0.30 |
+| **Entry** | $0.15 |
+| **Shares** | 3,333 |
+| **PnL** | ($0.30 - $0.15) × 3,333 = **+$500** |
+| **ROE** | $500 / $100 = **500%** |
+
+**OR THIS**
+
+Example (Win):
+Exit: \$0.30
+
+Entry: \$0.15
+
+Shares: 3,333
+
+PnL: (\$0.30 - \$0.15) × 3,333 = +\$500
+
+ROE: \$500 / \$100 = 500%
+
+Example (Loss):
+
+Exit: \$0.10
+
+Entry: \$0.15
+
+Shares: 3,333
+
+PnL: (\$0.10 - \$0.15) × 3,333 = -\$167
+
+ROE: -\$167 / \$100 = -167%
+
+Leverage amplifies both gains and losses proportionally.
+
+
+| Example (Loss) | Value |
+|----------------|--------|
+| **Exit** | $0.10 |
+| **Entry** | $0.15 |
+| **Shares** | 3,333 |
+| **PnL** | ($0.10 - $0.15) × 3,333 = **-$167** |
+| **ROE** | -$167 / $100 = **-167%** |
+
