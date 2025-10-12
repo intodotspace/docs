@@ -97,23 +97,34 @@
       {
         "group": "Developers",
         "pages": [
-          "developers/architecture",
-          "developers/market-lifecycle",
           {
-            "group": "Resolution Layer",
+            "group": "Architecture",
             "pages": [
-              "developers/resolution-layer/deterministic",
-              "developers/resolution-layer/subjective"
+              "developers/architecture/clob-and-order-matching",
+              "developers/architecture/spl-token-structure",
+              "developers/architecture/multi-outcome-markets",
+              "developers/architecture/leverage-and-margin-trading"
             ]
           },
           {
-            "group": "Execution Layer",
+            "group": "Resolution",
             "pages": [
-              "developers/execution-layer/launchpad",
-              "developers/execution-layer/clob-and-vamm"
+              "developers/resolution/deterministic-resolution",
+              "developers/resolution/subjective-resolution",
+              "developers/resolution/invalid-markets"
             ]
           },
-          "developers/security-and-risk-controls"
+          "developers/risk-and-security",
+          {
+            "group": "API Reference",
+            "pages": [
+              "developers/api-reference/rest-endpoints",
+              "developers/api-reference/websocket-feeds"
+            ]
+          },
+          "developers/risk-and-security",
+          "developers/building-on-space",
+          "developers/developer-resources"
         ]
       }
     ]
