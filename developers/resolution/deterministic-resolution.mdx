@@ -1,0 +1,56 @@
+---
+title: "Deterministic Resolution"
+---
+Crypto markets resolve using oracle price feeds with Time-Weighted Average Price (TWAP) calculations.
+
+Oracle Infrastructure
+
+**Primary:** Pyth Network
+
+**Fallback:** Switchboard
+
+Both provide real-time, cryptographically signed price data for crypto assets.
+
+## TWAP Calculation
+Markets resolve using a 15-minute Time-Weighted Average Price ending at market expiry.
+$$
+\text{TWAP} = \sum_{i} (p_i \times t_i) / \sum_{i}t_i
+$$
+
+Where:
+- $p_i$ is the price at data point $i$
+- $t_i$ is the duration that the price was active
+- Window: 15 minutes ending at expiry $T$
+
+**Example:**
+
+Market: "Will BTC close above $150,000 on Dec 31, 2025?"\
+Expiry: Dec 31, 2025 23:59:59 UTC\
+TWAP Window: 23:45:00 - 23:59:59 UTC
+
+If $ \text{TWAP} \ge 150000 $ → YES wins
+
+If $ \text{TWAP} < 150,000 $ → NO wins
+## Why TWAP?
+Single-timestamp prices are manipulable. A 15-minute average requires sustained price movement, making flash loan attacks or brief manipulation ineffective.
+## Multi-Feed Protection
+$$
+\text{Final Price} = \text{Median}(\text{Pyth Price}, \text{Switchboard Price})
+$$
+
+If $\frac{|\text{Pyth} - \text{Switchboard}|}{\text{Median}} > 2\% $:
+  → Pause resolution
+  → Alert admins
+  → Manual review
+
+Cross-validation prevents single oracle failures.
+## Price Clamping
+Maximum 1% price movement per minute during TWAP window. Outliers beyond 3 standard deviations are rejected.
+## Liveness Checks
+TWAP window requires a minimum number of oracle updates (approximately 2 per minute = 30 updates for 15-minute window).
+
+**If insufficient updates:**
+- Check if oracle is down
+- If yes: extend window
+- If no: mark market invalid
+
