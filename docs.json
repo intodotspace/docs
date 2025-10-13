@@ -200,8 +200,8 @@
       }
     ]
   },
-  "logo": "/logo/main-logo.png",
-  "favicon": "/logo/favicon.png",
+  "logo": "/img/main-logo.png",
+  "favicon": "/img/favicon.png",
   "footer": {
     "socials": {
       "x": "https://x.com/intodotspace",
