@@ -145,6 +145,16 @@
               "res/terms-of-service",
               "res/privacy-policy"
             ]
+          },
+          {
+            "group": "Socials",
+            "pages": [
+              {
+                "page": "X/Twitter", 
+                "icon": "twitter",
+                "href": "https://x.com/intodotspace"
+              }
+            ]
           }
         ]
       }
