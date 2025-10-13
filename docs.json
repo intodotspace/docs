@@ -48,12 +48,7 @@
                   "docs/features/clob/makers-and-takers"
                 ]
               },
-              {
-                "group": "Leverage",
-                "pages": [
-                  "docs/features/leverage/how-it-works"
-                ]
-              },
+              "docs/features/leverage",
               {
                 "group": "Multi-Outcome Markets",
                 "pages": [
