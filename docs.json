@@ -188,11 +188,6 @@
                 "page": "Contact",
                 "icon": "mail",
                 "href": "#"
-              },
-              {
-                "page": "Cookies",
-                "icon": "cookie",
-                "href": "res/privacy-policy"
               }
             ]
           }
@@ -200,8 +195,8 @@
       }
     ]
   },
-  "logo": "/images/main-logo.png",
-  "favicon": "/images/favicon.png",
+  "logo": "/logo/main-logo.png",
+  "favicon": "/logo/favicon.png",
   "footer": {
     "socials": {
       "x": "https://x.com/intodotspace",
