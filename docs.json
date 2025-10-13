@@ -29,7 +29,6 @@
           {
             "group": "Introduction",
             "pages": [
-              "docs/introduction/welcome",
               "docs/introduction/preface",
               "docs/introduction/what-is-space",
               "docs/introduction/why-space",
