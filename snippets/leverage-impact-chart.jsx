@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 
-export default function LeverageImpactChart() {
+export function LeverageImpactChart() {
   const [hoveredLine, setHoveredLine] = useState(null);
   const [mousePos, setMousePos] = useState(null);
   const [isTouching, setIsTouching] = useState(false);
