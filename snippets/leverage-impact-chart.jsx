@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 
-export const LeverageImpactChart = () => {
+export default function LeverageImpactChart() {
   const [hoveredLine, setHoveredLine] = useState(null);
   const [mousePos, setMousePos] = useState(null);
   const [isTouching, setIsTouching] = useState(false);
@@ -140,10 +140,10 @@ export const LeverageImpactChart = () => {
   const tooltipProps = getTooltipProps(hoveredLine);
 
   return (
-    <div className="w-full max-w-full">
+    <div className="w-full max-w-full bg-gray-900 p-8 rounded-lg">
       <div className="text-center mb-6">
-        <h2 className="text-xl font-semibold mb-2">Leverage Impact on PnL</h2>
-        <p className="text-sm opacity-70">(Market Example: US Government Shutdown)</p>
+        <h2 className="text-xl font-semibold mb-2 text-white">Leverage Impact on PnL</h2>
+        <p className="text-sm opacity-70 text-gray-300">(Market Example: US Government Shutdown)</p>
       </div>
       
       <div className="w-full">
@@ -162,8 +162,24 @@ export const LeverageImpactChart = () => {
           onTouchEnd={handleTouchEnd}
         >
           <defs>
+            <linearGradient id="gradient1x" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#3B7DD8" stopOpacity="0.6"/>
+              <stop offset="100%" stopColor="#3B7DD8" stopOpacity="0.1"/>
+            </linearGradient>
+            <linearGradient id="gradient3x" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#5EDD2C" stopOpacity="0.6"/>
+              <stop offset="100%" stopColor="#5EDD2C" stopOpacity="0.1"/>
+            </linearGradient>
+            <linearGradient id="gradient5x" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#FF9500" stopOpacity="0.6"/>
+              <stop offset="100%" stopColor="#FF9500" stopOpacity="0.1"/>
+            </linearGradient>
+            <linearGradient id="gradient10x" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#DC2626" stopOpacity="0.6"/>
+              <stop offset="100%" stopColor="#DC2626" stopOpacity="0.1"/>
+            </linearGradient>
             <pattern id="leverageGrid" width="60" height="35" patternUnits="userSpaceOnUse">
-              <path d="M 60 0 L 0 0 0 35" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3,3" opacity="0.3"/>
+              <path d="M 60 0 L 0 0 0 35" fill="none" stroke="#ffffff" strokeWidth="1" strokeDasharray="3,3" opacity="0.3"/>
             </pattern>
             <filter id="dropShadow">
               <feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.3"/>
@@ -182,14 +198,14 @@ export const LeverageImpactChart = () => {
               <line 
                 x1="80" y1={mousePos.y} 
                 x2="560" y2={mousePos.y} 
-                stroke="currentColor" 
+                stroke="#ffffff" 
                 strokeWidth="1" 
                 strokeDasharray="2,2"
               />
               <line 
                 x1={mousePos.x} y1="40" 
                 x2={mousePos.x} y2="320" 
-                stroke="currentColor" 
+                stroke="#ffffff" 
                 strokeWidth="1" 
                 strokeDasharray="2,2"
               />
@@ -197,30 +213,42 @@ export const LeverageImpactChart = () => {
           )}
           
           {/* Axes */}
-          <line x1="80" y1="320" x2="560" y2="320" stroke="currentColor" strokeWidth="2" opacity="0.6"/>
-          <line x1="80" y1="40" x2="80" y2="320" stroke="currentColor" strokeWidth="2" opacity="0.6"/>
+          <line x1="80" y1="320" x2="560" y2="320" stroke="#ffffff" strokeWidth="2" opacity="0.6"/>
+          <line x1="80" y1="40" x2="80" y2="320" stroke="#ffffff" strokeWidth="2" opacity="0.6"/>
           
           {/* Zero line (horizontal at 0% PnL) */}
-          <line x1="80" y1="264" x2="560" y2="264" stroke="currentColor" strokeWidth="1" strokeDasharray="5,5" opacity="0.4"/>
+          <line x1="80" y1="264" x2="560" y2="264" stroke="#ffffff" strokeWidth="1" strokeDasharray="5,5" opacity="0.4"/>
           
           {/* Entry price vertical line at 15% */}
-          <line x1="152" y1="40" x2="152" y2="320" stroke="currentColor" strokeWidth="2" strokeDasharray="8,4" opacity="0.6">
+          <line x1="152" y1="40" x2="152" y2="320" stroke="#ffffff" strokeWidth="2" strokeDasharray="8,4" opacity="0.6">
             <animate attributeName="stroke-dashoffset" values="0;12;0" dur="3s" repeatCount="indefinite"/>
           </line>
           
           {/* Leverage lines with clipping */}
           <g clipPath="url(#chartClip)">
-            {allLines.map((line, index) => (
-              <path 
-                key={index}
-                d={line.pathData} 
-                fill="none" 
-                stroke={line.color} 
-                strokeWidth={hoveredLine?.leverage === line.leverage ? "4" : "3"}
-                className="transition-all duration-300"
-                opacity={hoveredLine && hoveredLine.leverage !== line.leverage ? 0.4 : 1}
-              />
-            ))}
+            {allLines.map((line, index) => {
+              const gradientId = `gradient${line.leverage}x`;
+              const areaPath = `${line.pathData} L 560 320 L 80 320 Z`;
+              
+              return (
+                <g key={index}>
+                  <path 
+                    d={areaPath}
+                    fill={`url(#${gradientId})`}
+                    opacity={hoveredLine && hoveredLine.leverage !== line.leverage ? 0.3 : 1}
+                    className="transition-all duration-300"
+                  />
+                  <path 
+                    d={line.pathData} 
+                    fill="none" 
+                    stroke={line.color} 
+                    strokeWidth={hoveredLine?.leverage === line.leverage ? "4" : "3"}
+                    className="transition-all duration-300"
+                    opacity={hoveredLine && hoveredLine.leverage !== line.leverage ? 0.4 : 1}
+                  />
+                </g>
+              );
+            })}
           </g>
           
           {/* Interactive areas */}
@@ -240,37 +268,37 @@ export const LeverageImpactChart = () => {
           ))}
           
           {/* X-axis labels */}
-          <text x="80" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">0</text>
-          <text x="152" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.9" fontWeight="bold">15</text>
-          <text x="200" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">20</text>
-          <text x="280" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">40</text>
-          <text x="360" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">60</text>
-          <text x="440" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">80</text>
-          <text x="560" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">100</text>
+          <text x="80" y="340" fill="#ffffff" fontSize="12" textAnchor="middle" opacity="0.7">0</text>
+          <text x="152" y="340" fill="#ffffff" fontSize="12" textAnchor="middle" opacity="0.9" fontWeight="bold">15</text>
+          <text x="200" y="340" fill="#ffffff" fontSize="12" textAnchor="middle" opacity="0.7">20</text>
+          <text x="280" y="340" fill="#ffffff" fontSize="12" textAnchor="middle" opacity="0.7">40</text>
+          <text x="360" y="340" fill="#ffffff" fontSize="12" textAnchor="middle" opacity="0.7">60</text>
+          <text x="440" y="340" fill="#ffffff" fontSize="12" textAnchor="middle" opacity="0.7">80</text>
+          <text x="560" y="340" fill="#ffffff" fontSize="12" textAnchor="middle" opacity="0.7">100</text>
           
           {/* Y-axis labels */}
-          <text x="70" y="325" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">-200</text>
-          <text x="70" y="264" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">0</text>
-          <text x="70" y="208" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">200</text>
-          <text x="70" y="152" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">400</text>
-          <text x="70" y="96" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">600</text>
-          <text x="70" y="45" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">800</text>
+          <text x="70" y="325" fill="#ffffff" fontSize="12" textAnchor="end" opacity="0.7">-200</text>
+          <text x="70" y="264" fill="#ffffff" fontSize="12" textAnchor="end" opacity="0.7">0</text>
+          <text x="70" y="208" fill="#ffffff" fontSize="12" textAnchor="end" opacity="0.7">200</text>
+          <text x="70" y="152" fill="#ffffff" fontSize="12" textAnchor="end" opacity="0.7">400</text>
+          <text x="70" y="96" fill="#ffffff" fontSize="12" textAnchor="end" opacity="0.7">600</text>
+          <text x="70" y="45" fill="#ffffff" fontSize="12" textAnchor="end" opacity="0.7">800</text>
           
           {/* Axis titles */}
-          <text x="320" y="370" fill="currentColor" fontSize="14" textAnchor="middle" opacity="0.8">Market Probability (%)</text>
-          <text x="30" y="180" fill="currentColor" fontSize="14" textAnchor="middle" transform="rotate(-90 30 180)" opacity="0.8">PnL (% of Margin)</text>
+          <text x="320" y="370" fill="#ffffff" fontSize="14" textAnchor="middle" opacity="0.8">Market Probability (%)</text>
+          <text x="30" y="180" fill="#ffffff" fontSize="14" textAnchor="middle" transform="rotate(-90 30 180)" opacity="0.8">PnL (% of Margin)</text>
           
           {/* Legend */}
           <g transform="translate(420, 60)">
-            <rect x="-15" y="-15" width="165" height="115" fill="currentColor" opacity="0.05" rx="6"/>
+            <rect x="-15" y="-15" width="165" height="115" fill="#ffffff" opacity="0.05" rx="6"/>
             {leverageLines.map((line, index) => (
               <g key={index} transform={`translate(0, ${index * 20})`}>
                 <line x1="0" y1="0" x2="20" y2="0" stroke={line.color} strokeWidth="3"/>
-                <text x="25" y="4" fill="currentColor" fontSize="12" opacity="0.8">{line.label}</text>
+                <text x="25" y="4" fill="#ffffff" fontSize="12" opacity="0.8">{line.label}</text>
               </g>
             ))}
-            <line x1="0" y1="80" x2="20" y2="80" stroke="currentColor" strokeWidth="2" strokeDasharray="4,4" opacity="0.6"/>
-            <text x="25" y="84" fill="currentColor" fontSize="12" opacity="0.8">Entry Price (15%)</text>
+            <line x1="0" y1="80" x2="20" y2="80" stroke="#ffffff" strokeWidth="2" strokeDasharray="4,4" opacity="0.6"/>
+            <text x="25" y="84" fill="#ffffff" fontSize="12" opacity="0.8">Entry Price (15%)</text>
           </g>
           
           {/* Enhanced tooltip */}
@@ -320,4 +348,4 @@ export const LeverageImpactChart = () => {
       </div>
     </div>
   );
-};
+}
