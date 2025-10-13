@@ -41,6 +41,7 @@
               {
                 "group": "Central Limit Order Book",
                 "pages": [
+                  "docs/features/leverage",
                   "docs/features/clob/clob",
                   "docs/features/clob/example",
                   "docs/features/clob/advantages",
@@ -48,7 +49,6 @@
                   "docs/features/clob/makers-and-takers"
                 ]
               },
-              "docs/features/leverage",
               {
                 "group": "Multi-Outcome Markets",
                 "pages": [
