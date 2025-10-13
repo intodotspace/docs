@@ -141,54 +141,7 @@
           {
             "group": "Pages",
             "pages": [
-              "res/press-kit",
-              "res/terms-of-service",
-              "res/privacy-policy"
-            ]
-          },
-          {
-            "group": "Socials",
-            "pages": [
-              {
-                "page": "Main Site",
-                "icon": "globe",
-                "href": "https://into.space"
-              },
-              {
-                "page": "X/Twitter", 
-                "icon": "twitter",
-                "href": "https://x.com/intodotspace"
-              },
-              {
-                "page": "Telegram",
-                "icon": "send",
-                "href": "https://t.me/intodotspace"
-              },
-              {
-                "page": "Discord",
-                "icon": "message-circle",
-                "href": "https://discord.gg/intodotspace"
-              }
-            ]
-          },
-          {
-            "group": "Links",
-            "pages": [
-              {
-                "page": "Partnerships",
-                "icon": "handshake",
-                "href": "mailto:partnerships@into.space"
-              },
-              {
-                "page": "Support",
-                "icon": "help-circle",
-                "href": "#"
-              },
-              {
-                "page": "Contact",
-                "icon": "mail",
-                "href": "#"
-              }
+              "res/press-kit"
             ]
           }
         ]
