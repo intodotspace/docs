@@ -5,20 +5,17 @@ nav a.active {
   background-color: rgba(94, 221, 44, 0.15) !important;
   border-radius: 6px;
 }
-
 /* ===== SUPER TITLE (ANCHOR ABOVE H1) ===== */
 .subtitle,
 [class*="subtitle"],
 .text-primary {
   color: #5EDD2C !important;
 }
-
 /* ===== HOVER STATE FOR SIDEBAR LINKS ===== */
 nav a:hover {
   background-color: rgba(94, 221, 44, 0.08) !important;
   border-radius: 6px;
 }
-
 /* ===== ROUNDED BORDERS FOR CONTENT IMAGES & VIDEOS ===== */
 article img,
 .content img,
@@ -29,4 +26,12 @@ main video,
 img,
 video {
   border-radius: 18px !important;
+}
+/* ===== ICON COLOR ===== */
+svg[class*="icon"],
+[class*="Icon"] svg,
+.card svg,
+i[class*="fa-"] {
+  color: #5EDD2C !important;
+  fill: #5EDD2C !important;
 }
