@@ -195,8 +195,8 @@
       }
     ]
   },
-  "logo": "/logo/main-logo.png",
-  "favicon": "/logo/favicon.png",
+  "logo": "/images/logo.png",
+  "favicon": "/images/favicon.png",
   "footer": {
     "socials": {
       "x": "https://x.com/intodotspace",
