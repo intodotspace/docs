@@ -2,7 +2,8 @@
 nav a[aria-current="page"],
 nav a.active {
   color: #5EDD2C !important;
-  background-color: rgba(94, 221, 44, 0.1) !important;
+  background-color: rgba(94, 221, 44, 0.15) !important;
+  border-radius: 6px;
 }
 
 /* ===== SUPER TITLE (ANCHOR ABOVE H1) ===== */
@@ -14,7 +15,8 @@ nav a.active {
 
 /* ===== HOVER STATE FOR SIDEBAR LINKS ===== */
 nav a:hover {
-  background-color: rgba(94, 221, 44, 0.05) !important;
+  background-color: rgba(94, 221, 44, 0.08) !important;
+  border-radius: 6px;
 }
 
 /* ===== SPACE INTRO SECTION ===== */
@@ -26,51 +28,6 @@ nav a:hover {
   overflow: visible; /* allows floating cards to extend naturally */
   /* background: radial-gradient(ellipse at top, #0a0b2e 0%, #000000 70%); */
   min-height: 100vh; /* ensures full viewport height */
-}
-
-/* ===== STARFIELD BACKGROUND ===== */
-.intro-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  /* background: url("/images/space4.jpg") repeat; */
-  /* background-size: cover; */
-  /* animation: driftStars 120s linear infinite; */
-  /* opacity: 0.4; */
-  z-index: 0;
-  /* ✅ GPU optimization */
-  /* will-change: background-position; */
-}
-
-/* Subtle glowing overlay */
-.intro-hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  /* background: radial-gradient(
-    circle at 30% 50%,
-    rgba(80, 120, 255, 0.2) 0%,
-    transparent 70%
-  ); */
-  /* animation: pulseGlow 10s ease-in-out infinite alternate; */
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* infinite starfield movement (no drifting) */
-@keyframes driftStars {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: -2000px 2000px;
-  }
-}
-
-/* soft glow pulse */
-@keyframes pulseGlow {
-  0% { opacity: 0.3; }
-  100% { opacity: 0.7; }
 }
 
 /* ===== CONTENT ===== */
