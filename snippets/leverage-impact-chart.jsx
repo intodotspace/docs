@@ -13,22 +13,24 @@ export const LeverageImpactChart = () => {
     
     for (let i = 0; i <= 100; i++) {
       const marketProb = i; // 0% to 100%
-      const marketPrice = marketProb;
       
       // Calculate PnL percentage
-      const priceDiff = marketPrice - entryPrice;
+      const priceDiff = marketProb - entryPrice;
       const pnl = (priceDiff / entryPrice) * 100 * leverage;
       
       const svgX = 80 + (marketProb / 100) * 480;
       const svgY = 320 - ((pnl + 200) / 1000) * 280; // Scale from -200 to 800
       
-      points.push({ 
-        marketProb, 
-        pnl: pnl.toFixed(0), 
-        svgX, 
-        svgY,
-        leverage 
-      });
+      // Only include points within chart bounds
+      if (svgY >= 40 && svgY <= 320) {
+        points.push({ 
+          marketProb, 
+          pnl: pnl.toFixed(0), 
+          svgX, 
+          svgY,
+          leverage 
+        });
+      }
     }
     return points;
   };
@@ -62,28 +64,30 @@ export const LeverageImpactChart = () => {
       
       // Find closest line at this X position
       const marketProb = ((svgX - 80) / 480) * 100;
-      const closestIndex = Math.round(marketProb);
       
-      if (closestIndex >= 0 && closestIndex <= 100) {
-        // Find which line is closest to mouse Y position
-        let closestLine = null;
-        let minDistance = Infinity;
+      // Find which line is closest to mouse Y position
+      let closestLine = null;
+      let minDistance = Infinity;
+      
+      allLines.forEach(line => {
+        // Find the closest point in this line to the mouse X position
+        const closestPoint = line.points.reduce((prev, curr) => 
+          Math.abs(curr.marketProb - marketProb) < Math.abs(prev.marketProb - marketProb) ? curr : prev
+        );
         
-        allLines.forEach(line => {
-          if (line.points[closestIndex]) {
-            const distance = Math.abs(svgY - line.points[closestIndex].svgY);
-            if (distance < minDistance && distance < 30) {
-              minDistance = distance;
-              closestLine = {
-                ...line,
-                point: line.points[closestIndex]
-              };
-            }
+        if (closestPoint) {
+          const distance = Math.abs(svgY - closestPoint.svgY);
+          if (distance < minDistance && distance < 40) {
+            minDistance = distance;
+            closestLine = {
+              ...line,
+              point: closestPoint
+            };
           }
-        });
-        
-        setHoveredLine(closestLine);
-      }
+        }
+      });
+      
+      setHoveredLine(closestLine);
     } else {
       if (!isTouching) {
         setMousePos(null);
@@ -172,6 +176,10 @@ export const LeverageImpactChart = () => {
             <filter id="dropShadow">
               <feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.3"/>
             </filter>
+            {/* Clipping path to contain lines within chart area */}
+            <clipPath id="chartClip">
+              <rect x="80" y="40" width="480" height="280"/>
+            </clipPath>
           </defs>
           
           {/* Grid */}
@@ -209,10 +217,11 @@ export const LeverageImpactChart = () => {
             <animate attributeName="stroke-dashoffset" values="0;12;0" dur="3s" repeatCount="indefinite"/>
           </line>
           
-          {/* Leverage lines */}
-          {allLines.map((line, index) => (
-            <g key={index}>
+          {/* Leverage lines with clipping */}
+          <g clipPath="url(#chartClip)">
+            {allLines.map((line, index) => (
               <path 
+                key={index}
                 d={line.pathData} 
                 fill="none" 
                 stroke={line.color} 
@@ -220,8 +229,8 @@ export const LeverageImpactChart = () => {
                 className="transition-all duration-300"
                 opacity={hoveredLine && hoveredLine.leverage !== line.leverage ? 0.4 : 1}
               />
-            </g>
-          ))}
+            ))}
+          </g>
           
           {/* Interactive areas for each line */}
           {allLines.map((line, index) => (
@@ -250,10 +259,10 @@ export const LeverageImpactChart = () => {
           
           {/* Y-axis labels */}
           <text x="70" y="325" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">-200</text>
-          <text x="70" y="290" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">0</text>
-          <text x="70" y="250" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">200</text>
-          <text x="70" y="180" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">400</text>
-          <text x="70" y="110" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">600</text>
+          <text x="70" y="264" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">0</text>
+          <text x="70" y="208" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">200</text>
+          <text x="70" y="152" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">400</text>
+          <text x="70" y="96" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">600</text>
           <text x="70" y="45" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">800</text>
           
           {/* Axis titles */}
