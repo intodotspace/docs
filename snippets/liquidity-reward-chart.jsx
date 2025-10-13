@@ -229,15 +229,17 @@ export const LiquidityRewardChart = () => {
           </line>
           <line x1="320" y1="40" x2="320" y2="320" 
                 stroke="currentColor" 
-                strokeWidth="1" 
-                strokeDasharray="4,4"
-                opacity="0.4"/>
+                strokeWidth="2" 
+                strokeDasharray="8,4"
+                opacity="0.6">
+            <animate attributeName="stroke-dashoffset" values="0;12;0" dur="3s" repeatCount="indefinite"/>
+          </line>
           
           {/* X-axis labels */}
           <text x="80" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">0</text>
           <text x="152" y="340" fill="currentColor" fontSize="12" textAnchor="middle" className="font-bold" opacity="0.9">30</text>
           <text x="224" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">60</text>
-          <text x="296" y="340" fill="currentColor" fontSize="12" textAnchor="middle" className="font-bold" opacity="0.9">90</text>
+          <text x="320" y="340" fill="currentColor" fontSize="12" textAnchor="middle" className="font-bold" opacity="0.9">90</text>
           <text x="440" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">180</text>
           <text x="560" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">365</text>
           
@@ -255,8 +257,8 @@ export const LiquidityRewardChart = () => {
           {/* Annotations */}
           <g>
             {/* 30-day annotation */}
-            <text x="120" y="80" fill="#5EDD2C" fontSize="11" opacity="0.9">30 days:</text>
-            <text x="120" y="95" fill="#5EDD2C" fontSize="11" opacity="0.9">Early boost</text>
+            <text x="120" y="80" fill="currentColor" fontSize="11" opacity="0.7">30 days:</text>
+            <text x="120" y="95" fill="currentColor" fontSize="11" opacity="0.7">Early boost</text>
             
             {/* 90-day annotation */}
             <text x="250" y="130" fill="currentColor" fontSize="11" opacity="0.7">90 days:</text>
