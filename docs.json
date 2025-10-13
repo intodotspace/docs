@@ -11,36 +11,7 @@
     "default": "dark",
     "strict": true
   },
-  "topbarLinks": [
-    {
-      "name": "Main Site",
-      "url": "https://into.space"
-    }
-  ],
-  "topbarCtaButton": {
-    "name": "Join Waitlist",
-    "url": "https://t.me/intodotspace"
-  },
   "navigation": {
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Twitter",
-          "icon": "x-twitter",
-          "href": "https://x.com/intodotspace"
-        },
-        {
-          "anchor": "Telegram",
-          "icon": "telegram",
-          "href": "https://t.me/intodotspace"
-        },
-        {
-          "anchor": "Discord",
-          "icon": "discord",
-          "href": "https://discord.gg/intodotspace"
-        }
-      ]
-    },
     "tabs": [
       {
         "tab": "Documentation",
