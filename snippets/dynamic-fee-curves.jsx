@@ -183,6 +183,14 @@ export const DynamicFeeCurves = () => {
           onTouchEnd={handleTouchEnd}
         >
           <defs>
+            <linearGradient id="gradientBuy" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#5EDD2C" stopOpacity="0.4"/>
+              <stop offset="100%" stopColor="#5EDD2C" stopOpacity="0.067"/>
+            </linearGradient>
+            <linearGradient id="gradientSell" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#DC2626" stopOpacity="0.4"/>
+              <stop offset="100%" stopColor="#DC2626" stopOpacity="0.067"/>
+            </linearGradient>
             <pattern id="feeGrid" width="50" height="35" patternUnits="userSpaceOnUse">
               <path d="M 50 0 L 0 0 0 35" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="2,2" opacity="0.2"/>
             </pattern>
@@ -219,17 +227,29 @@ export const DynamicFeeCurves = () => {
           <line x1="80" y1="40" x2="80" y2="320" stroke="currentColor" strokeWidth="2" opacity="0.6"/>
           
           {/* Fee curves */}
-          {feeLines.map((line, index) => (
-            <path 
-              key={index}
-              d={line.pathData} 
-              fill="none" 
-              stroke={line.color} 
-              strokeWidth={hoveredLine?.type === line.type ? "4" : "3"}
-              className="transition-all duration-300"
-              opacity={hoveredLine && hoveredLine.type !== line.type ? 0.4 : 1}
-            />
-          ))}
+          {feeLines.map((line, index) => {
+            const gradientId = line.type === 'buy' ? 'gradientBuy' : 'gradientSell';
+            const areaPath = `${line.pathData} L 560 320 L 80 320 Z`;
+            
+            return (
+              <g key={index}>
+                <path 
+                  d={areaPath}
+                  fill={`url(#${gradientId})`}
+                  opacity={hoveredLine && hoveredLine.type !== line.type ? 0.3 : 1}
+                  className="transition-all duration-300"
+                />
+                <path 
+                  d={line.pathData} 
+                  fill="none" 
+                  stroke={line.color} 
+                  strokeWidth={hoveredLine?.type === line.type ? "4" : "3"}
+                  className="transition-all duration-300"
+                  opacity={hoveredLine && hoveredLine.type !== line.type ? 0.4 : 1}
+                />
+              </g>
+            );
+          })}
           
           {/* Interactive areas */}
           {feeLines.map((line, index) => (
@@ -284,12 +304,12 @@ export const DynamicFeeCurves = () => {
           {/* Annotations */}
           <g>
             {/* Early phase annotation */}
-            <text x="140" y="80" fill="#5EDD2C" fontSize="11" opacity="0.9">Early phase:</text>
-            <text x="140" y="95" fill="#5EDD2C" fontSize="11" opacity="0.9">High buy fee (2%)</text>
+            <text x="140" y="80" fill="currentColor" fontSize="11" opacity="0.7">Early phase:</text>
+            <text x="140" y="95" fill="currentColor" fontSize="11" opacity="0.7">High buy fee (2%)</text>
             
             {/* Midpoint annotation */}
-            <text x="270" y="130" fill="#DC2626" fontSize="11" opacity="0.9">Midpoint uncertainty:</text>
-            <text x="270" y="145" fill="#DC2626" fontSize="11" opacity="0.9">Sell fee peaks near 50%</text>
+            <text x="270" y="130" fill="currentColor" fontSize="11" opacity="0.7">Midpoint uncertainty:</text>
+            <text x="270" y="145" fill="currentColor" fontSize="11" opacity="0.7">Sell fee peaks near 50%</text>
             
             {/* Certainty annotation */}
             <text x="450" y="300" fill="currentColor" fontSize="11" opacity="0.7">Certainty phase:</text>
