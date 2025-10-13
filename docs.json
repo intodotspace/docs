@@ -22,24 +22,26 @@
     "name": "Join Waitlist",
     "url": "https://t.me/intodotspace"
   },
-  "anchors": [
-    {
-      "name": "X",
-      "icon": "x-twitter",
-      "url": "https://x.com/intodotspace"
-    },
-    {
-      "name": "Telegram",
-      "icon": "telegram",
-      "url": "https://t.me/intodotspace"
-    },
-    {
-      "name": "Discord",
-      "icon": "discord",
-      "url": "https://discord.gg/intodotspace"
-    }
-  ],
   "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "X",
+          "icon": "x-twitter",
+          "href": "https://x.com/intodotspace"
+        },
+        {
+          "anchor": "Telegram",
+          "icon": "telegram",
+          "href": "https://t.me/intodotspace"
+        },
+        {
+          "anchor": "Discord",
+          "icon": "discord",
+          "href": "https://discord.gg/intodotspace"
+        }
+      ]
+    },
     "tabs": [
       {
         "tab": "Documentation",
