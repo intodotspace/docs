@@ -18,21 +18,6 @@
           "anchor": "Main Site",
           "icon": "globe",
           "href": "https://into.space"
-        },
-        {
-          "anchor": "Twitter",
-          "icon": "x-twitter",
-          "href": "https://x.com/intodotspace"
-        },
-        {
-          "anchor": "Telegram",
-          "icon": "telegram",
-          "href": "https://t.me/intodotspace"
-        },
-        {
-          "anchor": "Discord",
-          "icon": "discord",
-          "href": "https://discord.gg/intodotspace"
         }
       ]
     },
