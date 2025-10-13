@@ -6,31 +6,33 @@ export const LeverageImpactChart = () => {
   const [isTouching, setIsTouching] = useState(false);
   const svgRef = useRef(null);
   
-  // Generate data for each leverage line
+  // Generate data matching the text example
   const generateLeverageData = (leverage) => {
     const points = [];
-    const entryPrice = 15; // 15% entry price
+    const entryPrice = 15; // 15% entry price ($0.15)
     
     for (let i = 0; i <= 100; i++) {
       const marketProb = i; // 0% to 100%
       
-      // Calculate PnL percentage
-      const priceDiff = marketProb - entryPrice;
-      const pnl = (priceDiff / entryPrice) * 100 * leverage;
+      // PnL calculation based on share value change
+      // At 15%: $0.15 per share, at 30%: $0.30 per share (doubles)
+      // Profit per share = new_price - entry_price
+      // Total return = (profit_per_share / entry_price) * 100 * leverage
+      const newPrice = marketProb; // Market price in cents
+      const profitPerShare = newPrice - entryPrice; // Price change in cents
+      const returnPercent = (profitPerShare / entryPrice) * 100; // Return without leverage
+      const leveragedReturn = returnPercent * leverage; // With leverage
       
       const svgX = 80 + (marketProb / 100) * 480;
-      const svgY = 320 - ((pnl + 200) / 1000) * 280; // Scale from -200 to 800
+      const svgY = 320 - ((leveragedReturn + 200) / 1000) * 280; // Scale from -200 to 800
       
-      // Only include points within chart bounds
-      if (svgY >= 40 && svgY <= 320) {
-        points.push({ 
-          marketProb, 
-          pnl: pnl.toFixed(0), 
-          svgX, 
-          svgY,
-          leverage 
-        });
-      }
+      points.push({ 
+        marketProb, 
+        pnl: Math.round(leveragedReturn), 
+        svgX, 
+        svgY,
+        leverage 
+      });
     }
     return points;
   };
@@ -42,13 +44,14 @@ export const LeverageImpactChart = () => {
     { leverage: 10, color: '#EF4444', label: '10× Leverage' }
   ];
 
-  const allLines = leverageLines.map(line => ({
-    ...line,
-    points: generateLeverageData(line.leverage),
-    pathData: generateLeverageData(line.leverage)
-      .map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.svgX} ${p.svgY}`)
-      .join(' ')
-  }));
+  const allLines = leverageLines.map(line => {
+    const points = generateLeverageData(line.leverage);
+    return {
+      ...line,
+      points,
+      pathData: points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.svgX} ${p.svgY}`).join(' ')
+    };
+  });
 
   const updateInteraction = (clientX, clientY) => {
     if (!svgRef.current) return;
@@ -62,26 +65,19 @@ export const LeverageImpactChart = () => {
         setMousePos({ x: svgX, y: svgY });
       }
       
-      // Find closest line at this X position
-      const marketProb = ((svgX - 80) / 480) * 100;
+      const marketProb = Math.round(((svgX - 80) / 480) * 100);
       
-      // Find which line is closest to mouse Y position
       let closestLine = null;
       let minDistance = Infinity;
       
       allLines.forEach(line => {
-        // Find the closest point in this line to the mouse X position
-        const closestPoint = line.points.reduce((prev, curr) => 
-          Math.abs(curr.marketProb - marketProb) < Math.abs(prev.marketProb - marketProb) ? curr : prev
-        );
-        
-        if (closestPoint) {
-          const distance = Math.abs(svgY - closestPoint.svgY);
+        if (line.points[marketProb]) {
+          const distance = Math.abs(svgY - line.points[marketProb].svgY);
           if (distance < minDistance && distance < 40) {
             minDistance = distance;
             closestLine = {
               ...line,
-              point: closestPoint
+              point: line.points[marketProb]
             };
           }
         }
@@ -151,7 +147,7 @@ export const LeverageImpactChart = () => {
     <div className="w-full max-w-full">
       <div className="text-center mb-6">
         <h2 className="text-xl font-semibold mb-2">Leverage Impact on PnL</h2>
-        <p className="text-sm opacity-70">(Market: US Government Shutdown)</p>
+        <p className="text-sm opacity-70">(Market Example: US Government Shutdown)</p>
       </div>
       
       <div className="w-full">
@@ -176,7 +172,6 @@ export const LeverageImpactChart = () => {
             <filter id="dropShadow">
               <feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.3"/>
             </filter>
-            {/* Clipping path to contain lines within chart area */}
             <clipPath id="chartClip">
               <rect x="80" y="40" width="480" height="280"/>
             </clipPath>
@@ -209,10 +204,10 @@ export const LeverageImpactChart = () => {
           <line x1="80" y1="320" x2="560" y2="320" stroke="currentColor" strokeWidth="2" opacity="0.6"/>
           <line x1="80" y1="40" x2="80" y2="320" stroke="currentColor" strokeWidth="2" opacity="0.6"/>
           
-          {/* Zero line */}
+          {/* Zero line (horizontal at 0% PnL) */}
           <line x1="80" y1="264" x2="560" y2="264" stroke="currentColor" strokeWidth="1" strokeDasharray="5,5" opacity="0.4"/>
           
-          {/* Entry price vertical line */}
+          {/* Entry price vertical line at 15% */}
           <line x1="152" y1="40" x2="152" y2="320" stroke="currentColor" strokeWidth="2" strokeDasharray="8,4" opacity="0.6">
             <animate attributeName="stroke-dashoffset" values="0;12;0" dur="3s" repeatCount="indefinite"/>
           </line>
@@ -232,7 +227,7 @@ export const LeverageImpactChart = () => {
             ))}
           </g>
           
-          {/* Interactive areas for each line */}
+          {/* Interactive areas */}
           {allLines.map((line, index) => (
             <g key={`interactive-${index}`}>
               {line.points.filter((_, i) => i % 2 === 0).map((point, i) => (
@@ -326,13 +321,6 @@ export const LeverageImpactChart = () => {
             </g>
           )}
         </svg>
-      </div>
-      
-      <div className="text-center mt-4">
-        <span className="inline-flex items-center text-sm opacity-70">
-          <div className="w-4 h-0.5 bg-[#5EDD2C] mr-2 animate-pulse"></div>
-          Leverage Impact Analysis
-        </span>
       </div>
     </div>
   );
