@@ -1,7 +1,9 @@
 Space uses a share minting and burning mechanism that allows you to create or destroy YES and NO shares at any time, ensuring you always have liquidity and fair pricing.
 
 ## How It Works
+
 At any moment, you can:
+
 - Mint shares: Deposit \$1 USDC → Receive 1 YES share + 1 NO share
 - Burn shares: Return 1 YES share + 1 NO share → Get \$1 USDC back
 
@@ -9,13 +11,15 @@ This simple mechanism is the backbone of Space's capital efficiency. It means yo
 
 **Example:**
 
-You hold 1,000 YES shares in the market "Will BTC close above \$150K?" but no one wants to buy them. Here's what you can do:
+You hold 1,000 YES shares in the market _"Will BTC close above \$150K?"_ but no one wants to buy them. Here's what you can do:
+
 - Mint 1,000 new pairs by depositing \$1,000 (you now have 1,000 YES + 1,000 NO shares)
 - Sell your original 1,000 YES shares on the market at the current price of \$0.35 = \$350
 - Keep the 1,000 NO shares from the minted pairs
 - Net result: You've effectively converted your YES position into a NO position for \$650 (\$1,000 deposit - \$350 received)
 
 ## Why This Matters
+
 Always Available Liquidity: You can exit positions even in thin markets by creating your own counterparty through minting.
 
 **Fair Prices:** If YES trades at \$0.65 and NO trades at \$0.40 (which adds up to \$1.05 instead of \$1), arbitrageurs can profit by buying both and burning them for \$1. This keeps prices honest and ensures YES + NO always equals approximately \$1.
@@ -23,4 +27,3 @@ Always Available Liquidity: You can exit positions even in thin markets by creat
 **Multi-Outcome Markets:** In markets with multiple outcomes (like "Which country wins the World Cup?"), all NO shares are identical. This means your NO shares for "Brazil" can be converted into YES shares for "Argentina" without any additional capital - you're simply shifting your bet across related outcomes.
 
 This mechanism is the same one used by leading prediction markets like Polymarket and it's what makes Space's multi-outcome markets and continuous trading possible.
-
