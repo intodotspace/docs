@@ -133,7 +133,9 @@
   "favicon": "/logo/favicon.png",
   "footer": {
     "socials": {
-      "x": "https://x.com/intodotspace"
+      "x": "https://x.com/intodotspace",
+      "telegram": "https://t.me/intodotspace",
+      "discord": "https://discord.gg/intodotspace"
     }
   }
 }
