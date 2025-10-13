@@ -141,9 +141,9 @@ export const LeverageImpactChart = () => {
   const tooltipProps = getTooltipProps(hoveredLine);
 
   return (
-    <div className="w-full max-w-full pt-6">
+    <div className="w-full max-w-full" style={{ paddingTop: '2rem' }}>
       <div className="text-center mb-6">
-        <h2 className="text-xl font-semibold mb-2 text-white">Leverage Impact on PnL</h2>
+        <h2 className="text-xl font-semibold mb-2" style={{ color: 'white' }}>Leverage Impact on PnL</h2>
         <p className="text-sm opacity-70">(Market Example: US Government Shutdown)</p>
       </div>
       
