@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "maple",
+  "theme": "mint",
   "name": "Space",
   "colors": {
     "primary": "#2976CB",
@@ -11,92 +11,125 @@
     "default": "dark",
     "strict": true
   },
+  "topbarLinks": [
+    {
+      "name": "Main Site",
+      "url": "https://into.space"
+    }
+  ],
+  "topbarCtaButton": {
+    "type": "link",
+    "name": "Join Waitlist",
+    "url": "https://t.me/intodotspace"
+  },
+  "anchors": [
+    {
+      "name": "X",
+      "icon": "x-twitter",
+      "url": "https://x.com/intodotspace"
+    },
+    {
+      "name": "Telegram",
+      "icon": "telegram",
+      "url": "https://t.me/intodotspace"
+    },
+    {
+      "name": "Discord",
+      "icon": "discord",
+      "url": "https://discord.gg/intodotspace"
+    }
+  ],
   "navigation": {
-    "groups": [
+    "tabs": [
       {
-        "group": "Introduction",
-        "pages": [
-          "introduction/welcome",
-          "introduction/preface"
-        ]
-      },
-      {
-        "group": "About",
-        "pages": [
-          "about/what-is-space",
-          "about/why-build-space",
-          "about/who-is-space-for",
-          "about/vision"
-        ]
-      },
-      {
-        "group": "Features",
-        "pages": [
+        "tab": "Documentation",
+        "groups": [
           {
-            "group": "Central Limit Order Book",
+            "group": "Introduction",
             "pages": [
-              "features/clob/clob",
-              "features/clob/example",
-              "features/clob/advantages",
-              "features/clob/share-minting-and-burning",
-              "features/clob/makers-and-takers"
+              "introduction/welcome",
+              "introduction/preface"
             ]
           },
           {
-            "group": "Leverage",
+            "group": "About",
             "pages": [
-              "features/leverage/how-it-works"
+              "about/what-is-space",
+              "about/why-build-space",
+              "about/who-is-space-for",
+              "about/vision"
             ]
           },
           {
-            "group": "Multi-Outcome Markets",
+            "group": "Features",
             "pages": [
-              "features/multi-outcome-markets/overview",
-              "features/multi-outcome-markets/share-conversion-mechanism",
-              "features/multi-outcome-markets/hedging-across-multiple-outcomes"
+              {
+                "group": "Central Limit Order Book",
+                "pages": [
+                  "features/clob/clob",
+                  "features/clob/example",
+                  "features/clob/advantages",
+                  "features/clob/share-minting-and-burning",
+                  "features/clob/makers-and-takers"
+                ]
+              },
+              {
+                "group": "Leverage",
+                "pages": [
+                  "features/leverage/how-it-works"
+                ]
+              },
+              {
+                "group": "Multi-Outcome Markets",
+                "pages": [
+                  "features/multi-outcome-markets/overview",
+                  "features/multi-outcome-markets/share-conversion-mechanism",
+                  "features/multi-outcome-markets/hedging-across-multiple-outcomes"
+                ]
+              },
+              "features/market-resolution",
+              "features/continuous-markets",
+              "features/dynamic-fee-curve",
+              {
+                "group": "Rewards",
+                "pages": [
+                  "features/rewards/points",
+                  "features/rewards/liquidity-rewards"
+                ]
+              },
+              "features/markets",
+              "features/blockchain"
             ]
           },
-          "features/market-resolution",
-          "features/continuous-markets",
-          "features/dynamic-fee-curve",
           {
-            "group": "Rewards",
+            "group": "Getting Started",
             "pages": [
-              "features/rewards/points",
-              "features/rewards/liquidity-rewards"
+              "getting-started/placing-market-order",
+              "getting-started/placing-limit-order",
+              "getting-started/managing-orders-and-positions"
             ]
           },
-          "features/markets",
-          "features/blockchain"
-        ]
-      },
-      {
-        "group": "Getting Started",
-        "pages": [
-          "getting-started/placing-market-order",
-          "getting-started/placing-limit-order",
-          "getting-started/managing-orders-and-positions"
-        ]
-      },
-      {
-        "group": "$SPACE",
-        "pages": [
-          "$space/token-utility",
           {
-            "group": "Flywheel Mechanism",
+            "group": "$SPACE",
             "pages": [
-              "$space/flywheel-mechanism/overview",
-              "$space/flywheel-mechanism/fee-distribution",
-              "$space/flywheel-mechanism/the-flywheel-effect"
+              "$space/token-utility",
+              {
+                "group": "Flywheel Mechanism",
+                "pages": [
+                  "$space/flywheel-mechanism/overview",
+                  "$space/flywheel-mechanism/fee-distribution",
+                  "$space/flywheel-mechanism/the-flywheel-effect"
+                ]
+              },
+              "$space/tokenomics",
+              "$space/the-big-bang"
             ]
-          },
-          "$space/tokenomics",
-          "$space/the-big-bang"
+          }
         ]
       },
       {
-        "group": "Developers",
-        "pages": [
+        "tab": "Developers",
+        "groups": [
           {
             "group": "Architecture",
             "pages": [
@@ -114,7 +147,12 @@
               "developers/resolution/invalid-markets"
             ]
           },
-          "developers/risk-and-security",
+          {
+            "group": "Risk & Security",
+            "pages": [
+              "developers/risk-and-security"
+            ]
+          },
           {
             "group": "API Reference",
             "pages": [
@@ -122,9 +160,13 @@
               "developers/api-reference/websocket-feeds"
             ]
           },
-          "developers/risk-and-security",
-          "developers/building-on-space",
-          "developers/developer-resources"
+          {
+            "group": "Building on Space",
+            "pages": [
+              "developers/building-on-space",
+              "developers/developer-resources"
+            ]
+          }
         ]
       }
     ]
