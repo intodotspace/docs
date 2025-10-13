@@ -1,22 +1,71 @@
 ---
 title: "How It Works"
 ---
-
 Leverage allows you to amplify your potential returns (and risks) when trading on Space. Instead of paying the full amount for your position upfront, you can use a fraction of the total value as collateral - giving you exposure to a larger position size.
-
-With each prediction you choose the price and amount of shares you wish to buy. With leverage, you’re able to buy more shares with your capital and gain greater exposure to the market.
-
+With each prediction you choose the price and amount of shares you wish to buy. With leverage, you're able to buy more shares with your capital and gain greater exposure to the market.
 **Example**
-
 **Market:** _"Will the U.S. government shut down before the end of the year?"_\
 **Current Market Probability:** 15% (YES shares priced at \$0.15)
-
 - You decide to buy 1,000 YES shares at \$0.15.
 - Without leverage, that costs \$150.
 - With 5× leverage, you only need to deposit \$30 as margin (20% of the position value).
 - If the market shifts to 30% (\$0.30), your position doubles in value - now worth \$300, giving you a \$150 profit on just \$30 margin (a 5x return).
 - But if the odds fall to 10% (\$0.10), your position is now worth \$100, and your collateral could be liquidated if it drops below the maintenance margin requirement.
-
 <Frame caption="Caption text">
   ![](/images/image9.png)
 </Frame>
+
+<div style={{textAlign: 'center', margin: '2rem 0'}}>
+  <h3 style={{color: 'white', marginBottom: '0.5rem'}}>Commitment Quality Curve</h3>
+  <p style={{color: '#9CA3AF', fontSize: '0.9rem', marginBottom: '1rem'}}>Balanced Price ($0.50)</p>
+  
+  <svg width="600" height="400" viewBox="0 0 600 400" style={{background: 'transparent'}}>
+    <defs>
+      <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#5EDD2C" stopOpacity="0.4"/>
+        <stop offset="100%" stopColor="#5EDD2C" stopOpacity="0.1"/>
+      </linearGradient>
+    </defs>
+    
+    {/* Grid */}
+    <defs>
+      <pattern id="grid" width="60" height="35" patternUnits="userSpaceOnUse">
+        <path d="M 60 0 L 0 0 0 35" fill="none" stroke="#374151" strokeWidth="1" strokeDasharray="3,3"/>
+      </pattern>
+    </defs>
+    <rect width="480" height="280" x="80" y="40" fill="url(#grid)"/>
+    
+    {/* Axes */}
+    <line x1="80" y1="320" x2="560" y2="320" stroke="#9CA3AF" strokeWidth="2"/>
+    <line x1="80" y1="40" x2="80" y2="320" stroke="#9CA3AF" strokeWidth="2"/>
+    
+    {/* Bell curve path */}
+    <path d="M80,320 Q140,250 200,180 Q260,120 320,80 Q380,120 440,180 Q500,250 560,320" 
+          fill="url(#areaGradient)" stroke="#5EDD2C" strokeWidth="3"/>
+    
+    {/* Vertical dashed line at x=0.5 */}
+    <line x1="320" y1="40" x2="320" y2="320" stroke="#9CA3AF" strokeWidth="2" strokeDasharray="8,4"/>
+    
+    {/* X-axis labels */}
+    <text x="80" y="340" fill="#9CA3AF" fontSize="12" textAnchor="middle">0.0</text>
+    <text x="200" y="340" fill="#9CA3AF" fontSize="12" textAnchor="middle">0.25</text>
+    <text x="320" y="340" fill="#9CA3AF" fontSize="12" textAnchor="middle">0.5</text>
+    <text x="440" y="340" fill="#9CA3AF" fontSize="12" textAnchor="middle">0.75</text>
+    <text x="560" y="340" fill="#9CA3AF" fontSize="12" textAnchor="middle">1.0</text>
+    
+    {/* Y-axis labels */}
+    <text x="70" y="325" fill="#9CA3AF" fontSize="12" textAnchor="end">0.0</text>
+    <text x="70" y="250" fill="#9CA3AF" fontSize="12" textAnchor="end">0.25</text>
+    <text x="70" y="180" fill="#9CA3AF" fontSize="12" textAnchor="end">0.5</text>
+    <text x="70" y="110" fill="#9CA3AF" fontSize="12" textAnchor="end">0.75</text>
+    <text x="70" y="45" fill="#9CA3AF" fontSize="12" textAnchor="end">1.0</text>
+    
+    {/* Axis titles */}
+    <text x="320" y="370" fill="#9CA3AF" fontSize="14" textAnchor="middle">Limit Order Price</text>
+    <text x="30" y="180" fill="#9CA3AF" fontSize="14" textAnchor="middle" transform="rotate(-90 30 180)">Relative Reward Size</text>
+    
+    {/* Legend */}
+    <line x1="200" y2="390" x2="220" y2="390" stroke="#5EDD2C" strokeWidth="3"/>
+    <text x="230" y="395" fill="#9CA3AF" fontSize="12">Commitment Quality Reward Curve</text>
+  </svg>
+</div>
