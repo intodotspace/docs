@@ -6,7 +6,7 @@ export const LeverageImpactChart = () => {
   const [isTouching, setIsTouching] = useState(false);
   const svgRef = useRef(null);
   
-  // Generate data matching the text example
+  // Generate data for each leverage line - all intersect at 15% with 0% PnL
   const generateLeverageData = (leverage) => {
     const points = [];
     const entryPrice = 15; // 15% entry price ($0.15)
@@ -15,9 +15,6 @@ export const LeverageImpactChart = () => {
       const marketProb = i; // 0% to 100%
       
       // PnL calculation based on share value change
-      // At 15%: $0.15 per share, at 30%: $0.30 per share (doubles)
-      // Profit per share = new_price - entry_price
-      // Total return = (profit_per_share / entry_price) * 100 * leverage
       const newPrice = marketProb; // Market price in cents
       const profitPerShare = newPrice - entryPrice; // Price change in cents
       const returnPercent = (profitPerShare / entryPrice) * 100; // Return without leverage
@@ -144,9 +141,9 @@ export const LeverageImpactChart = () => {
   const tooltipProps = getTooltipProps(hoveredLine);
 
   return (
-    <div className="w-full max-w-full">
+    <div className="w-full max-w-full pt-6">
       <div className="text-center mb-6">
-        <h2 className="text-xl font-semibold mb-2">Leverage Impact on PnL</h2>
+        <h2 className="text-xl font-semibold mb-2 text-white">Leverage Impact on PnL</h2>
         <p className="text-sm opacity-70">(Market Example: US Government Shutdown)</p>
       </div>
       
