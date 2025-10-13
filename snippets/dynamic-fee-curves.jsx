@@ -184,12 +184,20 @@ export const DynamicFeeCurves = () => {
         >
           <defs>
             <linearGradient id="gradientBuy" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#5EDD2C" stopOpacity="0.4"/>
-              <stop offset="100%" stopColor="#5EDD2C" stopOpacity="0.067"/>
+              <stop offset="0%" stopColor="#5EDD2C" stopOpacity="0.4">
+                <animate attributeName="stop-opacity" values="0.4;0.5;0.4" dur="4s" repeatCount="indefinite"/>
+              </stop>
+              <stop offset="100%" stopColor="#5EDD2C" stopOpacity="0.067">
+                <animate attributeName="stop-opacity" values="0.067;0.1;0.067" dur="4s" repeatCount="indefinite"/>
+              </stop>
             </linearGradient>
             <linearGradient id="gradientSell" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#DC2626" stopOpacity="0.4"/>
-              <stop offset="100%" stopColor="#DC2626" stopOpacity="0.067"/>
+              <stop offset="0%" stopColor="#DC2626" stopOpacity="0.4">
+                <animate attributeName="stop-opacity" values="0.4;0.5;0.4" dur="4s" repeatCount="indefinite"/>
+              </stop>
+              <stop offset="100%" stopColor="#DC2626" stopOpacity="0.067">
+                <animate attributeName="stop-opacity" values="0.067;0.1;0.067" dur="4s" repeatCount="indefinite"/>
+              </stop>
             </linearGradient>
             <pattern id="feeGrid" width="50" height="35" patternUnits="userSpaceOnUse">
               <path d="M 50 0 L 0 0 0 35" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="2,2" opacity="0.2"/>

@@ -163,20 +163,36 @@ export const LeverageImpactChart = () => {
         >
           <defs>
             <linearGradient id="gradient1x" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#3B7DD8" stopOpacity="0.4"/>
-              <stop offset="100%" stopColor="#3B7DD8" stopOpacity="0.067"/>
+              <stop offset="0%" stopColor="#3B7DD8" stopOpacity="0.4">
+                <animate attributeName="stop-opacity" values="0.4;0.5;0.4" dur="4s" repeatCount="indefinite"/>
+              </stop>
+              <stop offset="100%" stopColor="#3B7DD8" stopOpacity="0.067">
+                <animate attributeName="stop-opacity" values="0.067;0.1;0.067" dur="4s" repeatCount="indefinite"/>
+              </stop>
             </linearGradient>
             <linearGradient id="gradient3x" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#5EDD2C" stopOpacity="0.4"/>
-              <stop offset="100%" stopColor="#5EDD2C" stopOpacity="0.067"/>
+              <stop offset="0%" stopColor="#5EDD2C" stopOpacity="0.4">
+                <animate attributeName="stop-opacity" values="0.4;0.5;0.4" dur="4s" repeatCount="indefinite"/>
+              </stop>
+              <stop offset="100%" stopColor="#5EDD2C" stopOpacity="0.067">
+                <animate attributeName="stop-opacity" values="0.067;0.1;0.067" dur="4s" repeatCount="indefinite"/>
+              </stop>
             </linearGradient>
             <linearGradient id="gradient5x" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#FF9500" stopOpacity="0.4"/>
-              <stop offset="100%" stopColor="#FF9500" stopOpacity="0.067"/>
+              <stop offset="0%" stopColor="#FF9500" stopOpacity="0.4">
+                <animate attributeName="stop-opacity" values="0.4;0.5;0.4" dur="4s" repeatCount="indefinite"/>
+              </stop>
+              <stop offset="100%" stopColor="#FF9500" stopOpacity="0.067">
+                <animate attributeName="stop-opacity" values="0.067;0.1;0.067" dur="4s" repeatCount="indefinite"/>
+              </stop>
             </linearGradient>
             <linearGradient id="gradient10x" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#DC2626" stopOpacity="0.4"/>
-              <stop offset="100%" stopColor="#DC2626" stopOpacity="0.067"/>
+              <stop offset="0%" stopColor="#DC2626" stopOpacity="0.4">
+                <animate attributeName="stop-opacity" values="0.4;0.5;0.4" dur="4s" repeatCount="indefinite"/>
+              </stop>
+              <stop offset="100%" stopColor="#DC2626" stopOpacity="0.067">
+                <animate attributeName="stop-opacity" values="0.067;0.1;0.067" dur="4s" repeatCount="indefinite"/>
+              </stop>
             </linearGradient>
             <pattern id="leverageGrid" width="60" height="35" patternUnits="userSpaceOnUse">
               <path d="M 60 0 L 0 0 0 35" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3,3" opacity="0.3"/>
