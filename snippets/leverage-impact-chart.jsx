@@ -34,10 +34,10 @@ export const LeverageImpactChart = () => {
   };
 
   const leverageLines = [
-    { leverage: 1, color: '#3B7DD8', label: '1× Leverage' }, // Blue with matching intensity
-    { leverage: 3, color: '#5EDD2C', label: '3× Leverage' }, // Primary green
-    { leverage: 5, color: '#FF9500', label: '5× Leverage' }, // Orange with matching intensity  
-    { leverage: 10, color: '#FF3B30', label: '10× Leverage' } // Red with matching intensity
+    { leverage: 1, color: '#3B7DD8', label: '1× Leverage' },
+    { leverage: 3, color: '#5EDD2C', label: '3× Leverage' },
+    { leverage: 5, color: '#FF9500', label: '5× Leverage' },
+    { leverage: 10, color: '#DC2626', label: '10× Leverage' }
   ];
 
   const allLines = leverageLines.map(line => {
@@ -140,17 +140,13 @@ export const LeverageImpactChart = () => {
   const tooltipProps = getTooltipProps(hoveredLine);
 
   return (
-    <div style={{ paddingTop: '2rem', width: '100%' }}>
-      <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-        <h2 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: '0.5rem', color: '#ffffff' }}>
-          Leverage Impact on PnL
-        </h2>
-        <p style={{ fontSize: '0.875rem', opacity: '0.7' }}>
-          (Market Example: US Government Shutdown)
-        </p>
+    <div className="w-full max-w-full">
+      <div className="text-center mb-6">
+        <h2 className="text-xl font-semibold mb-2">Leverage Impact on PnL</h2>
+        <p className="text-sm opacity-70">(Market Example: US Government Shutdown)</p>
       </div>
       
-      <div style={{ width: '100%' }}>
+      <div className="w-full">
         <svg 
           ref={svgRef}
           width="100%" 
@@ -265,16 +261,16 @@ export const LeverageImpactChart = () => {
           <text x="30" y="180" fill="currentColor" fontSize="14" textAnchor="middle" transform="rotate(-90 30 180)" opacity="0.8">PnL (% of Margin)</text>
           
           {/* Legend */}
-          <g transform="translate(400, 60)">
-            <rect x="-10" y="-10" width="150" height="100" fill="currentColor" opacity="0.05" rx="4"/>
+          <g transform="translate(420, 60)">
+            <rect x="-15" y="-15" width="165" height="115" fill="currentColor" opacity="0.05" rx="6"/>
             {leverageLines.map((line, index) => (
-              <g key={index} transform={`translate(0, ${index * 18})`}>
+              <g key={index} transform={`translate(0, ${index * 20})`}>
                 <line x1="0" y1="0" x2="20" y2="0" stroke={line.color} strokeWidth="3"/>
                 <text x="25" y="4" fill="currentColor" fontSize="12" opacity="0.8">{line.label}</text>
               </g>
             ))}
-            <line x1="0" y1="72" x2="20" y2="72" stroke="currentColor" strokeWidth="2" strokeDasharray="4,4" opacity="0.6"/>
-            <text x="25" y="76" fill="currentColor" fontSize="12" opacity="0.8">Entry Price (15%)</text>
+            <line x1="0" y1="80" x2="20" y2="80" stroke="currentColor" strokeWidth="2" strokeDasharray="4,4" opacity="0.6"/>
+            <text x="25" y="84" fill="currentColor" fontSize="12" opacity="0.8">Entry Price (15%)</text>
           </g>
           
           {/* Enhanced tooltip */}
@@ -321,6 +317,13 @@ export const LeverageImpactChart = () => {
             </g>
           )}
         </svg>
+      </div>
+      
+      <div className="text-center mt-4">
+        <span className="inline-flex items-center text-sm opacity-70">
+          <div className="w-4 h-0.5 bg-[#5EDD2C] mr-2 animate-pulse"></div>
+          All positions entered at 15% market probability
+        </span>
       </div>
     </div>
   );

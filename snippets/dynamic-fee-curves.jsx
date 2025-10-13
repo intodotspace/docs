@@ -64,7 +64,7 @@ export const DynamicFeeCurves = () => {
     },
     { 
       type: 'sell', 
-      color: '#EF4444', 
+      color: '#DC2626', 
       label: 'Sell-Side Fee', 
       points: generateSellFeeData(),
       pathData: generateSellFeeData().map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.svgX} ${p.svgY}`).join(' ')
@@ -271,8 +271,8 @@ export const DynamicFeeCurves = () => {
           <text x="30" y="180" fill="currentColor" fontSize="14" textAnchor="middle" transform="rotate(-90 30 180)" opacity="0.8">Fee (%)</text>
           
           {/* Legend */}
-          <g transform="translate(400, 60)">
-            <rect x="-10" y="-10" width="180" height="60" fill="currentColor" opacity="0.05" rx="4"/>
+          <g transform="translate(420, 60)">
+            <rect x="-15" y="-15" width="160" height="70" fill="currentColor" opacity="0.05" rx="6"/>
             {feeLines.map((line, index) => (
               <g key={index} transform={`translate(0, ${index * 25})`}>
                 <line x1="0" y1="0" x2="20" y2="0" stroke={line.color} strokeWidth="3"/>
@@ -288,8 +288,8 @@ export const DynamicFeeCurves = () => {
             <text x="140" y="95" fill="#5EDD2C" fontSize="11" opacity="0.9">High buy fee (2%)</text>
             
             {/* Midpoint annotation */}
-            <text x="270" y="130" fill="#EF4444" fontSize="11" opacity="0.9">Midpoint uncertainty:</text>
-            <text x="270" y="145" fill="#EF4444" fontSize="11" opacity="0.9">Sell fee peaks near 50%</text>
+            <text x="270" y="130" fill="#DC2626" fontSize="11" opacity="0.9">Midpoint uncertainty:</text>
+            <text x="270" y="145" fill="#DC2626" fontSize="11" opacity="0.9">Sell fee peaks near 50%</text>
             
             {/* Certainty annotation */}
             <text x="450" y="300" fill="currentColor" fontSize="11" opacity="0.7">Certainty phase:</text>
