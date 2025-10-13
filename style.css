@@ -1,5 +1,4 @@
 /* ===== SPACE INTRO SECTION ===== */
-
 .intro-hero {
   text-align: center;
   padding: 120px 20px 140px; /* extra bottom padding */
@@ -9,9 +8,7 @@
   /* background: radial-gradient(ellipse at top, #0a0b2e 0%, #000000 70%); */
   min-height: 100vh; /* ensures full viewport height */
 }
-
 /* ===== STARFIELD BACKGROUND ===== */
-
 .intro-hero::before {
   content: "";
   position: absolute;
@@ -21,11 +18,9 @@
   /* animation: driftStars 120s linear infinite; */
   /* opacity: 0.4; */
   z-index: 0;
-
   /* ✅ GPU optimization */
   /* will-change: background-position; */
 }
-
 /* Subtle glowing overlay */
 .intro-hero::after {
   content: "";
@@ -40,7 +35,6 @@
   z-index: 1;
   pointer-events: none;
 }
-
 /* infinite starfield movement (no drifting) */
 @keyframes driftStars {
   from {
@@ -50,15 +44,12 @@
     background-position: -2000px 2000px;
   }
 }
-
 /* soft glow pulse */
 @keyframes pulseGlow {
   0% { opacity: 0.3; }
   100% { opacity: 0.7; }
 }
-
 /* ===== CONTENT ===== */
-
 .intro-container {
   position: relative;
   z-index: 2;
@@ -66,14 +57,12 @@
   margin: 0 auto;
   padding-bottom: 100px;
 }
-
 .logo-video {
   width: 120px;
   margin-bottom: 20px;
   /* filter: drop-shadow(0 0 15px rgba(100, 150, 255, 0.6)); */
   will-change: filter, transform;
 }
-
 .intro-title {
   font-size: 3.2rem;
   font-weight: 700;
@@ -81,29 +70,24 @@
   /* text-shadow: 0 0 15px rgba(130, 170, 255, 0.9); */
   margin-bottom: 10px;
 }
-
 .intro-subtitle {
   font-size: 1.2rem;
   /* color: #a6b1ff; */
   /* opacity: 0.8; */
   margin-bottom: 60px;
 }
-
 /* ===== CARDS ===== */
-
 .intro-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 25px;
 }
-
 /* floating animation */
 @keyframes floatCard {
   0% { transform: translateY(0); }
   50% { transform: translateY(-6px); }
   100% { transform: translateY(0); }
 }
-
 .intro-card {
   /* background: rgba(30, 35, 80, 0.25); */
   /* border: 1px solid rgba(120, 150, 255, 0.15); */
@@ -113,17 +97,14 @@
   /* backdrop-filter: blur(8px); */
   cursor: pointer;
   animation: floatCard 6s ease-in-out infinite;
-
   /* ✅ GPU optimization */
   will-change: transform;
   transform: translateZ(0);
 }
-
 /* natural desync for floating effect */
 .intro-card:nth-child(2) { animation-delay: 1.5s; }
 .intro-card:nth-child(3) { animation-delay: 3s; }
 .intro-card:nth-child(4) { animation-delay: 4.5s; }
-
 /* hover glow */
 .intro-card:hover {
   transform: translateY(-10px) scale(1.05);
@@ -132,7 +113,6 @@
               0 0 60px rgba(80, 120, 255, 0.25); */
   /* background: rgba(50, 60, 120, 0.35); */
 }
-
 /* card content */
 .intro-card-icon {
   font-size: 2.2rem;
@@ -140,24 +120,16 @@
   display: block;
   /* filter: drop-shadow(0 0 6px rgba(150, 200, 255, 0.8)); */
 }
-
 .intro-card h3 {
   /* color: #d3dcff; */
   margin-bottom: 8px;
   font-weight: 600;
 }
-
 .intro-card p {
   /* color: #a8b5ff; */
   font-size: 0.95rem;
 }
-
 /* ===== GLOBAL FIX ===== */
-
 html, body {
   height: auto;
-  overflow-x: hidden;
-  /* background: none; */
-  /* color: inherit; */
 }
-
