@@ -168,7 +168,7 @@ export const LeverageImpactChart = () => {
         </defs>
         
         {/* Title and subtitle in SVG */}
-        <text x="300" y="35" fill="#ffffff" fontSize="20" textAnchor="middle" fontWeight="600">
+        <text x="300" y="35" style={{ fill: 'white' }} fontSize="20" textAnchor="middle" fontWeight="600">
           Leverage Impact on PnL
         </text>
         <text x="300" y="55" fill="currentColor" fontSize="14" textAnchor="middle" opacity="0.7">
