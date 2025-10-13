@@ -143,6 +143,7 @@
             "pages": [
               "res/quick-links",
               "res/support",
+              "res/partnerships",
               "res/press-kit",
               {
                 "group": "Legal",
