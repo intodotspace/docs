@@ -139,12 +139,18 @@
         "url": "res",
         "groups": [
           {
-            "group": "Pages",
+            "group": "Resources",
             "pages": [
               "res/overview",
+              "res/get-help",
               "res/press-kit",
-              "res/terms-of-service",
-              "res/privacy-policy"
+              {
+                "group": "Legal",
+                "pages": [
+                  "res/legal/privacy-policy",
+                  "res/legal/terms-of-service"
+                ]
+              }
             ]
           }
         ]
