@@ -144,8 +144,12 @@ export const LiquidityRewardChart = () => {
         >
           <defs>
             <linearGradient id="multiplierGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#5EDD2C" stopOpacity="0.6"/>
-              <stop offset="100%" stopColor="#5EDD2C" stopOpacity="0.1"/>
+              <stop offset="0%" stopColor="#5EDD2C" stopOpacity="0.6">
+                <animate attributeName="stop-opacity" values="0.6;0.75;0.6" dur="4s" repeatCount="indefinite"/>
+              </stop>
+              <stop offset="100%" stopColor="#5EDD2C" stopOpacity="0.1">
+                <animate attributeName="stop-opacity" values="0.1;0.15;0.1" dur="4s" repeatCount="indefinite"/>
+              </stop>
             </linearGradient>
             <pattern id="grid" width="60" height="35" patternUnits="userSpaceOnUse">
               <path d="M 60 0 L 0 0 0 35" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3,3" opacity="0.3"/>
