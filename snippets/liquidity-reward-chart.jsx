@@ -6,7 +6,7 @@ export const LiquidityRewardChart = () => {
   const [isTouching, setIsTouching] = useState(false);
   const svgRef = useRef(null);
   
-  // Generate logarithmic curve points
+  // Generate the logarithmic curve points
   const generatePoints = () => {
     const points = [];
     for (let i = 0; i <= 100; i++) {
