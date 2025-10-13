@@ -3,6 +3,7 @@ import { useState, useRef } from 'react';
 export const CommitmentQualityCurve = () => {
   const [hoveredPoint, setHoveredPoint] = useState(null);
   const [mousePos, setMousePos] = useState(null);
+  const [isTouching, setIsTouching] = useState(false);
   const svgRef = useRef(null);
   
   // Generate curve points for interaction
@@ -21,42 +22,101 @@ export const CommitmentQualityCurve = () => {
   const points = generatePoints();
   const pathData = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.svgX} ${p.svgY}`).join(' ');
 
-  const handleMouseMove = (e) => {
+  const findClosestPoint = (svgX, svgY) => {
+    let closestPoint = null;
+    let minDistance = 40; // Increased for better mobile interaction
+    
+    points.forEach(point => {
+      const distance = Math.sqrt(
+        Math.pow(svgX - point.svgX, 2) + Math.pow(svgY - point.svgY, 2)
+      );
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestPoint = point;
+      }
+    });
+    
+    return closestPoint;
+  };
+
+  const updateInteraction = (clientX, clientY) => {
     if (!svgRef.current) return;
     
     const rect = svgRef.current.getBoundingClientRect();
-    const svgX = ((e.clientX - rect.left) / rect.width) * 600;
-    const svgY = ((e.clientY - rect.top) / rect.height) * 400;
+    const svgX = ((clientX - rect.left) / rect.width) * 600;
+    const svgY = ((clientY - rect.top) / rect.height) * 400;
     
     // Only show crosshair within chart area
     if (svgX >= 80 && svgX <= 560 && svgY >= 40 && svgY <= 320) {
-      setMousePos({ x: svgX, y: svgY });
+      if (!isTouching) {
+        setMousePos({ x: svgX, y: svgY });
+      }
       
-      // Find closest point for tooltip (within 30px radius)
-      let closestPoint = null;
-      let minDistance = 30;
-      
-      points.forEach(point => {
-        const distance = Math.sqrt(
-          Math.pow(svgX - point.svgX, 2) + Math.pow(svgY - point.svgY, 2)
-        );
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestPoint = point;
-        }
-      });
-      
+      const closestPoint = findClosestPoint(svgX, svgY);
       setHoveredPoint(closestPoint);
     } else {
+      if (!isTouching) {
+        setMousePos(null);
+      }
+      setHoveredPoint(null);
+    }
+  };
+
+  // Mouse events
+  const handleMouseMove = (e) => {
+    if (!isTouching) {
+      updateInteraction(e.clientX, e.clientY);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (!isTouching) {
       setMousePos(null);
       setHoveredPoint(null);
     }
   };
 
-  const handleMouseLeave = () => {
-    setMousePos(null);
-    setHoveredPoint(null);
+  // Touch events
+  const handleTouchStart = (e) => {
+    e.preventDefault();
+    setIsTouching(true);
+    const touch = e.touches[0];
+    updateInteraction(touch.clientX, touch.clientY);
   };
+
+  const handleTouchMove = (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    updateInteraction(touch.clientX, touch.clientY);
+  };
+
+  const handleTouchEnd = () => {
+    setIsTouching(false);
+    setMousePos(null);
+    // Keep tooltip visible for a moment on mobile
+    setTimeout(() => {
+      if (isTouching === false) {
+        setHoveredPoint(null);
+      }
+    }, 2000);
+  };
+
+  // Smart tooltip positioning
+  const getTooltipProps = (point) => {
+    if (!point) return {};
+    
+    let x = point.svgX - 50;
+    let y = point.svgY - 55;
+    
+    // Keep tooltip in bounds
+    if (x < 10) x = 10;
+    if (x > 500) x = 500;
+    if (y < 10) y = point.svgY + 20;
+    
+    return { x, y };
+  };
+
+  const tooltipProps = getTooltipProps(hoveredPoint);
 
   return (
     <div className="w-full max-w-full">
@@ -72,10 +132,13 @@ export const CommitmentQualityCurve = () => {
           height="auto"
           viewBox="0 0 600 400" 
           preserveAspectRatio="xMidYMid meet"
-          className="bg-transparent cursor-crosshair w-full h-auto"
+          className="bg-transparent cursor-crosshair w-full h-auto touch-none"
           style={{ minHeight: '300px', maxHeight: '500px' }}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         >
           <defs>
             <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -85,6 +148,9 @@ export const CommitmentQualityCurve = () => {
             <pattern id="grid" width="60" height="35" patternUnits="userSpaceOnUse">
               <path d="M 60 0 L 0 0 0 35" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3,3" opacity="0.3"/>
             </pattern>
+            <filter id="dropShadow">
+              <feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.3"/>
+            </filter>
           </defs>
           
           {/* Grid */}
@@ -131,7 +197,7 @@ export const CommitmentQualityCurve = () => {
               key={i}
               cx={point.svgX}
               cy={point.svgY}
-              r="8"
+              r="12"
               fill="transparent"
               className="cursor-pointer"
             />
@@ -143,9 +209,11 @@ export const CommitmentQualityCurve = () => {
               key={`visible-${i}`}
               cx={point.svgX}
               cy={point.svgY}
-              r="3"
+              r={hoveredPoint === point ? "6" : "3"}
               fill="#5EDD2C"
-              className={hoveredPoint === point ? "r-5" : ""}
+              className="transition-all duration-200"
+              stroke={hoveredPoint === point ? "#ffffff" : "none"}
+              strokeWidth={hoveredPoint === point ? "2" : "0"}
             />
           ))}
           
@@ -176,26 +244,36 @@ export const CommitmentQualityCurve = () => {
           <text x="320" y="370" fill="currentColor" fontSize="14" textAnchor="middle" opacity="0.8">Limit Order Price</text>
           <text x="30" y="180" fill="currentColor" fontSize="14" textAnchor="middle" transform="rotate(-90 30 180)" opacity="0.8">Relative Reward Size</text>
           
-          {/* Tooltip */}
+          {/* Enhanced tooltip */}
           {hoveredPoint && (
-            <g>
-              <rect x={hoveredPoint.svgX - 40} y={hoveredPoint.svgY - 45} 
-                    width="80" height="35" 
-                    fill="currentColor" 
-                    stroke="#5EDD2C" 
-                    strokeWidth="1" 
-                    rx="4"
-                    opacity="0.9"/>
-              <text x={hoveredPoint.svgX} y={hoveredPoint.svgY - 30} 
-                    fill="#5EDD2C" 
-                    fontSize="10" 
-                    textAnchor="middle">
+            <g filter="url(#dropShadow)">
+              <rect 
+                x={tooltipProps.x} 
+                y={tooltipProps.y} 
+                width="100" 
+                height="45" 
+                fill="#1a1a1a" 
+                stroke="#5EDD2C" 
+                strokeWidth="2" 
+                rx="6"
+                opacity="0.95"
+              />
+              <text 
+                x={tooltipProps.x + 50} 
+                y={tooltipProps.y + 18} 
+                fill="#ffffff" 
+                fontSize="12" 
+                textAnchor="middle"
+                fontWeight="500">
                 Price: ${hoveredPoint.x.toFixed(2)}
               </text>
-              <text x={hoveredPoint.svgX} y={hoveredPoint.svgY - 18} 
-                    fill="#5EDD2C" 
-                    fontSize="10" 
-                    textAnchor="middle">
+              <text 
+                x={tooltipProps.x + 50} 
+                y={tooltipProps.y + 32} 
+                fill="#5EDD2C" 
+                fontSize="12" 
+                textAnchor="middle"
+                fontWeight="500">
                 Reward: {hoveredPoint.reward}
               </text>
             </g>
