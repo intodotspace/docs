@@ -58,14 +58,14 @@ export const DynamicFeeCurves = () => {
     { 
       type: 'buy', 
       color: '#5EDD2C', 
-      label: 'Buy-side Fee (Downward Arch)', 
+      label: 'Buy-Side Fee', 
       points: generateBuyFeeData(),
       pathData: generateBuyFeeData().map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.svgX} ${p.svgY}`).join(' ')
     },
     { 
       type: 'sell', 
       color: '#EF4444', 
-      label: 'Sell-side Fee', 
+      label: 'Sell-Side Fee', 
       points: generateSellFeeData(),
       pathData: generateSellFeeData().map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.svgX} ${p.svgY}`).join(' ')
     }
