@@ -141,7 +141,9 @@
           {
             "group": "Pages",
             "pages": [
-              "res/press-kit"
+              "res/press-kit",
+              "res/terms-of-service",
+              "res/privacy-policy"
             ]
           }
         ]
