@@ -141,7 +141,7 @@
           {
             "group": "Resources",
             "pages": [
-              "res/overview",
+              "res/hub",
               "res/get-help",
               "res/press-kit",
               {
