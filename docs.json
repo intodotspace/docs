@@ -141,8 +141,8 @@
           {
             "group": "Resources",
             "pages": [
-              "res/hub",
-              "res/get-help",
+              "res/quick-links",
+              "res/support",
               "res/press-kit",
               {
                 "group": "Legal",
