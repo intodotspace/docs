@@ -3,7 +3,7 @@ title: "Deterministic Resolution"
 ---
 Crypto markets resolve using oracle price feeds with Time-Weighted Average Price (TWAP) calculations.
 
-Oracle Infrastructure
+**Oracle Infrastructure**
 
 **Primary:** Pyth Network
 
@@ -23,10 +23,12 @@ Where:
 - Window: 15 minutes ending at expiry $T$
 
 **Example:**
+|         | **Value**                                         |
+|-------------------:|---------------------------------------------------|
+| **Market**         | "Will BTC close above \$150,000 on Dec 31, 2025?" |
+| **Expiry**         | Dec 31, 2025 23:59:59 UTC                         |
+| **TWAP Window**    | 23:45:00 – 23:59:59 UTC                           |
 
-Market: "Will BTC close above $150,000 on Dec 31, 2025?"\
-Expiry: Dec 31, 2025 23:59:59 UTC\
-TWAP Window: 23:45:00 - 23:59:59 UTC
 
 If $ \text{TWAP} \ge 150000 $ → YES wins
 
