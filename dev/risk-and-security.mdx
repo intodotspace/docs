@@ -7,10 +7,12 @@ Space implements multiple layers of risk controls to protect users and maintain 
     - Median of Pyth + Switchboard prices
     - Reject if oracles disagree by >2%
     - 15-minute TWAP averages out manipulation
+
 **Liveness Checks:**
     - Require minimum updates in TWAP window
     - Extend window if oracle temporarily down
     - Mark invalid if insufficient data
+
 **Price Clamping:**
     - Maximum 1% price movement per minute
     - Outlier detection: reject prices >3 standard deviations
@@ -78,6 +80,7 @@ Prevents last-second manipulation with insider information or unfair advantage f
 
 ## Slippage Protection
 Users set maximum acceptable slippage on market orders (default 5%).
+
 If $ \frac{|\text{Actual Fill Price} - \text{Expected Price}|}{ \text{Expected Price}} > \text{Max Slippage} $:
   → Revert transaction
   → No trade executed
