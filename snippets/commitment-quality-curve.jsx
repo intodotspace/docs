@@ -280,13 +280,6 @@ export const CommitmentQualityCurve = () => {
           )}
         </svg>
       </div>
-      
-      <div className="text-center mt-4">
-        <span className="inline-flex items-center text-sm opacity-70">
-          <div className="w-4 h-0.5 bg-[#5EDD2C] mr-2 animate-pulse"></div>
-          Commitment Quality Reward Curve
-        </span>
-      </div>
     </div>
   );
 };
