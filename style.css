@@ -5,17 +5,20 @@ nav a.active {
   background-color: rgba(94, 221, 44, 0.15) !important;
   border-radius: 6px;
 }
+
 /* ===== SUPER TITLE (ANCHOR ABOVE H1) ===== */
 .subtitle,
 [class*="subtitle"],
 .text-primary {
   color: #5EDD2C !important;
 }
+
 /* ===== HOVER STATE FOR SIDEBAR LINKS ===== */
 nav a:hover {
   background-color: rgba(94, 221, 44, 0.08) !important;
   border-radius: 6px;
 }
+
 /* ===== ROUNDED BORDERS FOR CONTENT IMAGES & VIDEOS ===== */
 article img,
 .content img,
@@ -26,4 +29,25 @@ main video,
 img,
 video {
   border-radius: 18px !important;
+}
+
+/* ===== MATH STYLING ===== */
+.math-display, 
+.katex-display,
+$$, 
+[class*="math-display"] {
+  background-color: #141414 !important;
+  border: 1px solid rgba(94, 221, 44, 0.2) !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+  margin: 16px 0 !important;
+}
+
+.math-inline, 
+.katex,
+[class*="math-inline"] {
+  background-color: #141414 !important;
+  border: 1px solid rgba(94, 221, 44, 0.15) !important;
+  border-radius: 6px !important;
+  padding: 4px 8px !important;
 }
