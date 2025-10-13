@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "Space",
   "colors": {
-    "primary": "#2976CB",
-    "light": "#2976CB",
-    "dark": "#2976CB"
+    "primary": "#5EDD2C",
+    "light": "#0E0E0E",
+    "dark": "#0E0E0E"
   },
   "appearance": {
     "default": "dark",
@@ -29,17 +29,11 @@
           {
             "group": "Introduction",
             "pages": [
-              "docs/introduction/welcome",
-              "docs/introduction/preface"
-            ]
-          },
-          {
-            "group": "About",
-            "pages": [
-              "docs/about/what-is-space",
-              "docs/about/why-build-space",
-              "docs/about/who-is-space-for",
-              "docs/about/vision"
+              "docs/introduction/overview",
+              "docs/introduction/preface",
+              "docs/introduction/what-is-space",
+              "docs/introduction/why-space",
+              "docs/introduction/vision"
             ]
           },
           {
