@@ -1,44 +1,54 @@
 import { useState, useRef } from 'react';
 
-export const LiquidityRewardChart = () => {
-  const [hoveredPoint, setHoveredPoint] = useState(null);
+export const LeverageImpactChart = () => {
+  const [hoveredLine, setHoveredLine] = useState(null);
   const [mousePos, setMousePos] = useState(null);
   const [isTouching, setIsTouching] = useState(false);
   const svgRef = useRef(null);
   
-  // Generate the logarithmic curve points
-  const generatePoints = () => {
+  // Generate data for each leverage line - all intersect at 15% with 0% PnL
+  const generateLeverageData = (leverage) => {
     const points = [];
+    const entryPrice = 15; // 15% entry price ($0.15)
+    
     for (let i = 0; i <= 100; i++) {
-      const days = (i / 100) * 350; // 0 to 350 days
-      // Logarithmic curve: starts at 1.2, approaches 2.35
-      const multiplier = 1.2 + 1.15 * Math.log(1 + days / 50) / Math.log(8);
-      const svgX = 80 + (days / 350) * 480;
-      const svgY = 320 - ((multiplier - 1.0) / 1.4) * 280; // Scale from 1.0 to 2.4
-      points.push({ days: Math.round(days), multiplier: multiplier.toFixed(2), svgX, svgY });
+      const marketProb = i; // 0% to 100%
+      
+      // PnL calculation based on share value change
+      const newPrice = marketProb; // Market price in cents
+      const profitPerShare = newPrice - entryPrice; // Price change in cents
+      const returnPercent = (profitPerShare / entryPrice) * 100; // Return without leverage
+      const leveragedReturn = returnPercent * leverage; // With leverage
+      
+      const svgX = 80 + (marketProb / 100) * 480;
+      const svgY = 320 - ((leveragedReturn + 200) / 1000) * 280; // Scale from -200 to 800
+      
+      points.push({ 
+        marketProb, 
+        pnl: Math.round(leveragedReturn), 
+        svgX, 
+        svgY,
+        leverage 
+      });
     }
     return points;
   };
 
-  const points = generatePoints();
-  const pathData = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.svgX} ${p.svgY}`).join(' ');
+  const leverageLines = [
+    { leverage: 1, color: '#3B82F6', label: '1× Leverage' },
+    { leverage: 3, color: '#10B981', label: '3× Leverage' },
+    { leverage: 5, color: '#F59E0B', label: '5× Leverage' },
+    { leverage: 10, color: '#EF4444', label: '10× Leverage' }
+  ];
 
-  const findClosestPoint = (svgX, svgY) => {
-    let closestPoint = null;
-    let minDistance = 40;
-    
-    points.forEach(point => {
-      const distance = Math.sqrt(
-        Math.pow(svgX - point.svgX, 2) + Math.pow(svgY - point.svgY, 2)
-      );
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestPoint = point;
-      }
-    });
-    
-    return closestPoint;
-  };
+  const allLines = leverageLines.map(line => {
+    const points = generateLeverageData(line.leverage);
+    return {
+      ...line,
+      points,
+      pathData: points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.svgX} ${p.svgY}`).join(' ')
+    };
+  });
 
   const updateInteraction = (clientX, clientY) => {
     if (!svgRef.current) return;
@@ -52,13 +62,30 @@ export const LiquidityRewardChart = () => {
         setMousePos({ x: svgX, y: svgY });
       }
       
-      const closestPoint = findClosestPoint(svgX, svgY);
-      setHoveredPoint(closestPoint);
+      const marketProb = Math.round(((svgX - 80) / 480) * 100);
+      
+      let closestLine = null;
+      let minDistance = Infinity;
+      
+      allLines.forEach(line => {
+        if (line.points[marketProb]) {
+          const distance = Math.abs(svgY - line.points[marketProb].svgY);
+          if (distance < minDistance && distance < 40) {
+            minDistance = distance;
+            closestLine = {
+              ...line,
+              point: line.points[marketProb]
+            };
+          }
+        }
+      });
+      
+      setHoveredLine(closestLine);
     } else {
       if (!isTouching) {
         setMousePos(null);
       }
-      setHoveredPoint(null);
+      setHoveredLine(null);
     }
   };
 
@@ -71,7 +98,7 @@ export const LiquidityRewardChart = () => {
   const handleMouseLeave = () => {
     if (!isTouching) {
       setMousePos(null);
-      setHoveredPoint(null);
+      setHoveredLine(null);
     }
   };
 
@@ -93,30 +120,31 @@ export const LiquidityRewardChart = () => {
     setMousePos(null);
     setTimeout(() => {
       if (isTouching === false) {
-        setHoveredPoint(null);
+        setHoveredLine(null);
       }
     }, 2000);
   };
 
-  const getTooltipProps = (point) => {
-    if (!point) return {};
+  const getTooltipProps = (line) => {
+    if (!line || !line.point) return {};
     
-    let x = point.svgX - 60;
-    let y = point.svgY - 55;
+    let x = line.point.svgX - 60;
+    let y = line.point.svgY - 55;
     
     if (x < 10) x = 10;
     if (x > 480) x = 480;
-    if (y < 10) y = point.svgY + 20;
+    if (y < 10) y = line.point.svgY + 20;
     
     return { x, y };
   };
 
-  const tooltipProps = getTooltipProps(hoveredPoint);
+  const tooltipProps = getTooltipProps(hoveredLine);
 
   return (
-    <div className="w-full max-w-full">
+    <div className="w-full max-w-full pt-6">
       <div className="text-center mb-6">
-        <h2 className="text-xl font-semibold mb-2">Liquidity Reward Multiplier vs. Time to Resolution</h2>
+        <h2 className="text-xl font-semibold mb-2 text-white">Leverage Impact on PnL</h2>
+        <p className="text-sm opacity-70">(Market Example: US Government Shutdown)</p>
       </div>
       
       <div className="w-full">
@@ -135,20 +163,19 @@ export const LiquidityRewardChart = () => {
           onTouchEnd={handleTouchEnd}
         >
           <defs>
-            <linearGradient id="liquidityAreaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#5EDD2C" stopOpacity="0.6"/>
-              <stop offset="100%" stopColor="#5EDD2C" stopOpacity="0.1"/>
-            </linearGradient>
-            <pattern id="liquidityGrid" width="60" height="35" patternUnits="userSpaceOnUse">
+            <pattern id="leverageGrid" width="60" height="35" patternUnits="userSpaceOnUse">
               <path d="M 60 0 L 0 0 0 35" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3,3" opacity="0.3"/>
             </pattern>
             <filter id="dropShadow">
               <feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.3"/>
             </filter>
+            <clipPath id="chartClip">
+              <rect x="80" y="40" width="480" height="280"/>
+            </clipPath>
           </defs>
           
           {/* Grid */}
-          <rect width="480" height="280" x="80" y="40" fill="url(#liquidityGrid)"/>
+          <rect width="480" height="280" x="80" y="40" fill="url(#leverageGrid)"/>
           
           {/* Crosshair lines */}
           {mousePos && (
@@ -174,74 +201,89 @@ export const LiquidityRewardChart = () => {
           <line x1="80" y1="320" x2="560" y2="320" stroke="currentColor" strokeWidth="2" opacity="0.6"/>
           <line x1="80" y1="40" x2="80" y2="320" stroke="currentColor" strokeWidth="2" opacity="0.6"/>
           
-          {/* Area under curve */}
-          <path d={`${pathData} L 560 320 L 80 320 Z`} 
-                fill="url(#liquidityAreaGradient)"/>
+          {/* Zero line (horizontal at 0% PnL) */}
+          <line x1="80" y1="264" x2="560" y2="264" stroke="currentColor" strokeWidth="1" strokeDasharray="5,5" opacity="0.4"/>
           
-          {/* Main curve line */}
-          <path d={pathData} 
+          {/* Entry price vertical line at 15% */}
+          <line x1="152" y1="40" x2="152" y2="320" stroke="currentColor" strokeWidth="2" strokeDasharray="8,4" opacity="0.6">
+            <animate attributeName="stroke-dashoffset" values="0;12;0" dur="3s" repeatCount="indefinite"/>
+          </line>
+          
+          {/* Leverage lines with clipping */}
+          <g clipPath="url(#chartClip)">
+            {allLines.map((line, index) => (
+              <path 
+                key={index}
+                d={line.pathData} 
                 fill="none" 
-                stroke="#5EDD2C" 
-                strokeWidth="3"
-                className="transition-all duration-300"/>
+                stroke={line.color} 
+                strokeWidth={hoveredLine?.leverage === line.leverage ? "4" : "3"}
+                className="transition-all duration-300"
+                opacity={hoveredLine && hoveredLine.leverage !== line.leverage ? 0.4 : 1}
+              />
+            ))}
+          </g>
           
-          {/* Interactive points (invisible larger hit areas) */}
-          {points.filter((_, i) => i % 2 === 0).map((point, i) => (
-            <circle
-              key={i}
-              cx={point.svgX}
-              cy={point.svgY}
-              r="12"
-              fill="transparent"
-              className="cursor-pointer"
-            />
-          ))}
-          
-          {/* Visible curve points */}
-          {points.filter((_, i) => i % 15 === 0).map((point, i) => (
-            <circle
-              key={`visible-${i}`}
-              cx={point.svgX}
-              cy={point.svgY}
-              r={hoveredPoint === point ? "6" : "3"}
-              fill="#5EDD2C"
-              className="transition-all duration-200"
-              stroke={hoveredPoint === point ? "#ffffff" : "none"}
-              strokeWidth={hoveredPoint === point ? "2" : "0"}
-            />
+          {/* Interactive areas */}
+          {allLines.map((line, index) => (
+            <g key={`interactive-${index}`}>
+              {line.points.filter((_, i) => i % 2 === 0).map((point, i) => (
+                <circle
+                  key={i}
+                  cx={point.svgX}
+                  cy={point.svgY}
+                  r="8"
+                  fill="transparent"
+                  className="cursor-pointer"
+                />
+              ))}
+            </g>
           ))}
           
           {/* X-axis labels */}
           <text x="80" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">0</text>
-          <text x="180" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">50</text>
-          <text x="280" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">100</text>
-          <text x="380" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">150</text>
-          <text x="480" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">200</text>
-          <text x="560" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">350</text>
+          <text x="152" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.9" fontWeight="bold">15</text>
+          <text x="200" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">20</text>
+          <text x="280" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">40</text>
+          <text x="360" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">60</text>
+          <text x="440" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">80</text>
+          <text x="560" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">100</text>
           
           {/* Y-axis labels */}
-          <text x="70" y="325" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">1.0</text>
-          <text x="70" y="275" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">1.2</text>
-          <text x="70" y="225" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">1.4</text>
-          <text x="70" y="175" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">1.6</text>
-          <text x="70" y="125" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">1.8</text>
-          <text x="70" y="75" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">2.0</text>
-          <text x="70" y="45" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">2.4</text>
+          <text x="70" y="325" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">-200</text>
+          <text x="70" y="264" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">0</text>
+          <text x="70" y="208" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">200</text>
+          <text x="70" y="152" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">400</text>
+          <text x="70" y="96" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">600</text>
+          <text x="70" y="45" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">800</text>
           
           {/* Axis titles */}
-          <text x="320" y="370" fill="currentColor" fontSize="14" textAnchor="middle" opacity="0.8">Days until resolution</text>
-          <text x="30" y="180" fill="currentColor" fontSize="14" textAnchor="middle" transform="rotate(-90 30 180)" opacity="0.8">Reward multiplier (relative)</text>
+          <text x="320" y="370" fill="currentColor" fontSize="14" textAnchor="middle" opacity="0.8">Market Probability (%)</text>
+          <text x="30" y="180" fill="currentColor" fontSize="14" textAnchor="middle" transform="rotate(-90 30 180)" opacity="0.8">PnL (% of Margin)</text>
+          
+          {/* Legend */}
+          <g transform="translate(400, 60)">
+            <rect x="-10" y="-10" width="150" height="100" fill="currentColor" opacity="0.05" rx="4"/>
+            {leverageLines.map((line, index) => (
+              <g key={index} transform={`translate(0, ${index * 18})`}>
+                <line x1="0" y1="0" x2="20" y2="0" stroke={line.color} strokeWidth="3"/>
+                <text x="25" y="4" fill="currentColor" fontSize="12" opacity="0.8">{line.label}</text>
+              </g>
+            ))}
+            <line x1="0" y1="72" x2="20" y2="72" stroke="currentColor" strokeWidth="2" strokeDasharray="4,4" opacity="0.6"/>
+            <text x="25" y="76" fill="currentColor" fontSize="12" opacity="0.8">Entry Price (15%)</text>
+          </g>
           
           {/* Enhanced tooltip */}
-          {hoveredPoint && (
+          {hoveredLine && hoveredLine.point && (
             <g filter="url(#dropShadow)">
               <rect 
                 x={tooltipProps.x} 
                 y={tooltipProps.y} 
                 width="120" 
-                height="45" 
+                height="55" 
                 fill="#1a1a1a" 
-                stroke="#5EDD2C" 
+                stroke={hoveredLine.color} 
                 strokeWidth="2" 
                 rx="6"
                 opacity="0.95"
@@ -253,27 +295,29 @@ export const LiquidityRewardChart = () => {
                 fontSize="12" 
                 textAnchor="middle"
                 fontWeight="500">
-                {hoveredPoint.days} days
+                {hoveredLine.point.marketProb}% probability
               </text>
               <text 
                 x={tooltipProps.x + 60} 
                 y={tooltipProps.y + 32} 
-                fill="#5EDD2C" 
+                fill={hoveredLine.color} 
                 fontSize="12" 
                 textAnchor="middle"
                 fontWeight="500">
-                {hoveredPoint.multiplier}× multiplier
+                {hoveredLine.label}
+              </text>
+              <text 
+                x={tooltipProps.x + 60} 
+                y={tooltipProps.y + 46} 
+                fill={hoveredLine.color} 
+                fontSize="12" 
+                textAnchor="middle"
+                fontWeight="bold">
+                {hoveredLine.point.pnl > 0 ? '+' : ''}{hoveredLine.point.pnl}% PnL
               </text>
             </g>
           )}
         </svg>
-      </div>
-      
-      <div className="text-center mt-4">
-        <span className="inline-flex items-center text-sm opacity-70">
-          <div className="w-4 h-0.5 bg-[#5EDD2C] mr-2 animate-pulse"></div>
-          Liquidity Reward Multiplier
-        </span>
       </div>
     </div>
   );
