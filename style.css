@@ -28,10 +28,7 @@ video {
   border-radius: 18px !important;
 }
 /* ===== ICON COLOR ===== */
-svg[class*="icon"],
-[class*="Icon"] svg,
-.card svg,
-i[class*="fa-"] {
+svg {
   color: #5EDD2C !important;
   fill: #5EDD2C !important;
 }
