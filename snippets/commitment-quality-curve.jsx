@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 export const CommitmentQualityCurve = () => {
   const [hoveredPoint, setHoveredPoint] = useState(null);
+  const [mousePos, setMousePos] = useState(null);
+  const svgRef = useRef(null);
   
   // Generate curve points for interaction
   const generatePoints = () => {
@@ -19,31 +21,98 @@ export const CommitmentQualityCurve = () => {
   const points = generatePoints();
   const pathData = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.svgX} ${p.svgY}`).join(' ');
 
+  const handleMouseMove = (e) => {
+    if (!svgRef.current) return;
+    
+    const rect = svgRef.current.getBoundingClientRect();
+    const svgX = ((e.clientX - rect.left) / rect.width) * 600;
+    const svgY = ((e.clientY - rect.top) / rect.height) * 400;
+    
+    // Only show crosshair within chart area
+    if (svgX >= 80 && svgX <= 560 && svgY >= 40 && svgY <= 320) {
+      setMousePos({ x: svgX, y: svgY });
+      
+      // Find closest point for tooltip (within 30px radius)
+      let closestPoint = null;
+      let minDistance = 30;
+      
+      points.forEach(point => {
+        const distance = Math.sqrt(
+          Math.pow(svgX - point.svgX, 2) + Math.pow(svgY - point.svgY, 2)
+        );
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestPoint = point;
+        }
+      });
+      
+      setHoveredPoint(closestPoint);
+    } else {
+      setMousePos(null);
+      setHoveredPoint(null);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setMousePos(null);
+    setHoveredPoint(null);
+  };
+
   return (
-    <div className="w-full p-6">
+    <div className="w-full max-w-full">
       <div className="text-center mb-6">
         <h2 className="text-xl font-semibold mb-2">Commitment Quality Curve</h2>
-        <p className="text-sm text-gray-400">Balanced Price ($0.50)</p>
+        <p className="text-sm opacity-70">Balanced Price ($0.50)</p>
       </div>
       
-      <div className="flex justify-center relative">
-        <svg width="600" height="400" viewBox="0 0 600 400" className="bg-transparent">
+      <div className="w-full">
+        <svg 
+          ref={svgRef}
+          width="100%" 
+          height="auto"
+          viewBox="0 0 600 400" 
+          preserveAspectRatio="xMidYMid meet"
+          className="bg-transparent cursor-crosshair w-full h-auto"
+          style={{ minHeight: '300px', maxHeight: '500px' }}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+        >
           <defs>
             <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor="#5EDD2C" stopOpacity="0.6"/>
               <stop offset="100%" stopColor="#5EDD2C" stopOpacity="0.1"/>
             </linearGradient>
             <pattern id="grid" width="60" height="35" patternUnits="userSpaceOnUse">
-              <path d="M 60 0 L 0 0 0 35" fill="none" stroke="#374151" strokeWidth="1" strokeDasharray="3,3"/>
+              <path d="M 60 0 L 0 0 0 35" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3,3" opacity="0.3"/>
             </pattern>
           </defs>
           
           {/* Grid */}
           <rect width="480" height="280" x="80" y="40" fill="url(#grid)"/>
           
+          {/* Crosshair lines */}
+          {mousePos && (
+            <g opacity="0.5">
+              <line 
+                x1="80" y1={mousePos.y} 
+                x2="560" y2={mousePos.y} 
+                stroke="currentColor" 
+                strokeWidth="1" 
+                strokeDasharray="2,2"
+              />
+              <line 
+                x1={mousePos.x} y1="40" 
+                x2={mousePos.x} y2="320" 
+                stroke="currentColor" 
+                strokeWidth="1" 
+                strokeDasharray="2,2"
+              />
+            </g>
+          )}
+          
           {/* Axes */}
-          <line x1="80" y1="320" x2="560" y2="320" stroke="#9CA3AF" strokeWidth="2"/>
-          <line x1="80" y1="40" x2="80" y2="320" stroke="#9CA3AF" strokeWidth="2"/>
+          <line x1="80" y1="320" x2="560" y2="320" stroke="currentColor" strokeWidth="2" opacity="0.6"/>
+          <line x1="80" y1="40" x2="80" y2="320" stroke="currentColor" strokeWidth="2" opacity="0.6"/>
           
           {/* Area under curve */}
           <path d={`${pathData} L 560 320 L 80 320 Z`} 
@@ -54,63 +123,71 @@ export const CommitmentQualityCurve = () => {
                 fill="none" 
                 stroke="#5EDD2C" 
                 strokeWidth="3"
-                className="transition-all duration-300 hover:stroke-width-4"/>
+                className="transition-all duration-300"/>
           
-          {/* Interactive points */}
-          {points.filter((_, i) => i % 5 === 0).map((point, i) => (
+          {/* Interactive points (invisible larger hit areas) */}
+          {points.filter((_, i) => i % 2 === 0).map((point, i) => (
             <circle
               key={i}
               cx={point.svgX}
               cy={point.svgY}
-              r="4"
+              r="8"
+              fill="transparent"
+              className="cursor-pointer"
+            />
+          ))}
+          
+          {/* Visible curve points */}
+          {points.filter((_, i) => i % 10 === 0).map((point, i) => (
+            <circle
+              key={`visible-${i}`}
+              cx={point.svgX}
+              cy={point.svgY}
+              r="3"
               fill="#5EDD2C"
-              className="cursor-pointer transition-all duration-200 hover:r-6 hover:fill-white hover:stroke-2"
-              stroke="#5EDD2C"
-              strokeWidth="0"
-              onMouseEnter={() => setHoveredPoint(point)}
-              onMouseLeave={() => setHoveredPoint(null)}
+              className={hoveredPoint === point ? "r-5" : ""}
             />
           ))}
           
           {/* Vertical dashed line at x=0.5 with animation */}
           <line x1="320" y1="40" x2="320" y2="320" 
-                stroke="#9CA3AF" 
+                stroke="currentColor" 
                 strokeWidth="2" 
                 strokeDasharray="8,4"
-                className="transition-opacity duration-300">
+                opacity="0.6">
             <animate attributeName="stroke-dashoffset" values="0;12;0" dur="3s" repeatCount="indefinite"/>
           </line>
           
           {/* X-axis labels */}
-          <text x="80" y="340" fill="#9CA3AF" fontSize="12" textAnchor="middle">0.0</text>
-          <text x="200" y="340" fill="#9CA3AF" fontSize="12" textAnchor="middle">0.25</text>
-          <text x="320" y="340" fill="#9CA3AF" fontSize="12" textAnchor="middle" className="font-bold">0.5</text>
-          <text x="440" y="340" fill="#9CA3AF" fontSize="12" textAnchor="middle">0.75</text>
-          <text x="560" y="340" fill="#9CA3AF" fontSize="12" textAnchor="middle">1.0</text>
+          <text x="80" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">0.0</text>
+          <text x="200" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">0.25</text>
+          <text x="320" y="340" fill="currentColor" fontSize="12" textAnchor="middle" className="font-bold" opacity="0.9">0.5</text>
+          <text x="440" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">0.75</text>
+          <text x="560" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">1.0</text>
           
           {/* Y-axis labels */}
-          <text x="70" y="325" fill="#9CA3AF" fontSize="12" textAnchor="end">0.0</text>
-          <text x="70" y="250" fill="#9CA3AF" fontSize="12" textAnchor="end">0.25</text>
-          <text x="70" y="180" fill="#9CA3AF" fontSize="12" textAnchor="end">0.5</text>
-          <text x="70" y="110" fill="#9CA3AF" fontSize="12" textAnchor="end">0.75</text>
-          <text x="70" y="45" fill="#9CA3AF" fontSize="12" textAnchor="end">1.0</text>
+          <text x="70" y="325" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">0.0</text>
+          <text x="70" y="250" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">0.25</text>
+          <text x="70" y="180" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">0.5</text>
+          <text x="70" y="110" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">0.75</text>
+          <text x="70" y="45" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">1.0</text>
           
           {/* Axis titles */}
-          <text x="320" y="370" fill="#9CA3AF" fontSize="14" textAnchor="middle">Limit Order Price</text>
-          <text x="30" y="180" fill="#9CA3AF" fontSize="14" textAnchor="middle" transform="rotate(-90 30 180)">Relative Reward Size</text>
+          <text x="320" y="370" fill="currentColor" fontSize="14" textAnchor="middle" opacity="0.8">Limit Order Price</text>
+          <text x="30" y="180" fill="currentColor" fontSize="14" textAnchor="middle" transform="rotate(-90 30 180)" opacity="0.8">Relative Reward Size</text>
           
           {/* Tooltip */}
           {hoveredPoint && (
             <g>
               <rect x={hoveredPoint.svgX - 40} y={hoveredPoint.svgY - 45} 
                     width="80" height="35" 
-                    fill="#1F2937" 
+                    fill="currentColor" 
                     stroke="#5EDD2C" 
                     strokeWidth="1" 
                     rx="4"
-                    className="opacity-90"/>
+                    opacity="0.9"/>
               <text x={hoveredPoint.svgX} y={hoveredPoint.svgY - 30} 
-                    fill="white" 
+                    fill="#5EDD2C" 
                     fontSize="10" 
                     textAnchor="middle">
                 Price: ${hoveredPoint.x.toFixed(2)}
@@ -127,7 +204,7 @@ export const CommitmentQualityCurve = () => {
       </div>
       
       <div className="text-center mt-4">
-        <span className="inline-flex items-center text-sm text-gray-400">
+        <span className="inline-flex items-center text-sm opacity-70">
           <div className="w-4 h-0.5 bg-[#5EDD2C] mr-2 animate-pulse"></div>
           Commitment Quality Reward Curve
         </span>
