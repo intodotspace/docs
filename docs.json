@@ -18,7 +18,6 @@
     }
   ],
   "topbarCtaButton": {
-    "type": "link",
     "name": "Join Waitlist",
     "url": "https://t.me/intodotspace"
   },
