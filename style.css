@@ -19,10 +19,14 @@ nav a:hover {
   border-radius: 6px;
 }
 
-
-/* ===== ROUNDED BORDERS FOR CONTENT IMAGES ===== */
+/* ===== ROUNDED BORDERS FOR CONTENT IMAGES & VIDEOS ===== */
 article img,
 .content img,
-main img {
-  border-radius: 12px;
+main img,
+article video,
+.content video,
+main video,
+img,
+video {
+  border-radius: 18px !important;
 }
