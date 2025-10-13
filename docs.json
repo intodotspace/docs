@@ -48,17 +48,17 @@
           {
             "group": "Introduction",
             "pages": [
-              "introduction/welcome",
-              "introduction/preface"
+              "docs/introduction/welcome",
+              "docs/introduction/preface"
             ]
           },
           {
             "group": "About",
             "pages": [
-              "about/what-is-space",
-              "about/why-build-space",
-              "about/who-is-space-for",
-              "about/vision"
+              "docs/about/what-is-space",
+              "docs/about/why-build-space",
+              "docs/about/who-is-space-for",
+              "docs/about/vision"
             ]
           },
           {
@@ -67,63 +67,63 @@
               {
                 "group": "Central Limit Order Book",
                 "pages": [
-                  "features/clob/clob",
-                  "features/clob/example",
-                  "features/clob/advantages",
-                  "features/clob/share-minting-and-burning",
-                  "features/clob/makers-and-takers"
+                  "docs/features/clob/clob",
+                  "docs/features/clob/example",
+                  "docs/features/clob/advantages",
+                  "docs/features/clob/share-minting-and-burning",
+                  "docs/features/clob/makers-and-takers"
                 ]
               },
               {
                 "group": "Leverage",
                 "pages": [
-                  "features/leverage/how-it-works"
+                  "docs/features/leverage/how-it-works"
                 ]
               },
               {
                 "group": "Multi-Outcome Markets",
                 "pages": [
-                  "features/multi-outcome-markets/overview",
-                  "features/multi-outcome-markets/share-conversion-mechanism",
-                  "features/multi-outcome-markets/hedging-across-multiple-outcomes"
+                  "docs/features/multi-outcome-markets/overview",
+                  "docs/features/multi-outcome-markets/share-conversion-mechanism",
+                  "docs/features/multi-outcome-markets/hedging-across-multiple-outcomes"
                 ]
               },
-              "features/market-resolution",
-              "features/continuous-markets",
-              "features/dynamic-fee-curve",
+              "docs/features/market-resolution",
+              "docs/features/continuous-markets",
+              "docs/features/dynamic-fee-curve",
               {
                 "group": "Rewards",
                 "pages": [
-                  "features/rewards/points",
-                  "features/rewards/liquidity-rewards"
+                  "docs/features/rewards/points",
+                  "docs/features/rewards/liquidity-rewards"
                 ]
               },
-              "features/markets",
-              "features/blockchain"
+              "docs/features/markets",
+              "docs/features/blockchain"
             ]
           },
           {
             "group": "Getting Started",
             "pages": [
-              "getting-started/placing-market-order",
-              "getting-started/placing-limit-order",
-              "getting-started/managing-orders-and-positions"
+              "docs/getting-started/placing-market-order",
+              "docs/getting-started/placing-limit-order",
+              "docs/getting-started/managing-orders-and-positions"
             ]
           },
           {
             "group": "$SPACE",
             "pages": [
-              "$space/token-utility",
+              "docs/$space/token-utility",
               {
                 "group": "Flywheel Mechanism",
                 "pages": [
-                  "$space/flywheel-mechanism/overview",
-                  "$space/flywheel-mechanism/fee-distribution",
-                  "$space/flywheel-mechanism/the-flywheel-effect"
+                  "docs/$space/flywheel-mechanism/overview",
+                  "docs/$space/flywheel-mechanism/fee-distribution",
+                  "docs/$space/flywheel-mechanism/the-flywheel-effect"
                 ]
               },
-              "$space/tokenomics",
-              "$space/the-big-bang"
+              "docs/$space/tokenomics",
+              "docs/$space/the-big-bang"
             ]
           }
         ]
@@ -135,38 +135,38 @@
           {
             "group": "Architecture",
             "pages": [
-              "architecture/clob-and-order-matching",
-              "architecture/spl-token-structure",
-              "architecture/multi-outcome-markets",
-              "architecture/leverage-and-margin-trading"
+              "dev/architecture/clob-and-order-matching",
+              "dev/architecture/spl-token-structure",
+              "dev/architecture/multi-outcome-markets",
+              "dev/architecture/leverage-and-margin-trading"
             ]
           },
           {
             "group": "Resolution",
             "pages": [
-              "resolution/deterministic-resolution",
-              "resolution/subjective-resolution",
-              "resolution/invalid-markets"
+              "dev/resolution/deterministic-resolution",
+              "dev/resolution/subjective-resolution",
+              "dev/resolution/invalid-markets"
             ]
           },
           {
             "group": "Risk & Security",
             "pages": [
-              "risk-and-security"
+              "dev/risk-and-security"
             ]
           },
           {
             "group": "API Reference",
             "pages": [
-              "api-reference/rest-endpoints",
-              "api-reference/websocket-feeds"
+              "dev/api-reference/rest-endpoints",
+              "dev/api-reference/websocket-feeds"
             ]
           },
           {
             "group": "Building on Space",
             "pages": [
-              "building-on-space",
-              "developer-resources"
+              "dev/building-on-space",
+              "dev/developer-resources"
             ]
           }
         ]
