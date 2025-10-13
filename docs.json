@@ -68,8 +68,8 @@
               {
                 "group": "Rewards",
                 "pages": [
-                  "docs/features/rewards/points",
-                  "docs/features/rewards/liquidity-rewards"
+                  "docs/features/rewards/liquidity-rewards",
+                  "docs/features/rewards/points"
                 ]
               },
               "docs/features/market-categories",

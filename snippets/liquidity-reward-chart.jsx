@@ -135,8 +135,12 @@ export const LiquidityRewardChart = () => {
           onTouchEnd={handleTouchEnd}
         >
           <defs>
-            <pattern id="liquidityGrid" width="50" height="25" patternUnits="userSpaceOnUse">
-              <path d="M 50 0 L 0 0 0 25" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="2,2" opacity="0.2"/>
+            <linearGradient id="liquidityAreaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#5EDD2C" stopOpacity="0.6"/>
+              <stop offset="100%" stopColor="#5EDD2C" stopOpacity="0.1"/>
+            </linearGradient>
+            <pattern id="liquidityGrid" width="60" height="35" patternUnits="userSpaceOnUse">
+              <path d="M 60 0 L 0 0 0 35" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3,3" opacity="0.3"/>
             </pattern>
             <filter id="dropShadow">
               <feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.3"/>
@@ -148,7 +152,7 @@ export const LiquidityRewardChart = () => {
           
           {/* Crosshair lines */}
           {mousePos && (
-            <g opacity="0.4">
+            <g opacity="0.5">
               <line 
                 x1="80" y1={mousePos.y} 
                 x2="560" y2={mousePos.y} 
@@ -170,11 +174,15 @@ export const LiquidityRewardChart = () => {
           <line x1="80" y1="320" x2="560" y2="320" stroke="currentColor" strokeWidth="2" opacity="0.6"/>
           <line x1="80" y1="40" x2="80" y2="320" stroke="currentColor" strokeWidth="2" opacity="0.6"/>
           
+          {/* Area under curve */}
+          <path d={`${pathData} L 560 320 L 80 320 Z`} 
+                fill="url(#liquidityAreaGradient)"/>
+          
           {/* Main curve line */}
           <path d={pathData} 
                 fill="none" 
-                stroke="#F59E0B" 
-                strokeWidth="4"
+                stroke="#5EDD2C" 
+                strokeWidth="3"
                 className="transition-all duration-300"/>
           
           {/* Interactive points (invisible larger hit areas) */}
@@ -196,7 +204,7 @@ export const LiquidityRewardChart = () => {
               cx={point.svgX}
               cy={point.svgY}
               r={hoveredPoint === point ? "6" : "3"}
-              fill="#F59E0B"
+              fill="#5EDD2C"
               className="transition-all duration-200"
               stroke={hoveredPoint === point ? "#ffffff" : "none"}
               strokeWidth={hoveredPoint === point ? "2" : "0"}
@@ -233,7 +241,7 @@ export const LiquidityRewardChart = () => {
                 width="120" 
                 height="45" 
                 fill="#1a1a1a" 
-                stroke="#F59E0B" 
+                stroke="#5EDD2C" 
                 strokeWidth="2" 
                 rx="6"
                 opacity="0.95"
@@ -250,7 +258,7 @@ export const LiquidityRewardChart = () => {
               <text 
                 x={tooltipProps.x + 60} 
                 y={tooltipProps.y + 32} 
-                fill="#F59E0B" 
+                fill="#5EDD2C" 
                 fontSize="12" 
                 textAnchor="middle"
                 fontWeight="500">
@@ -263,7 +271,7 @@ export const LiquidityRewardChart = () => {
       
       <div className="text-center mt-4">
         <span className="inline-flex items-center text-sm opacity-70">
-          <div className="w-4 h-0.5 bg-[#F59E0B] mr-2"></div>
+          <div className="w-4 h-0.5 bg-[#5EDD2C] mr-2 animate-pulse"></div>
           Liquidity Reward Multiplier
         </span>
       </div>
