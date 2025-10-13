@@ -64,27 +64,27 @@
             ]
           },
           {
-            "group": "Getting Started",
+            "group": "User Guides",
             "pages": [
-              "doc/getting-started/placing-market-order",
-              "doc/getting-started/placing-limit-order",
-              "doc/getting-started/managing-orders-and-positions"
+              "doc/user-guides/placing-market-order",
+              "doc/user-guides/placing-limit-order",
+              "doc/user-guides/managing-orders-and-positions"
             ]
           },
           {
             "group": "$SPACE",
             "pages": [
-              "doc/$space/token-utility",
+              "doc/space/token-utility",
               {
                 "group": "Flywheel Mechanism",
                 "pages": [
-                  "doc/$space/flywheel-mechanism/overview",
-                  "doc/$space/flywheel-mechanism/fee-distribution",
-                  "doc/$space/flywheel-mechanism/the-flywheel-effect"
+                  "doc/space/flywheel-mechanism/overview",
+                  "doc/space/flywheel-mechanism/fee-distribution",
+                  "doc/space/flywheel-mechanism/the-flywheel-effect"
                 ]
               },
-              "doc/$space/tokenomics",
-              "doc/$space/the-big-bang"
+              "doc/space/tokenomics",
+              "doc/space/the-big-bang"
             ]
           }
         ]
@@ -141,19 +141,10 @@
           {
             "group": "Pages",
             "pages": [
+              "res/overview",
               "res/press-kit",
               "res/terms-of-service",
               "res/privacy-policy"
-            ]
-          },
-          {
-            "group": "Socials",
-            "pages": [
-              {
-                "page": "X/Twitter", 
-                "icon": "twitter",
-                "href": "https://x.com/intodotspace"
-              }
             ]
           }
         ]
