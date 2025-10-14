@@ -10,13 +10,11 @@ The Space Dynamic Fee Curve is designed as an incentive alignment mechanism for 
 - Incentivize consistent, long term participation
 - Punish market manipulation
 
-import { DynamicFeeCurve } from "/snippets/dynamic-fee-curve.jsx"
+import { MarketOrderFees } from "/snippets/market-order-fees.jsx"
 
-<DynamicFeeCurve />
-
-<Note>
-  Traders adding liquidity to the order book via limit orders (makers) pay 0 fees. The below fees only apply to market orders that get filled instantly (takers)
-</Note>
+<MarketOrderFees />
+  
+<Note>Traders adding liquidity to the order book via limit orders (makers) pay 0 fees. The below fees only apply to market orders that get filled instantly (takers)</Note>
 
 1. **Buy Fee**: when a market order position is opened, fees start higher during uncertain phases of the market where your odds are highest and gradually decrease as the market gains more certainty
 
@@ -33,7 +31,7 @@ where
   \
   **Example:** \
   At $p = 20\%$, $F_{\text{buy}}(20) \approx 1.76\%$ but you're buying contracts that could pay out \$1 (400% ROI) so your odds are better \
-  At $p = 80\%$, $F_{\text{buy}}(80) \approx 0.10\%$ you'll pay a 0.05% buy fee but your upside is smaller at \$0.25 (25% ROI) as your odds are worse.
+  At $p = 80\%$, $F_{\text{buy}}(80) \approx 0.10\%$ you'll pay a 0.05% buy fee but your upside is smaller at \$0.25 (25% ROI) as your odds are worse
 
 2. **Sell Fee:** if you wait until the market is resolved or you place a limit order to exit that doesn't get triggered immediately you are a maker and therefore do not pay any fee. However, if you want to close your position early via a market order, you need to understand that fees peak near the midpoint (at 50% probably or \$0.50) where uncertainty and volatility are highest; neither YES or NO sides have a clear informational advantage. This is the point where price manipulation and short-term flipping are most likely to occur therefore in order to protect market integrity and stabilize pricing, fees are highest (1%) and taper off towards either side as outcomes become more certain (0.02%).
 
@@ -57,7 +55,7 @@ where
 |                                | **Value**                                      |
 | -----------------------------: | ---------------------------------------------- |
 | **Market Order Type**          | Market (fee applies; limit orders have no fee) |
-| **Market**                     | _"Will BTC close above \$150,000 this year?"_  |
+| **Market**                     | "Will BTC close above \$150,000 this year?"    |
 | **Current BTC Price**          | \$125,000                                      |
 | **Current Market Probability** | 30%                                            |
 | **Shares to Buy**              | 1,000 YES shares at \$0.30                     |
