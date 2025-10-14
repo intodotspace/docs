@@ -45,7 +45,7 @@ Base URL: `https://api.into.space/v1`
 
 **Response:**
 
-```
+```json
 {
   "id": "btc-150k-2025",
   "question": "Will BTC close above \$150,000 in 2025?",
@@ -85,7 +85,7 @@ Base URL: `https://api.into.space/v1`
 
 **Response:**
 
-```
+```json
 {
   "market": "btc-150k-2025",
   "outcome": "YES",
@@ -114,7 +114,7 @@ Base URL: `https://api.into.space/v1`
 
 **Response:**
 
-```
+```json
 {
   "trades": [
     {
@@ -142,7 +142,7 @@ Base URL: `https://api.into.space/v1`
 
 **Response:**
 
-```
+```json
 {
   "candles": [
     {
@@ -163,7 +163,7 @@ Base URL: `https://api.into.space/v1`
 
 **Response:**
 
-```
+```json
 {
   "totalVolume": 125000000,
   "volume24h": 3500000,
@@ -183,7 +183,7 @@ Base URL: `https://api.into.space/v1`
 
 **Rate Limit Headers:**
 
-```
+```json
 X-RateLimit-Limit: 100
 X-RateLimit-Remaining: 87
 X-RateLimit-Reset: 1704153660
@@ -193,7 +193,7 @@ X-RateLimit-Reset: 1704153660
 
 **Error Response:**
 
-```
+```json
 {
   "error": {
     "code": "MARKET_NOT_FOUND",
