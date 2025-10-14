@@ -1,10 +1,29 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 export const MarketOrderFees = () => {
   const [hoveredLine, setHoveredLine] = useState(null);
   const [mousePos, setMousePos] = useState(null);
   const [isTouching, setIsTouching] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const svgRef = useRef(null);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
   
   // Generate buy fee curve data (downward arch)
   const generateBuyFeeData = () => {
@@ -162,7 +181,7 @@ export const MarketOrderFees = () => {
   const tooltipProps = getTooltipProps(hoveredLine);
 
   return (
-    <div className="w-full max-w-full">
+    <div ref={containerRef} className="w-full max-w-full">
       <div className="text-center mb-0">
         <h2 className="text-xl font-semibold mb-2">Market Order Fees</h2>
       </div>
@@ -251,6 +270,9 @@ export const MarketOrderFees = () => {
                   fill={`url(#${gradientId})`}
                   opacity={hoveredLine && hoveredLine.type !== line.type ? 0.3 : 1}
                   className="transition-all duration-300"
+                  style={{
+                    animation: isVisible ? `fadeIn 1.6s ease-out ${index * 0.4}s both` : 'none'
+                  }}
                 />
                 <path 
                   d={line.pathData} 
@@ -259,6 +281,11 @@ export const MarketOrderFees = () => {
                   strokeWidth={hoveredLine?.type === line.type ? "4" : "3"}
                   className="transition-all duration-300"
                   opacity={hoveredLine && hoveredLine.type !== line.type ? 0.4 : 1}
+                  strokeDasharray="1200"
+                  strokeDashoffset={isVisible ? "0" : "1200"}
+                  style={{
+                    transition: isVisible ? `stroke-dashoffset 3s ease-out ${index * 0.4}s` : 'none'
+                  }}
                 />
               </g>
             );
@@ -374,6 +401,17 @@ export const MarketOrderFees = () => {
           )}
         </svg>
       </div>
+      
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+      `}</style>
     </div>
   );
 };
