@@ -316,12 +316,12 @@ export const DynamicFeeCurves = () => {
             <text x="140" y="75" fill="currentColor" fontSize="11" opacity="0.7">High buy fee (2%)</text>
             
             {/* Midpoint annotation */}
-            <text x="270" y="130" fill="currentColor" fontSize="11" opacity="0.7">Midpoint uncertainty:</text>
-            <text x="270" y="145" fill="currentColor" fontSize="11" opacity="0.7">Sell fee peaks near 50%</text>
+            <text x="270" y="110" fill="currentColor" fontSize="11" opacity="0.7">Midpoint uncertainty:</text>
+            <text x="270" y="125" fill="currentColor" fontSize="11" opacity="0.7">Sell fee peaks near 50%</text>
             
             {/* Certainty annotation */}
-            <text x="340" y="265" fill="currentColor" fontSize="11" opacity="0.7">Certainty phase:</text>
-            <text x="340" y="280" fill="currentColor" fontSize="11" opacity="0.7">Minimal fees (0.02%)</text>
+            <text x="380" y="285" fill="currentColor" fontSize="11" opacity="0.7">Certainty phase:</text>
+            <text x="380" y="300" fill="currentColor" fontSize="11" opacity="0.7">Minimal fees (0.02%)</text>
           </g>
           
           {/* Enhanced tooltip */}
