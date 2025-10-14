@@ -7,7 +7,14 @@ Politics, sports, and culture markets require human judgment. Space uses a combi
 <div align="center">
 ```mermaid
 graph TD
-    A["Market Expires"] --> B["Multisig Submits Outcome"]
+    A["Market Expires"] --> B["Multisig Submits Outcome<br/>(2-of-3 signatures + evidence)"]
+    B --> C["AI Validates Evidence<br/>(Checks against whitelisted sources)"]
+    C -->|Match| D["On-Chain Submission"]
+    C -->|Mismatch| E["Transaction Blocked<br/>Admins Alerted"]
+    D --> F["Challenge Period<br/>(24-48 hours)"]
+    F -->|No Flags| G["Market Resolved"]
+    F -->|Flagged| H["Admin Review & Override"]
+    H --> G
 ```
 </div>
 <Steps>
