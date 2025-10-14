@@ -164,7 +164,7 @@ export const DynamicFeeCurve = () => {
   return (
     <div className="w-full max-w-full">
       <div className="text-center mb-0">
-        <h2 className="text-xl font-semibold mb-2">Space Dynamic Fee Curve</h2>
+        <h2 className="text-xl font-semibold mb-2">Market Order Fees</h2>
       </div>
       
       <div className="w-full">
