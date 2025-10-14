@@ -5,7 +5,6 @@ nav a.active,
   color: #5EDD2C !important;
   background-color: rgba(94, 221, 44, 0.15) !important;
   border-radius: 6px;
-  border-left: 2px solid #5EDD2C !important;
 }
 
 /* ===== SUPER TITLE (ANCHOR ABOVE H1) ===== */
