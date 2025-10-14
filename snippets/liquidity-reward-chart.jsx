@@ -261,16 +261,16 @@ export const LiquidityRewardChart = () => {
           {/* Annotations */}
           <g>
             {/* 30-day annotation */}
-            <text x="120" y="80" fill="currentColor" fontSize="11" opacity="0.7">30 days:</text>
-            <text x="120" y="95" fill="currentColor" fontSize="11" opacity="0.7">Early boost</text>
+            <text x="120" y="80" fill="currentColor" fontSize="11" opacity="0.525">30 days:</text>
+            <text x="120" y="95" fill="currentColor" fontSize="11" opacity="0.525">Early boost</text>
             
             {/* 90-day annotation */}
-            <text x="250" y="130" fill="currentColor" fontSize="11" opacity="0.7">90 days:</text>
-            <text x="250" y="145" fill="currentColor" fontSize="11" opacity="0.7">Significant multiplier</text>
+            <text x="250" y="130" fill="currentColor" fontSize="11" opacity="0.525">90 days:</text>
+            <text x="250" y="145" fill="currentColor" fontSize="11" opacity="0.525">Significant multiplier</text>
             
             {/* Long-term annotation */}
-            <text x="420" y="160" fill="currentColor" fontSize="11" opacity="0.7">Long-term markets:</text>
-            <text x="420" y="175" fill="currentColor" fontSize="11" opacity="0.7">Highest rewards</text>
+            <text x="420" y="180" fill="currentColor" fontSize="11" opacity="0.525">Long-term markets:</text>
+            <text x="420" y="195" fill="currentColor" fontSize="11" opacity="0.525">Highest rewards</text>
           </g>
           
           {/* Enhanced tooltip */}
@@ -318,8 +318,6 @@ export const LiquidityRewardChart = () => {
           )}
         </svg>
       </div>
-      
-
     </div>
   );
 };
