@@ -151,26 +151,26 @@
       }
     ]
   },
-  "topbarLinks": [
+  "anchors": [
     {
       "name": "Main Site",
-      "url": "https://into.space",
-      "icon": "globe"
+      "icon": "globe",
+      "url": "https://into.space"
     },
     {
       "name": "Twitter",
-      "url": "https://x.com/intodotspace",
-      "icon": "x-twitter"
+      "icon": "x-twitter",
+      "url": "https://x.com/intodotspace"
     },
     {
       "name": "Telegram",
-      "url": "https://t.me/intodotspace",
-      "icon": "telegram"
+      "icon": "telegram",
+      "url": "https://t.me/intodotspace"
     },
     {
       "name": "Discord",
-      "url": "https://discord.gg/intodotspace",
-      "icon": "discord"
+      "icon": "discord",
+      "url": "https://discord.gg/intodotspace"
     }
   ],
   "logo": "/images/logo.png",
