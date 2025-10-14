@@ -344,8 +344,8 @@ export const MarketOrderFees = () => {
           {/* Annotations */}
           <g>
             {/* Early phase annotation */}
-            <text x="95" y="85" fill="currentColor" fontSize="11" opacity="0.7">Early phase:</text>
-            <text x="95" y="100" fill="currentColor" fontSize="11" opacity="0.7">High buy fee (2%)</text>
+            <text x="85" y="60" fill="currentColor" fontSize="11" opacity="0.7">Early phase:</text>
+            <text x="85" y="75" fill="currentColor" fontSize="11" opacity="0.7">High buy fee (2%)</text>
             
             {/* Midpoint annotation */}
             <text x="270" y="110" fill="currentColor" fontSize="11" opacity="0.7">Midpoint uncertainty:</text>
