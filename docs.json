@@ -151,6 +151,28 @@
       }
     ]
   },
+  "topbarLinks": [
+    {
+      "name": "Main Site",
+      "url": "https://into.space",
+      "icon": "globe"
+    },
+    {
+      "name": "Twitter",
+      "url": "https://x.com/intodotspace",
+      "icon": "x-twitter"
+    },
+    {
+      "name": "Telegram",
+      "url": "https://t.me/intodotspace",
+      "icon": "telegram"
+    },
+    {
+      "name": "Discord",
+      "url": "https://discord.gg/intodotspace",
+      "icon": "discord"
+    }
+  ],
   "logo": "/images/logo.png",
   "favicon": "/images/favicon.png",
   "footer": {
