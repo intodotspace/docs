@@ -1,29 +1,28 @@
 ---
 title: "Liquidity Rewards"
 ---
-
-Space rewards [makers](/docs/features/clob/makers-and-takers) for providing liquidity through placing limit orders and keeping markets balanced. Markets are only as good as the capital that holds them open - without deep order books, prices become unreliable and easily manipulated.
-
+Space rewards [Makers](/docs/features/clob/makers-and-takers) for providing liquidity through placing limit orders and keeping markets balanced. Markets are only as good as the capital that holds them open - without deep order books, prices become unreliable and easily manipulated.
 To keep prices honest across all markets and timeframes, liquidity rewards are distributed based on two key factors that determine the value of your contribution to price discovery:
 
-1. **Duration-Based Rewards:** longer-dated markets receive higher reward multipliers. As shown in the Liquidity Reward Multiplier curve, markets resolving further in the future earn progressively higher rewards, with multipliers increasing significantly in the first 90 days and continuing to rise through year-long markets. \
+## 1. Duration-Based Rewards
+
+Longer-dated markets receive higher reward multipliers. As shown in the Liquidity Reward Multiplier curve, markets resolving further in the future earn progressively higher rewards, with multipliers increasing significantly in the first 90 days and continuing to rise through year-long markets. \
    \
-   This addresses a fundamental challenge: providers naturally prefer shorter timeframes where capital isn't locked. By offering higher rewards on longer-dated markets, liquidity is directed where it's most needed but naturally most scarce. A market resolving in 6 months earns substantially more than one resolving next week - compensating you for the extended capital commitment.
+This addresses a fundamental challenge: providers naturally prefer shorter timeframes where capital isn't locked. By offering higher rewards on longer-dated markets, liquidity is directed where it's most needed but naturally most scarce. A market resolving in 6 months earns substantially more than one resolving next week - compensating you for the extended capital commitment.
 
 import { LiquidityRewardChart } from "/snippets/liquidity-reward-chart.jsx"
-
 <LiquidityRewardChart />
 
-2. **Quality Based Rewards:** Not all liquidity is equally valuable. The Commitment Quality Curve shows that orders placed near the balanced price of \$0.50 earn the highest rewards, while orders at extreme prices (\$0.05 or \$0.95) earn minimal rewards. \
+## 2. Quality Based Rewards
+
+Not all liquidity is equally valuable. The Commitment Quality Curve shows that orders placed near the balanced price of \$0.50 earn the highest rewards, while orders at extreme prices (\$0.05 or \$0.95) earn minimal rewards. \
    \
-   Why? Orders near \$0.50 represent maximum uncertainty - where genuine price discovery happens. These are the hardest positions to maintain because neither outcome has a clear advantage, making your capital most vulnerable but also most valuable to market function. You're providing liquidity exactly where disagreement exists and where accurate pricing matters most.\
+Why? Orders near \$0.50 represent maximum uncertainty - where genuine price discovery happens. These are the hardest positions to maintain because neither outcome has a clear advantage, making your capital most vulnerable but also most valuable to market function. You're providing liquidity exactly where disagreement exists and where accurate pricing matters most.\
    \
-   Orders at extreme prices (\$0.05 or \$0.95) are easier commitments - one outcome seems obvious, so there's less risk but also less price discovery value. These orders earn proportionally lower rewards because they contribute less to finding true market consensus.
+Orders at extreme prices (\$0.05 or \$0.95) are easier commitments - one outcome seems obvious, so there's less risk but also less price discovery value. These orders earn proportionally lower rewards because they contribute less to finding true market consensus.
 
 import { CommitmentQualityCurve } from "/snippets/commitment-quality-curve.jsx"
-
 <CommitmentQualityCurve />
 
 ## How It Works
-
 Placing a limit order automatically enrolls you in liquidity rewards. Your reward allocation is calculated by combining: Time until market resolution (duration multiplier) Distance from balanced price (quality multiplier) Size of your order relative to market depth No special contracts or hidden mechanics - simply place limit orders and earn rewards while your capital provides market depth. The clearer the price signal your order helps establish, the more you earn. Space's reward parameters are designed to maintain efficient capital allocation across all markets, ensuring that important but less-popular questions still attract the liquidity needed for reliable pricing.
