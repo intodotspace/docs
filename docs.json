@@ -86,6 +86,22 @@
               "doc/space/tokenomics",
               "doc/space/the-big-bang"
             ]
+          },
+          {
+            "group": "Resources",
+            "pages": [
+              "doc/resources/quick-links",
+              "doc/resources/support",
+              "doc/resources/partnerships",
+              "doc/resources/press-kit",
+              {
+                "group": "Legal",
+                "pages": [
+                  "doc/resources/legal/privacy-policy",
+                  "doc/resources/legal/terms-of-service"
+                ]
+              }
+            ]
           }
         ]
       },
@@ -129,29 +145,6 @@
             "pages": [
               "dev/building-on-space",
               "dev/developer-resources"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Resources",
-        "icon": "folder",
-        "url": "res",
-        "groups": [
-          {
-            "group": "Resources",
-            "pages": [
-              "res/quick-links",
-              "res/support",
-              "res/partnerships",
-              "res/press-kit",
-              {
-                "group": "Legal",
-                "pages": [
-                  "res/legal/privacy-policy",
-                  "res/legal/terms-of-service"
-                ]
-              }
             ]
           }
         ]
