@@ -10,7 +10,7 @@ Connect: `wss://ws.into.space/v1`
 
 ## Connection
 
-```
+```javascript
 const ws = new WebSocket('wss://ws.into.space/v1');
 
 ws.onopen = () => {
@@ -26,7 +26,7 @@ ws.onmessage = (event) => {
 
 ## Subscription Format
 
-```
+```json
 {
   "type": "subscribe",
   "channels": [
@@ -41,7 +41,7 @@ ws.onmessage = (event) => {
 
 **Subscribe:**
 
-```
+```json
 {
   "type": "subscribe",
   "channels": ["trades:btc-150k-2025"]
@@ -50,7 +50,7 @@ ws.onmessage = (event) => {
 
 **Update Message:**
 
-```
+```json
 {
   "channel": "trades",
   "market": "btc-150k-2025",
@@ -69,7 +69,7 @@ ws.onmessage = (event) => {
 
 **Subscribe:**
 
-```
+```json
 {
   "type": "subscribe",
   "channels": ["orderbook:btc-150k-2025:YES"]
@@ -78,7 +78,7 @@ ws.onmessage = (event) => {
 
 **Update Message (Snapshot):**
 
-```
+```json
 {
   "channel": "orderbook",
   "market": "btc-150k-2025",
@@ -100,7 +100,7 @@ ws.onmessage = (event) => {
 
 **Update Message (Delta):**
 
-```
+```json
 {
   "channel": "orderbook",
   "market": "btc-150k-2025",
@@ -119,7 +119,7 @@ ws.onmessage = (event) => {
 
 **Subscribe:**
 
-```
+```json
 {
   "type": "subscribe",
   "channels": ["markets"]
@@ -128,7 +128,7 @@ ws.onmessage = (event) => {
 
 **Update Message:**
 
-```
+```json
 {
   "channel": "markets",
   "data": {
@@ -149,7 +149,7 @@ ws.onmessage = (event) => {
 
 **WebSocket Error:**
 
-```
+```json
 {
   "type": "error",
   "code": "INVALID_CHANNEL",
