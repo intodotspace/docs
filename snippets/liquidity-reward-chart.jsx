@@ -122,8 +122,8 @@ export const LiquidityRewardChart = () => {
 
   return (
     <div className="w-full max-w-full">
-      <div className="text-center mb-6">
-        <h2 className="text-xl font-semibold mb-2">Liquidity Reward Multiplier</h2>
+      <div className="text-center mb-0">
+        <h2 className="text-xl font-semibold mb-0">Liquidity Reward Multiplier</h2>
         <p className="text-sm opacity-70">Duration-Based Incentives</p>
       </div>
       
