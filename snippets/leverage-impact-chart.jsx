@@ -324,7 +324,6 @@ export const LeverageImpactChart = () => {
           
           {/* Legend */}
           <g transform="translate(420, 60)">
-            <rect x="-15" y="-15" width="165" height="115" fill="currentColor" opacity="0.05" rx="6"/>
             {leverageLines.map((line, index) => (
               <g key={index} transform={`translate(0, ${index * 20})`}>
                 <line x1="0" y1="0" x2="20" y2="0" stroke={line.color} strokeWidth="3"/>
