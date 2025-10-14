@@ -256,7 +256,8 @@ export const LeverageImpactChart = () => {
           
           {/* Entry price vertical line at 15% */}
           <line x1="152" y1="40" x2="152" y2="320" stroke="currentColor" strokeWidth="2" strokeDasharray="8,4" opacity="0.6">
-            <animate attributeName="stroke-dashoffset" values="0;12;0" dur="3s" repeatCount="indefinite"/>
+            <animate attributeName="stroke-dashoffset" from="-12" to="0" dur="3s" fill="freeze"/>
+            <animate attributeName="stroke-dashoffset" values="0;12" dur="1.5s" repeatCount="indefinite" begin="3s"/>
           </line>
           
           {/* Leverage lines with clipping - REVERSED ORDER */}
