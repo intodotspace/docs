@@ -47,3 +47,24 @@ $$,
   padding: 8px 16px !important;
   color: #ffffff !important;
 }
+/* ===== TABLE OF CONTENTS (ON THIS PAGE) ===== */
+#table-of-contents-content {
+  position: relative !important;
+  padding-left: 16px !important;
+}
+#table-of-contents-content::before {
+  content: '' !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 1px !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+#table-of-contents-content a {
+  position: relative !important;
+}
+#table-of-contents-content a.active,
+#table-of-contents-content a[aria-current="true"] {
+  color: #ffffff !important;
+}
