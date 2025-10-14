@@ -4,7 +4,6 @@ export const LeverageImpactChart = () => {
   const [hoveredLine, setHoveredLine] = useState(null);
   const [mousePos, setMousePos] = useState(null);
   const [isTouching, setIsTouching] = useState(false);
-  const [sliderProb, setSliderProb] = useState(15);
   const svgRef = useRef(null);
   
   // Generate data for each leverage line - all intersect at 15% with 0% PnL
@@ -35,9 +34,9 @@ export const LeverageImpactChart = () => {
   };
 
   const leverageLines = [
-    { leverage: 1, color: '#3B7DD8', label: 'No Leverage' },
-    { leverage: 3, color: '#5EDD2C', label: '3× Leverage' },
-    { leverage: 5, color: '#FF9500', label: '5× Leverage' },
+    { leverage: 1, color: '#FF9500', label: 'No Leverage' },
+    { leverage: 3, color: '#3B7DD8', label: '3× Leverage' },
+    { leverage: 5, color: '#5EDD2C', label: '5× Leverage' },
     { leverage: 10, color: '#9333EA', label: '10× Leverage' }
   ];
 
@@ -125,10 +124,6 @@ export const LeverageImpactChart = () => {
     }, 2000);
   };
 
-  const handleSliderChange = (e) => {
-    setSliderProb(Number(e.target.value));
-  };
-
   const getTooltipProps = (line) => {
     if (!line || !line.point) return {};
     
@@ -143,8 +138,6 @@ export const LeverageImpactChart = () => {
   };
 
   const tooltipProps = getTooltipProps(hoveredLine);
-
-  const sliderX = 80 + (sliderProb / 100) * 480;
 
   return (
     <div className="w-full max-w-full">
@@ -170,6 +163,14 @@ export const LeverageImpactChart = () => {
         >
           <defs>
             <linearGradient id="gradient1x" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#FF9500" stopOpacity="0.4">
+                <animate attributeName="stop-opacity" values="0.4;0.5;0.4" dur="4s" repeatCount="indefinite"/>
+              </stop>
+              <stop offset="100%" stopColor="#FF9500" stopOpacity="0.067">
+                <animate attributeName="stop-opacity" values="0.067;0.1;0.067" dur="4s" repeatCount="indefinite"/>
+              </stop>
+            </linearGradient>
+            <linearGradient id="gradient3x" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor="#3B7DD8" stopOpacity="0.4">
                 <animate attributeName="stop-opacity" values="0.4;0.5;0.4" dur="4s" repeatCount="indefinite"/>
               </stop>
@@ -177,19 +178,11 @@ export const LeverageImpactChart = () => {
                 <animate attributeName="stop-opacity" values="0.067;0.1;0.067" dur="4s" repeatCount="indefinite"/>
               </stop>
             </linearGradient>
-            <linearGradient id="gradient3x" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="gradient5x" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor="#5EDD2C" stopOpacity="0.4">
                 <animate attributeName="stop-opacity" values="0.4;0.5;0.4" dur="4s" repeatCount="indefinite"/>
               </stop>
               <stop offset="100%" stopColor="#5EDD2C" stopOpacity="0.067">
-                <animate attributeName="stop-opacity" values="0.067;0.1;0.067" dur="4s" repeatCount="indefinite"/>
-              </stop>
-            </linearGradient>
-            <linearGradient id="gradient5x" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#FF9500" stopOpacity="0.4">
-                <animate attributeName="stop-opacity" values="0.4;0.5;0.4" dur="4s" repeatCount="indefinite"/>
-              </stop>
-              <stop offset="100%" stopColor="#FF9500" stopOpacity="0.067">
                 <animate attributeName="stop-opacity" values="0.067;0.1;0.067" dur="4s" repeatCount="indefinite"/>
               </stop>
             </linearGradient>
@@ -261,45 +254,6 @@ export const LeverageImpactChart = () => {
                   strokeWidth="2"
                   opacity="0.9"
                 />
-              </g>
-            );
-          })}
-          
-          {/* Slider vertical line */}
-          <line 
-            x1={sliderX} 
-            y1="40" 
-            x2={sliderX} 
-            y2="320" 
-            stroke="#ffffff" 
-            strokeWidth="3" 
-            opacity="0.8"
-            strokeDasharray="none"
-          />
-          
-          {/* Slider intersection points */}
-          {allLines.map((line, index) => {
-            const point = line.points[sliderProb];
-            if (!point) return null;
-            return (
-              <g key={`slider-point-${index}`}>
-                <circle
-                  cx={point.svgX}
-                  cy={point.svgY}
-                  r="6"
-                  fill={line.color}
-                  stroke="#ffffff"
-                  strokeWidth="2"
-                />
-                <text
-                  x={point.svgX + 15}
-                  y={point.svgY + 5}
-                  fill={line.color}
-                  fontSize="11"
-                  fontWeight="bold"
-                >
-                  {point.pnl > 0 ? '+' : ''}{point.pnl}%
-                </text>
               </g>
             );
           })}
@@ -425,32 +379,6 @@ export const LeverageImpactChart = () => {
             </g>
           )}
         </svg>
-        
-        {/* Probability Slider */}
-        <div className="mt-6 px-4">
-          <div className="flex items-center justify-between mb-2">
-            <label className="text-sm font-medium opacity-80">Market Probability</label>
-            <span className="text-lg font-bold">{sliderProb}%</span>
-          </div>
-          <input
-            type="range"
-            min="0"
-            max="100"
-            value={sliderProb}
-            onChange={handleSliderChange}
-            className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-white"
-            style={{
-              background: `linear-gradient(to right, #3B7DD8 0%, #5EDD2C 33%, #FF9500 66%, #9333EA 100%)`
-            }}
-          />
-          <div className="flex justify-between text-xs opacity-60 mt-1">
-            <span>0%</span>
-            <span>25%</span>
-            <span>50%</span>
-            <span>75%</span>
-            <span>100%</span>
-          </div>
-        </div>
       </div>
     </div>
   );
