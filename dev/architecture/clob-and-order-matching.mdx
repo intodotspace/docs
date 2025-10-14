@@ -10,7 +10,7 @@ graph LR
     A[Place Order] --> B{Immediate Match?}
     B -->|Yes| C[Execute as Taker - Pay Fee]
     B -->|No| D[Add to Book as Maker - 0% Fee]
-    D --> E[Wait for Match]
+    D --> E[Wait for Match - Earn Rewards]
     E --> C
 ```
 </div>
