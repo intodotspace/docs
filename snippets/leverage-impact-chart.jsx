@@ -259,12 +259,12 @@ export const LeverageImpactChart = () => {
             <animate attributeName="stroke-dashoffset" values="0;12;0" dur="3s" repeatCount="indefinite"/>
           </line>
           
-          {/* Leverage lines with clipping - REVERSED ORDER */}
+          {/* Leverage lines with clipping */}
           <g clipPath="url(#chartClip)">
-            {[...allLines].reverse().map((line, index) => {
+            {allLines.map((line, index) => {
               const gradientId = `gradient${line.leverage}x`;
               const areaPath = `${line.pathData} L 560 320 L 80 320 Z`;
-              const drawDelay = index * 2.25;
+              const drawDelay = index * 0.75;
               
               return (
                 <g key={index}>
