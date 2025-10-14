@@ -254,7 +254,7 @@ export const CommitmentQualityCurve = () => {
                 strokeWidth="2" 
                 strokeDasharray="8,4"
                 opacity="0.6">
-            <animate attributeName="stroke-dashoffset" values="0;12;0" dur="3s" repeatCount="indefinite"/>
+            <animate attributeName="stroke-dashoffset" values="-12;0" dur="1.5s" repeatCount="indefinite"/>
           </line>
           
           {/* X-axis labels */}
