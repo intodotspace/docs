@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 
-export default function LeverageImpactChart() {
+export function LeverageImpactChart() {
   const [hoveredLine, setHoveredLine] = useState(null);
   const [mousePos, setMousePos] = useState({ x: 15, y: 0 });
   const svgRef = useRef(null);
@@ -100,7 +100,7 @@ export default function LeverageImpactChart() {
           <line x1={80 + (entryPrice / 100) * 1080} y1="70" x2={80 + (entryPrice / 100) * 1080} y2="630" stroke="#888" strokeWidth="3" strokeDasharray="10,5" />
           <circle cx={80 + (entryPrice / 100) * 1080} cy="350" r="8" fill="white" stroke="#888" strokeWidth="2" />
 
-          {/* Underglow areas - reversed order (10x first, then 5x, 3x, no leverage last) */}
+          {/* Underglow areas - reversed order (10x bottom, No Leverage top) */}
           {[...leverages].reverse().map((lev) => {
             const path = generatePath(lev.multiplier);
             const closedPath = `${path} L 1160,630 L 80,630 Z`;
@@ -113,7 +113,7 @@ export default function LeverageImpactChart() {
             );
           })}
 
-          {/* Lines - reversed order (10x first, then 5x, 3x, no leverage last) */}
+          {/* Lines - reversed order (10x bottom, No Leverage top) */}
           {[...leverages].reverse().map((lev) => (
             <path
               key={`line-${lev.name}`}
