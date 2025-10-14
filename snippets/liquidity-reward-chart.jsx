@@ -209,19 +209,25 @@ export const LiquidityRewardChart = () => {
             />
           ))}
           
-          {/* Visible curve points */}
-          {points.filter((_, i) => i % 30 === 0).map((point, i) => (
-            <circle
-              key={`visible-${i}`}
-              cx={point.svgX}
-              cy={point.svgY}
-              r={hoveredPoint === point ? "6" : "3"}
-              fill="#5EDD2C"
-              className="transition-all duration-200"
-              stroke={hoveredPoint === point ? "#ffffff" : "none"}
-              strokeWidth={hoveredPoint === point ? "2" : "0"}
-            />
-          ))}
+          {/* Milestone indicator circles at 30 and 90 days */}
+          <circle
+            cx={points[30].svgX}
+            cy={points[30].svgY}
+            r="5"
+            fill="#5EDD2C"
+            stroke="#ffffff"
+            strokeWidth="2"
+            opacity="0.9"
+          />
+          <circle
+            cx={points[90].svgX}
+            cy={points[90].svgY}
+            r="5"
+            fill="#5EDD2C"
+            stroke="#ffffff"
+            strokeWidth="2"
+            opacity="0.9"
+          />
           
           {/* Key milestone lines */}
           <line x1="152" y1="40" x2="152" y2="320" 
@@ -261,16 +267,16 @@ export const LiquidityRewardChart = () => {
           {/* Annotations */}
           <g>
             {/* 30-day annotation */}
-            <text x="120" y="80" fill="currentColor" fontSize="11" opacity="0.525">30 days:</text>
-            <text x="120" y="95" fill="currentColor" fontSize="11" opacity="0.525">Early boost</text>
+            <text x="120" y="80" fill="currentColor" fontSize="11" opacity="0.7">30 days:</text>
+            <text x="120" y="95" fill="currentColor" fontSize="11" opacity="0.7">Early boost</text>
             
             {/* 90-day annotation */}
-            <text x="250" y="130" fill="currentColor" fontSize="11" opacity="0.525">90 days:</text>
-            <text x="250" y="145" fill="currentColor" fontSize="11" opacity="0.525">Significant multiplier</text>
+            <text x="250" y="130" fill="currentColor" fontSize="11" opacity="0.7">90 days:</text>
+            <text x="250" y="145" fill="currentColor" fontSize="11" opacity="0.7">Significant multiplier</text>
             
             {/* Long-term annotation */}
-            <text x="420" y="180" fill="currentColor" fontSize="11" opacity="0.525">Long-term markets:</text>
-            <text x="420" y="195" fill="currentColor" fontSize="11" opacity="0.525">Highest rewards</text>
+            <text x="420" y="180" fill="currentColor" fontSize="11" opacity="0.7">Long-term markets:</text>
+            <text x="420" y="195" fill="currentColor" fontSize="11" opacity="0.7">Highest rewards</text>
           </g>
           
           {/* Enhanced tooltip */}
