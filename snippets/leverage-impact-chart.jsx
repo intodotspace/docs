@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 
-export default function LeveragePnLChart() {
+export default function LeverageImpactChart() {
   const [hoveredLine, setHoveredLine] = useState(null);
   const [mousePos, setMousePos] = useState({ x: 15, y: 0 });
   const svgRef = useRef(null);
