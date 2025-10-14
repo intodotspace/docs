@@ -279,15 +279,15 @@ export const LiquidityRewardChart = () => {
           
           {/* Annotations */}
           <g>
-            {/* 30-day annotation */}
-            <text x="120" y={day30Point.svgY - 20} fill="currentColor" fontSize="11" opacity="0.7">30 days:</text>
-            <text x="120" y={day30Point.svgY - 5} fill="currentColor" fontSize="11" opacity="0.7">Early boost</text>
+            {/* 30-day annotation - positioned just right of vertical line, moved down */}
+            <text x={day30Point.svgX + 8} y={day30Point.svgY + 35} fill="currentColor" fontSize="11" opacity="0.7">30 days:</text>
+            <text x={day30Point.svgX + 8} y={day30Point.svgY + 50} fill="currentColor" fontSize="11" opacity="0.7">Early boost</text>
             
-            {/* 90-day annotation */}
-            <text x="190" y={day90Point.svgY - 20} fill="currentColor" fontSize="11" opacity="0.7">90 days:</text>
-            <text x="190" y={day90Point.svgY - 5} fill="currentColor" fontSize="11" opacity="0.7">Significant multiplier</text>
+            {/* 90-day annotation - positioned just right of vertical line, moved down */}
+            <text x={day90Point.svgX + 8} y={day90Point.svgY + 35} fill="currentColor" fontSize="11" opacity="0.7">90 days:</text>
+            <text x={day90Point.svgX + 8} y={day90Point.svgY + 50} fill="currentColor" fontSize="11" opacity="0.7">Significant multiplier</text>
             
-            {/* Long-term annotation */}
+            {/* Long-term annotation - unchanged */}
             <text x="420" y="180" fill="currentColor" fontSize="11" opacity="0.7">Long-term markets:</text>
             <text x="420" y="195" fill="currentColor" fontSize="11" opacity="0.7">Highest rewards</text>
           </g>
