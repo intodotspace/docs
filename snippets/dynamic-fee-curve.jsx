@@ -9,7 +9,7 @@ export const DynamicFeeCurve = () => {
   // Generate buy fee curve data (downward arch)
   const generateBuyFeeData = () => {
     const points = [];
-    const Fmax = 2.00; // 2% at 0%
+    const Fmax = 2.00; //  2% at 0%
     const Fmin = 0.02; // 0.02% at 100%
     const alpha = 1.3;
     
