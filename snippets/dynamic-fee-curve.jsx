@@ -9,7 +9,7 @@ export const DynamicFeeCurve = () => {
   // Generate buy fee curve data (downward arch)
   const generateBuyFeeData = () => {
     const points = [];
-    const Fmax = 2.00; //  2% at 0%
+    const Fmax = 2.00; // 2% at 0%
     const Fmin = 0.02; // 0.02% at 100%
     const alpha = 1.3;
     
@@ -317,16 +317,16 @@ export const DynamicFeeCurve = () => {
           {/* Annotations */}
           <g>
             {/* Early phase annotation */}
-            <text x="140" y="60" fill="currentColor" fontSize="11" opacity="0.7">Early phase:</text>
-            <text x="140" y="75" fill="currentColor" fontSize="11" opacity="0.7">High buy fee (2%)</text>
+            <text x="95" y="60" fill="currentColor" fontSize="11" opacity="0.7">Early phase:</text>
+            <text x="95" y="75" fill="currentColor" fontSize="11" opacity="0.7">High buy fee (2%)</text>
             
             {/* Midpoint annotation */}
             <text x="270" y="110" fill="currentColor" fontSize="11" opacity="0.7">Midpoint uncertainty:</text>
             <text x="270" y="125" fill="currentColor" fontSize="11" opacity="0.7">Sell fee peaks near 50%</text>
             
             {/* Certainty annotation */}
-            <text x="380" y="285" fill="currentColor" fontSize="11" opacity="0.7">Certainty phase:</text>
-            <text x="380" y="300" fill="currentColor" fontSize="11" opacity="0.7">Minimal fees (0.02%)</text>
+            <text x="440" y="300" fill="currentColor" fontSize="11" opacity="0.7">Certainty phase:</text>
+            <text x="440" y="315" fill="currentColor" fontSize="11" opacity="0.7">Minimal fees (0.02%)</text>
           </g>
           
           {/* Enhanced tooltip */}
