@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 
-export const DynamicFeeCurve = () => {
+export const MarketOrderFees = () => {
   const [hoveredLine, setHoveredLine] = useState(null);
   const [mousePos, setMousePos] = useState(null);
   const [isTouching, setIsTouching] = useState(false);
