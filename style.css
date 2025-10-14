@@ -61,20 +61,22 @@ $$,
   font-weight: normal !important;
   flex: 1 !important;
   display: flex !important;
-  flex-direction: row !important;
   align-items: center !important;
-  gap: 8px !important;
+  gap: 12px !important;
 }
-#pagination a span {
+#pagination a > * {
   display: flex !important;
   flex-direction: column !important;
-  gap: 4px !important;
+  gap: 6px !important;
+}
+#pagination a > *:last-child {
   font-weight: 600 !important;
 }
 #pagination a svg {
   font-weight: normal !important;
   stroke-width: 1.5 !important;
   flex-shrink: 0 !important;
+  align-self: center !important;
 }
 #pagination a:hover {
   background-color: rgba(94, 221, 44, 0.08) !important;
@@ -86,18 +88,19 @@ $$,
 }
 #pagination a:last-child {
   flex-direction: row-reverse !important;
+  text-align: right !important;
 }
-#pagination a:first-child span::before {
-  content: "Prev" !important;
-  font-size: 12px !important;
+#pagination a:first-child > *::before {
+  content: "PREV" !important;
+  font-size: 10px !important;
   color: rgba(255, 255, 255, 0.5) !important;
   text-transform: uppercase !important;
   letter-spacing: 0.5px !important;
   font-weight: normal !important;
 }
-#pagination a:last-child span::before {
-  content: "Next" !important;
-  font-size: 12px !important;
+#pagination a:last-child > *::before {
+  content: "NEXT" !important;
+  font-size: 10px !important;
   color: rgba(255, 255, 255, 0.5) !important;
   text-transform: uppercase !important;
   letter-spacing: 0.5px !important;
