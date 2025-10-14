@@ -47,6 +47,15 @@
             ]
           },
           {
+            "group": "Core Concepts",
+            "pages": [
+              "doc/core-concepts/how-prediction-markets-work",
+              "doc/core-concepts/share-minting-and-burning",
+              "doc/core-concepts/makers-and-takers",
+              "doc/core-concepts/market-resolution"
+            ]
+          },
+          {
             "group": "Features",
             "pages": [
               {
@@ -54,9 +63,7 @@
                 "pages": [
                   "doc/features/clob/clob",
                   "doc/features/clob/example",
-                  "doc/features/clob/advantages",
-                  "doc/features/clob/share-minting-and-burning",
-                  "doc/features/clob/makers-and-takers"
+                  "doc/features/clob/advantages"
                 ]
               },
               "doc/features/leverage",
@@ -68,7 +75,6 @@
                   "doc/features/multi-outcome-markets/hedging-across-multiple-outcomes"
                 ]
               },
-              "doc/features/market-resolution",
               "doc/features/continuous-markets",
               "doc/features/dynamic-fee-curve",
               {
