@@ -4,20 +4,8 @@ nav a.active {
   color: #5EDD2C !important;
   background-color: rgba(94, 221, 44, 0.15) !important;
   border-radius: 6px;
-  position: relative;
-}
-
-/* ===== LEFT BORDER FOR ACTIVE SIDEBAR LINK ===== */
-nav a[aria-current="page"]::before,
-nav a.active::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: #5EDD2C;
-  border-radius: 0 2px 2px 0;
+  border-left: 3px solid #5EDD2C !important;
+  padding-left: 13px !important;
 }
 
 /* ===== SUPER TITLE (ANCHOR ABOVE H1) ===== */
