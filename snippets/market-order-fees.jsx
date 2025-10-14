@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 
-export const MarketOrderFees = () => {
+export const DynamicFeeCurve = () => {
   const [hoveredLine, setHoveredLine] = useState(null);
   const [mousePos, setMousePos] = useState(null);
   const [isTouching, setIsTouching] = useState(false);
@@ -317,16 +317,16 @@ export const MarketOrderFees = () => {
           {/* Annotations */}
           <g>
             {/* Early phase annotation */}
-            <text x="95" y="60" fill="currentColor" fontSize="11" opacity="0.7">Early phase:</text>
-            <text x="95" y="75" fill="currentColor" fontSize="11" opacity="0.7">High buy fee (2%)</text>
+            <text x="95" y="85" fill="currentColor" fontSize="11" opacity="0.7">Early phase:</text>
+            <text x="95" y="100" fill="currentColor" fontSize="11" opacity="0.7">High buy fee (2%)</text>
             
             {/* Midpoint annotation */}
             <text x="270" y="110" fill="currentColor" fontSize="11" opacity="0.7">Midpoint uncertainty:</text>
             <text x="270" y="125" fill="currentColor" fontSize="11" opacity="0.7">Sell fee peaks near 50%</text>
             
             {/* Certainty annotation */}
-            <text x="440" y="300" fill="currentColor" fontSize="11" opacity="0.7">Certainty phase:</text>
-            <text x="440" y="315" fill="currentColor" fontSize="11" opacity="0.7">Minimal fees (0.02%)</text>
+            <text x="430" y="300" fill="currentColor" fontSize="11" opacity="0.7">Certainty phase:</text>
+            <text x="430" y="315" fill="currentColor" fontSize="11" opacity="0.7">Minimal fees (0.02%)</text>
           </g>
           
           {/* Enhanced tooltip */}
