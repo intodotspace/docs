@@ -240,24 +240,6 @@ export const LeverageImpactChart = () => {
             <animate attributeName="stroke-dashoffset" values="0;12;0" dur="3s" repeatCount="indefinite"/>
           </line>
           
-          {/* Breakeven indicators - circles at entry price intersection */}
-          {allLines.map((line, index) => {
-            const breakevenPoint = line.points[15]; // 15% market prob = entry price
-            return (
-              <g key={`breakeven-${index}`}>
-                <circle
-                  cx={breakevenPoint.svgX}
-                  cy={breakevenPoint.svgY}
-                  r="5"
-                  fill={line.color}
-                  stroke="#ffffff"
-                  strokeWidth="2"
-                  opacity="0.9"
-                />
-              </g>
-            );
-          })}
-          
           {/* Leverage lines with clipping */}
           <g clipPath="url(#chartClip)">
             {allLines.map((line, index) => {
@@ -284,6 +266,26 @@ export const LeverageImpactChart = () => {
               );
             })}
           </g>
+          
+          {/* Breakeven indicators - circles at entry price intersection - render after lines */}
+          {allLines.map((line, index) => {
+            const breakevenPoint = line.points[15]; // 15% market prob = entry price
+            const isHovered = hoveredLine && hoveredLine.leverage === line.leverage;
+            return (
+              <g key={`breakeven-${index}`}>
+                <circle
+                  cx={breakevenPoint.svgX}
+                  cy={breakevenPoint.svgY}
+                  r="5"
+                  fill={isHovered ? line.color : "currentColor"}
+                  stroke="#ffffff"
+                  strokeWidth="2"
+                  opacity={isHovered ? 0.9 : 0.4}
+                  className="transition-all duration-300"
+                />
+              </g>
+            );
+          })}
           
           {/* Interactive areas */}
           {allLines.map((line, index) => (
