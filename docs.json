@@ -12,32 +12,30 @@
     "strict": true
   },
   "navigation": {
-    "anchors": [
-      {
-        "anchor": "Main Site",
-        "icon": "globe",
-        "href": "https://into.space",
-        "global": true
-      },
-      {
-        "anchor": "Twitter",
-        "icon": "x-twitter",
-        "href": "https://x.com/intodotspace",
-        "global": true
-      },
-      {
-        "anchor": "Telegram",
-        "icon": "telegram",
-        "href": "https://t.me/intodotspace",
-        "global": true
-      },
-      {
-        "anchor": "Discord",
-        "icon": "discord",
-        "href": "https://discord.gg/intodotspace",
-        "global": true
-      }
-    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Main Site",
+          "icon": "globe",
+          "href": "https://into.space"
+        },
+        {
+          "anchor": "Twitter",
+          "icon": "x-twitter",
+          "href": "https://x.com/intodotspace"
+        },
+        {
+          "anchor": "Telegram",
+          "icon": "telegram",
+          "href": "https://t.me/intodotspace"
+        },
+        {
+          "anchor": "Discord",
+          "icon": "discord",
+          "href": "https://discord.gg/intodotspace"
+        }
+      ]
+    },
     "tabs": [
       {
         "tab": "Documentation",
