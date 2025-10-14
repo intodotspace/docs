@@ -12,8 +12,6 @@ Base URL: `https://api.into.space/v1`
 
 ### GET /markets
 
-List all available markets.
-
 **Query Parameters:**
 
 - `category` (string): Filter by category (crypto, politics, sports, technology, economy, culture)
@@ -43,13 +41,9 @@ List all available markets.
 }
 ```
 
-### GET /markets/{id}
-
-Get detailed market information.
+### GET /markets/id
 
 **Response:**
-
-json
 
 ```
 {
@@ -82,9 +76,7 @@ json
 }
 ```
 
-### GET /markets/{id}/orderbook
-
-Get current order book state.
+### GET /markets/id/orderbook
 
 **Query Parameters:**
 
@@ -111,9 +103,7 @@ Get current order book state.
 }
 ```
 
-### GET /markets/{id}/trades
-
-Get recent trade history.
+### GET /markets/id/trades
 
 **Query Parameters:**
 
@@ -141,9 +131,7 @@ Get recent trade history.
 }
 ```
 
-### GET /markets/{id}/candles
-
-Get OHLC candle data for charting.
+### GET /markets/id/candles
 
 **Query Parameters:**
 
@@ -172,8 +160,6 @@ Get OHLC candle data for charting.
 ## Platform Statistics
 
 ### GET /stats
-
-Get platform-wide statistics.
 
 **Response:**
 

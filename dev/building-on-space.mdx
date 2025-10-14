@@ -1,107 +1,117 @@
 ---
 title: "Building On Space"
 ---
-**Space provides the infrastructure for prediction markets. Here's what developers will be able to build on top.**
+
+Space provides the infrastructure for prediction markets. Here are some examples of what developers will be able to build on top.
 
 ## Trading Tools
 
-**Automated Bots**  
-Monitor probability movements and execute strategies. Buy when the market underprices an outcome, sell when it corrects. Space's 0% maker fees and transparent order book make algorithmic trading viable.  
+**Automated Bots**\
+Monitor probability movements and execute strategies. Buy when the market underprices an outcome, sell when it corrects. Space's 0% maker fees and transparent order book make algorithmic trading viable.
 
-*Example strategy:* Mean reversion bot that buys YES shares when probability drops below historical average and sells when it rises above threshold.
+_Example strategy:_ Mean reversion bot that buys YES shares when probability drops below historical average and sells when it rises above threshold.
 
-**Arbitrage Scanners**  
-Compare Space prices to Polymarket, Kalshi, or traditional betting markets. Execute when spreads exceed transaction fees.  
+**Arbitrage Scanners**\
+Compare Space prices to Polymarket, Kalshi, or traditional betting markets. Execute when spreads exceed transaction fees.\
 Multi-outcome markets create additional arbitrage opportunities - if NO shares for one outcome are mispriced relative to YES shares for another, convert and capture the spread.
 
-**Portfolio Managers**  
+**Portfolio Managers**\
 Track positions across multiple markets, calculate total PnL, manage risk exposure. With leverage available, capital efficiency matters. Portfolio tools help users optimize allocation and monitor liquidation risk.
 
-**Alert Systems**  
+**Alert Systems**\
 Notify users when:
-- Probability hits specific threshold  
-- Large trades execute (whale watching)  
-- Market approaching resolution  
-- Liquidation risk increases  
+
+- Probability hits specific threshold
+- Large trades execute (whale watching)
+- Market approaching resolution
+- Liquidation risk increases
 
 Real-time WebSocket feeds make this straightforward. Push notifications via email, SMS, Discord, or Telegram.
 
 ## Analytics Platforms
 
-**Market Dashboards**  
+**Market Dashboards**\
 Visualize trends, volume, and liquidity across markets. Answer questions like:
-- Which outcomes are moving?  
-- Where is capital flowing?  
-- What do traders believe?  
-- How has sentiment changed over time?  
+
+- Which outcomes are moving?
+- Where is capital flowing?
+- What do traders believe?
+- How has sentiment changed over time?
 
 Build charts showing probability evolution, volume heatmaps, and trader activity patterns.
 
-**Trader Leaderboards**  
+**Trader Leaderboards**\
 Track top performers across markets. Show:
-- Total ROI over time periods  
-- Win rate on resolved markets  
-- Average position size  
-- Risk-adjusted returns  
+
+- Total ROI over time periods
+- Win rate on resolved markets
+- Average position size
+- Risk-adjusted returns
 
 Prediction markets reward accuracy. Make reputation visible and trackable.
 
-**Historical Analysis**  
+**Historical Analysis**\
 Backtest trading strategies against historical market data. Study:
-- Market behavior at different time horizons  
-- When probabilities stabilize before resolution  
-- Correlation between market movements and news events  
-- Accuracy of prediction markets vs. other forecasting methods  
 
-**Whale Watching**  
+- Market behavior at different time horizons
+- When probabilities stabilize before resolution
+- Correlation between market movements and news events
+- Accuracy of prediction markets vs. other forecasting methods
+
+**Whale Watching**\
 Monitor large trades that significantly move markets. Alert when conviction bets happen. In thin markets, size matters - track who’s making bold predictions and how often they’re right.
 
 ## Data Services
 
-**Price Feeds**  
+**Price Feeds**\
 Aggregate Space probabilities for external use. Potential applications:
-- DeFi protocols using prediction market odds as oracle inputs  
-- Research firms studying market sentiment  
-- News organizations tracking real-time sentiment on events  
-- Traditional finance firms incorporating prediction data  
 
-**News Integration**  
+- DeFi protocols using prediction market odds as oracle inputs
+- Research firms studying market sentiment
+- News organizations tracking real-time sentiment on events
+- Traditional finance firms incorporating prediction data
+
+**News Integration**\
 Correlate market movements with breaking news:
-- When did the market react to an announcement?  
-- How fast did probabilities update after news broke?  
-- What information moved the odds the most?  
-- Which news sources have the strongest impact?  
+
+- When did the market react to an announcement?
+- How fast did probabilities update after news broke?
+- What information moved the odds the most?
+- Which news sources have the strongest impact?
 
 Build tools that overlay news timelines on price charts, identify market-moving events, and track information propagation speed.
 
-**Sentiment Analysis**  
+**Sentiment Analysis**\
 Compare prediction market probabilities to:
-- Social media sentiment (Twitter, Reddit)  
-- Traditional polling data  
-- Expert forecasts  
-- Betting market odds  
+
+- Social media sentiment (Twitter, Reddit)
+- Traditional polling data
+- Expert forecasts
+- Betting market odds
 
 Identify where the market disagrees with conventional wisdom. These divergences often signal valuable information or mispricing.
 
 ## DeFi Integrations
 
-**Collateral Protocols**  
-Use shares as collateral for loans. YES shares trading at $0.80 have predictable value - lend against them. Create lending pools where users can borrow USDC against their prediction market positions.
+**Collateral Protocols**\
+Use shares as collateral for loans. YES shares trading at \$0.80 have predictable value - lend against them. Create lending pools where users can borrow USDC against their prediction market positions.
 
-**Yield Strategies**  
+**Yield Strategies**\
 Automated liquidity provision:
-- Place limit orders on both sides of order book  
-- Capture bid-ask spread as profit  
-- Rebalance as market moves  
-- Optimize for markets with highest volume/spread ratio  
+
+- Place limit orders on both sides of order book
+- Capture bid-ask spread as profit
+- Rebalance as market moves
+- Optimize for markets with highest volume/spread ratio
 
 Earn yield by providing depth to markets while maintaining market-neutral exposure.
 
-**Derivatives**  
+**Derivatives**\
 Build options or structured products on prediction markets:
-- Call/put options on market probabilities  
-- Range-bound products (profit if probability stays within range)  
-- Volatility products (profit from probability swings)  
+
+- Call/put options on market probabilities
+- Range-bound products (profit if probability stays within range)
+- Volatility products (profit from probability swings)
 
 Space provides the base layer. Derivatives add leverage and new risk/reward profiles.
 
@@ -110,42 +120,34 @@ Space provides the base layer. Derivatives add leverage and new risk/reward prof
 A bot monitoring BTC price markets:
 
 <Steps>
-
-<Step title="Monitor Market">
-Fetch current probability via REST API.  
-Subscribe to trades via WebSocket for real-time updates.  
-</Step>
-
-<Step title="Evaluate Opportunity">
-Compare current probability to historical average.  
-Check if below entry threshold (e.g., 30%).  
-Calculate position size based on conviction and risk limits.  
-</Step>
-
-<Step title="Execute Trade">
-Place limit order slightly below current price.  
-Pay 0% fee as maker.  
-Monitor for fill via WebSocket.  
-</Step>
-
-<Step title="Manage Position">
-Track unrealized PnL as probability changes.  
-Set exit target (e.g., sell when probability reaches 50%).  
-Implement stop-loss if needed.  
-</Step>
-
-<Step title="Exit">
-Place limit sell order when target hit.  
-Or use market order for immediate exit (pays dynamic fee).  
-Calculate realized PnL.  
-</Step>
-
-<Step title="Repeat">
-Track performance across trades.  
-Adjust strategy based on results.  
-</Step>
-
+  <Step title="Monitor Market">
+    Fetch current probability via REST API.\
+    Subscribe to trades via WebSocket for real-time updates.
+  </Step>
+  <Step title="Evaluate Opportunity">
+    Compare current probability to historical average.\
+    Check if below entry threshold (e.g., 30%).\
+    Calculate position size based on conviction and risk limits.
+  </Step>
+  <Step title="Execute Trade">
+    Place limit order slightly below current price.\
+    Pay 0% fee as maker.\
+    Monitor for fill via WebSocket.
+  </Step>
+  <Step title="Manage Position">
+    Track unrealized PnL as probability changes.\
+    Set exit target (e.g., sell when probability reaches 50%).\
+    Implement stop-loss if needed.
+  </Step>
+  <Step title="Exit">
+    Place limit sell order when target hit.\
+    Or use market order for immediate exit (pays dynamic fee).\
+    Calculate realized PnL.
+  </Step>
+  <Step title="Repeat">
+    Track performance across trades.\
+    Adjust strategy based on results.
+  </Step>
 </Steps>
 
 All of this is possible with Space's transparent order book, real-time data feeds, and 0% maker fees.
-

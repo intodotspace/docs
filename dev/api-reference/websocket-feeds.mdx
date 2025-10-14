@@ -1,3 +1,164 @@
 ---
 title: "WebSocket Feeds"
 ---
+
+Connect: `wss://ws.into.space/v1`
+
+<Info>
+  Availability will be announced in our official Telegram and on X/Twitter
+</Info>
+
+## Connection
+
+```
+const ws = new WebSocket('wss://ws.into.space/v1');
+
+ws.onopen = () => {
+  // Connection established
+  // Send subscription message
+};
+
+ws.onmessage = (event) => {
+  const data = JSON.parse(event.data);
+  // Handle updates
+};
+```
+
+## Subscription Format
+
+```
+{
+  "type": "subscribe",
+  "channels": [
+    "trades:btc-150k-2025",
+    "orderbook:btc-150k-2025:YES",
+    "markets"
+  ]
+}
+```
+
+## Channel: Trades
+
+**Subscribe:**
+
+```
+{
+  "type": "subscribe",
+  "channels": ["trades:btc-150k-2025"]
+}
+```
+
+**Update Message:**
+
+```
+{
+  "channel": "trades",
+  "market": "btc-150k-2025",
+  "data": {
+    "id": "trade_xyz789",
+    "outcome": "YES",
+    "price": 0.352,
+    "quantity": 2500,
+    "side": "BUY",
+    "timestamp": 1704153650
+  }
+}
+```
+
+## Channel: Order Book
+
+**Subscribe:**
+
+```
+{
+  "type": "subscribe",
+  "channels": ["orderbook:btc-150k-2025:YES"]
+}
+```
+
+**Update Message (Snapshot):**
+
+```
+{
+  "channel": "orderbook",
+  "market": "btc-150k-2025",
+  "outcome": "YES",
+  "type": "snapshot",
+  "data": {
+    "bids": [
+      { "price": 0.349, "quantity": 5000 },
+      { "price": 0.348, "quantity": 8500 }
+    ],
+    "asks": [
+      { "price": 0.351, "quantity": 4200 },
+      { "price": 0.352, "quantity": 6100 }
+    ],
+    "timestamp": 1704153650
+  }
+}
+```
+
+**Update Message (Delta):**
+
+```
+{
+  "channel": "orderbook",
+  "market": "btc-150k-2025",
+  "outcome": "YES",
+  "type": "delta",
+  "data": {
+    "side": "bids",
+    "price": 0.349,
+    "quantity": 5500,
+    "timestamp": 1704153655
+  }
+}
+```
+
+## Channel: Markets
+
+**Subscribe:**
+
+```
+{
+  "type": "subscribe",
+  "channels": ["markets"]
+}
+```
+
+**Update Message:**
+
+```
+{
+  "channel": "markets",
+  "data": {
+    "id": "btc-150k-2025",
+    "probability": 0.352,
+    "volume24h": 1260000,
+    "liquidity": 455000,
+    "timestamp": 1704153650
+  }
+}
+```
+
+## Rate Limits
+
+- **WebSocket connections:** 10 concurrent connections per user
+
+## Error Handling
+
+**WebSocket Error:**
+
+```
+{
+  "type": "error",
+  "code": "INVALID_CHANNEL",
+  "message": "Channel format is invalid"
+}
+```
+
+**Common Error Codes:**
+
+- `INVALID_CHANNEL` - Subscription format incorrect
+- `RATE_LIMIT_EXCEEDED` - Too many connections
+- `CONNECTION_TIMEOUT` - No activity for extended period
