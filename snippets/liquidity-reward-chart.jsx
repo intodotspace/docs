@@ -6,16 +6,66 @@ export const LiquidityRewardChart = () => {
   const [isTouching, setIsTouching] = useState(false);
   const svgRef = useRef(null);
   
+  // Custom non-linear x-scale mapping to match visual axis labels
+  const dayToSvgX = (days) => {
+    // Anchor points: [days, svgX]
+    const anchors = [
+      [0, 80],
+      [30, 152],
+      [60, 224],
+      [90, 320],
+      [180, 440],
+      [365, 560]
+    ];
+    
+    // Find the two anchor points that bracket our day value
+    for (let i = 0; i < anchors.length - 1; i++) {
+      const [day1, x1] = anchors[i];
+      const [day2, x2] = anchors[i + 1];
+      
+      if (days >= day1 && days <= day2) {
+        // Linear interpolation between the two anchors
+        const t = (days - day1) / (day2 - day1);
+        return x1 + t * (x2 - x1);
+      }
+    }
+    
+    return 560; // Default to end if beyond range
+  };
+  
+  // Inverse function: svgX to days
+  const svgXToDay = (svgX) => {
+    const anchors = [
+      [0, 80],
+      [30, 152],
+      [60, 224],
+      [90, 320],
+      [180, 440],
+      [365, 560]
+    ];
+    
+    for (let i = 0; i < anchors.length - 1; i++) {
+      const [day1, x1] = anchors[i];
+      const [day2, x2] = anchors[i + 1];
+      
+      if (svgX >= x1 && svgX <= x2) {
+        const t = (svgX - x1) / (x2 - x1);
+        return Math.round(day1 + t * (day2 - day1));
+      }
+    }
+    
+    return 365;
+  };
+  
   // Generate curve points for duration-based multiplier
   const generatePoints = () => {
     const points = [];
     for (let i = 0; i <= 365; i++) {
       const days = i;
-      // Exponential growth curve that rises quickly in first 90 days, then continues growing
-      const multiplier = 1 + Math.log(1 + days / 30) * 0.8; // Logarithmic growth starting at 1x
+      const multiplier = 1 + Math.log(1 + days / 30) * 0.8;
       
-      const svgX = 80 + (days / 365) * 480;
-      const svgY = 320 - ((multiplier - 1) / 3) * 280; // Scale from 1x to 4x
+      const svgX = dayToSvgX(days);
+      const svgY = 320 - ((multiplier - 1) / 3) * 280;
       
       points.push({ 
         days, 
