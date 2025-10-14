@@ -8,7 +8,7 @@ Space runs on Solana using a Central Limit Order Book (CLOB) where users trade d
 
 <div align="center">
 ```mermaid
-graph LR
+graph TB
     A[Place Order] --> B{Immediate Match?}
     B -->|Yes| C[Execute as Taker - Pay Fee]
     B -->|No| D[Add to Book as Maker - 0% Fee]
