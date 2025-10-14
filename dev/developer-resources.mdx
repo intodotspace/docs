@@ -1,36 +1,34 @@
 ---
 title: "Developer Resources"
 ---
+
 ## Getting Started
+
 <Steps>
+  <Step title="Explore the API" titleSize="h3">
+    No authentication required for public market data. Start experimenting:
 
-<Step title="Explore the API" titleSize="h3">
-No authentication required for public market data. Start experimenting:
+    - `GET /markets` - See available markets
+    - `GET /markets/{id}` - Get detailed market info
+    - `GET /markets/{id}/orderbook` - View current liquidity
+    - Test **WebSocket** connections for real-time feeds
+  </Step>
+  <Step title="Build Locally" titleSize="h3">
+    While the platform is in development:
 
-- `GET /markets` - See available markets  
-- `GET /markets/{id}` - Get detailed market info  
-- `GET /markets/{id}/orderbook` - View current liquidity  
-- Test **WebSocket** connections for real-time feeds  
-</Step>
+    - Mock market data for testing
+    - Design your integration architecture
+    - Plan data flows and error handling
+    - Prepare for API launch
+  </Step>
+  <Step title="Go Live" titleSize="h3">
+    When the production API launches:
 
-<Step title="Build Locally" titleSize="h3">
-While the platform is in development:
-
-- Mock market data for testing  
-- Design your integration architecture  
-- Plan data flows and error handling  
-- Prepare for API launch  
-</Step>
-
-<Step title="Go Live" titleSize="h3">
-When the production API launches:
-
-- Connect to live endpoints  
-- Monitor **rate limits** in response headers  
-- Implement proper error handling  
-- Deploy your integration  
-</Step>
-
+    - Connect to live endpoints
+    - Monitor **rate limits** in response headers
+    - Implement proper error handling
+    - Deploy your integration
+  </Step>
 </Steps>
 
 ## Best Practices
@@ -38,57 +36,58 @@ When the production API launches:
 **Caching**
 
 Cache data that doesn’t change frequently:
-- Market metadata (question, expiry, category)  
-- Historical trade data  
+
+- Market metadata (question, expiry, category)
+- Historical trade data
 
 **Refresh regularly:**
-- Current prices - every **5–10 seconds**  
-- Order book depth - **real-time via WebSocket**  
+
+- Current prices - every **5–10 seconds**
+- Order book depth - **real-time via WebSocket**
 - Volume statistics - **every minute**
 
-**WebSocket Reconnection**
-Networks fail. Your integration should handle it:
+**WebSocket Reconnection** Networks fail. Your integration should handle it:
 
-- Implement **automatic reconnection**  
-- Use **exponential backoff** (1s, 2s, 4s, 8s…)  
-- **Resubscribe** to channels after reconnection  
-- Consider **max retry attempts** before alerting  
+- Implement **automatic reconnection**
+- Use **exponential backoff** (1s, 2s, 4s, 8s…)
+- **Resubscribe** to channels after reconnection
+- Consider **max retry attempts** before alerting
 
 ## Error Handling
+
 Smart retry logic:
 
-- **5xx errors** - Retry with backoff (server issue, likely temporary)  
-- **4xx errors** - Don’t retry (client error, fix your request)  
-- **429 (Rate Limit)** - Respect `Retry-After` header, then retry  
-- **Network errors** - Retry with backoff  
+- **5xx errors** - Retry with backoff (server issue, likely temporary)
+- **4xx errors** - Don’t retry (client error, fix your request)
+- **429 (Rate Limit)** - Respect `Retry-After` header, then retry
+- **Network errors** - Retry with backoff
 
 ## Rate Limit Management
+
 Stay under limits:
 
-- Track requests per minute locally  
-- Check `X-RateLimit-Remaining` header  
-- Back off before hitting the limit  
-- Use **WebSocket** for real-time data instead of polling  
-
+- Track requests per minute locally
+- Check `X-RateLimit-Remaining` header
+- Back off before hitting the limit
+- Use **WebSocket** for real-time data instead of polling
 
 ## Support
 
 ### Developer Email
-**developers@into.space**
+
+[**developers@into.space**](mailto:developers@into.space)
 
 Use for:
-- Technical questions about the API  
-- Integration help and guidance  
-- Bug reports with reproducible examples  
-- Feature requests  
+
+- Technical questions about the API
+- Integration help and guidance
+- Bug reports with reproducible examples
+- Feature requests
 
 Include in bug reports:
-- API endpoint used  
-- Request parameters  
-- Expected behavior  
-- Actual behavior  
-- Error messages or unexpected responses  
 
-### Documentation Feedback
-Missing examples or unclear explanations? Let us know at **developers@into.space**.
-
+- API endpoint used
+- Request parameters
+- Expected behavior
+- Actual behavior
+- Error messages or unexpected responses
