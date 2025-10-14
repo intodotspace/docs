@@ -117,13 +117,8 @@
               "doc/resources/support",
               "doc/resources/partnerships",
               "doc/resources/press-kit",
-              {
-                "group": "Legal",
-                "pages": [
-                  "doc/resources/legal/privacy-policy",
-                  "doc/resources/legal/terms-of-service"
-                ]
-              }
+              "doc/resources/privacy-policy",
+              "doc/resources/terms-of-service"
             ]
           }
         ]
