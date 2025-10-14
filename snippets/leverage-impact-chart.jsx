@@ -4,6 +4,7 @@ export const LeverageImpactChart = () => {
   const [hoveredLine, setHoveredLine] = useState(null);
   const [mousePos, setMousePos] = useState(null);
   const [isTouching, setIsTouching] = useState(false);
+  const [sliderProb, setSliderProb] = useState(15);
   const svgRef = useRef(null);
   
   // Generate data for each leverage line - all intersect at 15% with 0% PnL
@@ -34,10 +35,10 @@ export const LeverageImpactChart = () => {
   };
 
   const leverageLines = [
-    { leverage: 1, color: '#3B7DD8', label: '1× Leverage' },
+    { leverage: 1, color: '#3B7DD8', label: 'No Leverage' },
     { leverage: 3, color: '#5EDD2C', label: '3× Leverage' },
     { leverage: 5, color: '#FF9500', label: '5× Leverage' },
-    { leverage: 10, color: '#DC2626', label: '10× Leverage' }
+    { leverage: 10, color: '#9333EA', label: '10× Leverage' }
   ];
 
   const allLines = leverageLines.map(line => {
@@ -124,6 +125,10 @@ export const LeverageImpactChart = () => {
     }, 2000);
   };
 
+  const handleSliderChange = (e) => {
+    setSliderProb(Number(e.target.value));
+  };
+
   const getTooltipProps = (line) => {
     if (!line || !line.point) return {};
     
@@ -138,6 +143,8 @@ export const LeverageImpactChart = () => {
   };
 
   const tooltipProps = getTooltipProps(hoveredLine);
+
+  const sliderX = 80 + (sliderProb / 100) * 480;
 
   return (
     <div className="w-full max-w-full">
@@ -187,10 +194,10 @@ export const LeverageImpactChart = () => {
               </stop>
             </linearGradient>
             <linearGradient id="gradient10x" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#DC2626" stopOpacity="0.4">
+              <stop offset="0%" stopColor="#9333EA" stopOpacity="0.4">
                 <animate attributeName="stop-opacity" values="0.4;0.5;0.4" dur="4s" repeatCount="indefinite"/>
               </stop>
-              <stop offset="100%" stopColor="#DC2626" stopOpacity="0.067">
+              <stop offset="100%" stopColor="#9333EA" stopOpacity="0.067">
                 <animate attributeName="stop-opacity" values="0.067;0.1;0.067" dur="4s" repeatCount="indefinite"/>
               </stop>
             </linearGradient>
@@ -239,6 +246,63 @@ export const LeverageImpactChart = () => {
           <line x1="152" y1="40" x2="152" y2="320" stroke="currentColor" strokeWidth="2" strokeDasharray="8,4" opacity="0.6">
             <animate attributeName="stroke-dashoffset" values="0;12;0" dur="3s" repeatCount="indefinite"/>
           </line>
+          
+          {/* Breakeven indicators - circles at entry price intersection */}
+          {allLines.map((line, index) => {
+            const breakevenPoint = line.points[15]; // 15% market prob = entry price
+            return (
+              <g key={`breakeven-${index}`}>
+                <circle
+                  cx={breakevenPoint.svgX}
+                  cy={breakevenPoint.svgY}
+                  r="5"
+                  fill={line.color}
+                  stroke="#ffffff"
+                  strokeWidth="2"
+                  opacity="0.9"
+                />
+              </g>
+            );
+          })}
+          
+          {/* Slider vertical line */}
+          <line 
+            x1={sliderX} 
+            y1="40" 
+            x2={sliderX} 
+            y2="320" 
+            stroke="#ffffff" 
+            strokeWidth="3" 
+            opacity="0.8"
+            strokeDasharray="none"
+          />
+          
+          {/* Slider intersection points */}
+          {allLines.map((line, index) => {
+            const point = line.points[sliderProb];
+            if (!point) return null;
+            return (
+              <g key={`slider-point-${index}`}>
+                <circle
+                  cx={point.svgX}
+                  cy={point.svgY}
+                  r="6"
+                  fill={line.color}
+                  stroke="#ffffff"
+                  strokeWidth="2"
+                />
+                <text
+                  x={point.svgX + 15}
+                  y={point.svgY + 5}
+                  fill={line.color}
+                  fontSize="11"
+                  fontWeight="bold"
+                >
+                  {point.pnl > 0 ? '+' : ''}{point.pnl}%
+                </text>
+              </g>
+            );
+          })}
           
           {/* Leverage lines with clipping */}
           <g clipPath="url(#chartClip)">
@@ -302,7 +366,7 @@ export const LeverageImpactChart = () => {
           
           {/* Axis titles */}
           <text x="320" y="370" fill="currentColor" fontSize="14" textAnchor="middle" opacity="0.8">Market Probability (%)</text>
-          <text x="30" y="180" fill="currentColor" fontSize="14" textAnchor="middle" transform="rotate(-90 30 180)" opacity="0.8">PnL (% of Margin)</text>
+          <text x="30" y="180" fill="currentColor" fontSize="14" textAnchor="middle" transform="rotate(-90 30 180)" opacity="0.8">PnL of Margin (%)</text>
           
           {/* Legend */}
           <g transform="translate(420, 60)">
@@ -361,6 +425,32 @@ export const LeverageImpactChart = () => {
             </g>
           )}
         </svg>
+        
+        {/* Probability Slider */}
+        <div className="mt-6 px-4">
+          <div className="flex items-center justify-between mb-2">
+            <label className="text-sm font-medium opacity-80">Market Probability</label>
+            <span className="text-lg font-bold">{sliderProb}%</span>
+          </div>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={sliderProb}
+            onChange={handleSliderChange}
+            className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-white"
+            style={{
+              background: `linear-gradient(to right, #3B7DD8 0%, #5EDD2C 33%, #FF9500 66%, #9333EA 100%)`
+            }}
+          />
+          <div className="flex justify-between text-xs opacity-60 mt-1">
+            <span>0%</span>
+            <span>25%</span>
+            <span>50%</span>
+            <span>75%</span>
+            <span>100%</span>
+          </div>
+        </div>
       </div>
     </div>
   );
