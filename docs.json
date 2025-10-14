@@ -28,11 +28,6 @@
           "anchor": "Telegram",
           "icon": "telegram",
           "href": "https://t.me/intodotspace"
-        },
-        {
-          "anchor": "Discord",
-          "icon": "discord",
-          "href": "https://discord.gg/intodotspace"
         }
       ]
     },
