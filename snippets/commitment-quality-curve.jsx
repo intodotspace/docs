@@ -37,18 +37,33 @@ export const CommitmentQualityCurve = () => {
         setMousePos({ x: svgX, y: svgY });
       }
       
-      // Calculate exact values based on cursor x-position
-      const x = (svgX - 80) / 480;
-      const y = Math.exp(-Math.pow(x - 0.5, 2) / 0.04);
-      const exactSvgY = 320 - (y * 280);
+      // Check distance to peak point for snapping
+      const distanceToPeak = Math.abs(svgX - peakPoint.svgX);
+      const snapZone = 30; // 30 pixels snap zone
       
-      setHoveredPoint({
-        x,
-        y,
-        svgX,
-        svgY: exactSvgY,
-        reward: y.toFixed(3)
-      });
+      if (distanceToPeak < snapZone) {
+        // Snap to peak
+        setHoveredPoint({
+          x: peakPoint.x,
+          y: peakPoint.y,
+          svgX: peakPoint.svgX,
+          svgY: peakPoint.svgY,
+          reward: peakPoint.reward
+        });
+      } else {
+        // Calculate exact values based on cursor x-position
+        const x = (svgX - 80) / 480;
+        const y = Math.exp(-Math.pow(x - 0.5, 2) / 0.04);
+        const exactSvgY = 320 - (y * 280);
+        
+        setHoveredPoint({
+          x,
+          y,
+          svgX,
+          svgY: exactSvgY,
+          reward: y.toFixed(3)
+        });
+      }
     } else {
       if (!isTouching) {
         setMousePos(null);
