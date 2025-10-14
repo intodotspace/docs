@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 
-export const DynamicFeeCurves = () => {
+export const DynamicFeeCurve = () => {
   const [hoveredLine, setHoveredLine] = useState(null);
   const [mousePos, setMousePos] = useState(null);
   const [isTouching, setIsTouching] = useState(false);
@@ -164,7 +164,7 @@ export const DynamicFeeCurves = () => {
   return (
     <div className="w-full max-w-full">
       <div className="text-center mb-6">
-        <h2 className="text-xl font-semibold mb-2">Space Dynamic Fee Curves</h2>
+        <h2 className="text-xl font-semibold mb-2">Space Dynamic Fee Curve</h2>
       </div>
       
       <div className="w-full">
