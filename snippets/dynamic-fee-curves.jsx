@@ -320,8 +320,8 @@ export const DynamicFeeCurves = () => {
             <text x="270" y="145" fill="currentColor" fontSize="11" opacity="0.7">Sell fee peaks near 50%</text>
             
             {/* Certainty annotation */}
-            <text x="420" y="300" fill="currentColor" fontSize="11" opacity="0.7">Certainty phase:</text>
-            <text x="420" y="315" fill="currentColor" fontSize="11" opacity="0.7">Minimal fees (0.02%)</text>
+            <text x="380" y="285" fill="currentColor" fontSize="11" opacity="0.7">Certainty phase:</text>
+            <text x="380" y="300" fill="currentColor" fontSize="11" opacity="0.7">Minimal fees (0.02%)</text>
           </g>
           
           {/* Enhanced tooltip */}
