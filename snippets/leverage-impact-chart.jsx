@@ -1,10 +1,29 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 export const LeverageImpactChart = () => {
   const [hoveredLine, setHoveredLine] = useState(null);
   const [mousePos, setMousePos] = useState(null);
   const [isTouching, setIsTouching] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const svgRef = useRef(null);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
   
   // Generate data for each leverage line - all intersect at 15% with 0% PnL
   const generateLeverageData = (leverage) => {
@@ -140,7 +159,7 @@ export const LeverageImpactChart = () => {
   const tooltipProps = getTooltipProps(hoveredLine);
 
   return (
-    <div className="w-full max-w-full">
+    <div ref={containerRef} className="w-full max-w-full">
       <div className="text-center mb-0">
         <h2 className="text-xl font-semibold mb-0">Leverage Impact on PnL</h2>
         <p className="text-sm opacity-70">Market Example: US Government Shutdown</p>
@@ -253,6 +272,9 @@ export const LeverageImpactChart = () => {
                     fill={`url(#${gradientId})`}
                     opacity={hoveredLine && hoveredLine.leverage !== line.leverage ? 0.3 : 1}
                     className="transition-all duration-300"
+                    style={{
+                      animation: isVisible ? `fadeIn 0.8s ease-out ${index * 0.15}s both` : 'none'
+                    }}
                   />
                   <path 
                     d={line.pathData} 
@@ -261,6 +283,11 @@ export const LeverageImpactChart = () => {
                     strokeWidth={hoveredLine?.leverage === line.leverage ? "4" : "3"}
                     className="transition-all duration-300"
                     opacity={hoveredLine && hoveredLine.leverage !== line.leverage ? 0.4 : 1}
+                    strokeDasharray="1200"
+                    strokeDashoffset={isVisible ? "0" : "1200"}
+                    style={{
+                      transition: isVisible ? `stroke-dashoffset 1.5s ease-out ${index * 0.15}s` : 'none'
+                    }}
                   />
                 </g>
               );
@@ -381,6 +408,17 @@ export const LeverageImpactChart = () => {
           )}
         </svg>
       </div>
+      
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+      `}</style>
     </div>
   );
 };
