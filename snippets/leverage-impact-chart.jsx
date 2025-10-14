@@ -39,7 +39,7 @@ export const LeverageImpactChart = () => {
       const leveragedReturn = returnPercent * leverage; // With leverage
       
       const svgX = 80 + (marketProb / 100) * 480;
-      const svgY = 320 - ((leveragedReturn + 200) / 1000) * 280; // Back to original scaling
+      const svgY = 320 - (leveragedReturn / 800) * 280; // 0 to 800% range
       
       points.push({ 
         marketProb, 
@@ -252,7 +252,7 @@ export const LeverageImpactChart = () => {
           <line x1="80" y1="40" x2="80" y2="320" stroke="currentColor" strokeWidth="2" opacity="0.6"/>
           
           {/* Zero line (horizontal at 0% PnL) */}
-          <line x1="80" y1="264" x2="560" y2="264" stroke="currentColor" strokeWidth="1" strokeDasharray="5,5" opacity="0.4"/>
+          <line x1="80" y1="320" x2="560" y2="320" stroke="currentColor" strokeWidth="1" strokeDasharray="5,5" opacity="0.4"/>
           
           {/* Entry price vertical line at 15% */}
           <line x1="152" y1="40" x2="152" y2="320" stroke="currentColor" strokeWidth="2" strokeDasharray="8,4" opacity="0.6">
@@ -341,11 +341,10 @@ export const LeverageImpactChart = () => {
           <text x="560" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">100</text>
           
           {/* Y-axis labels */}
-          <text x="70" y="325" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">-200</text>
-          <text x="70" y="264" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">0</text>
-          <text x="70" y="208" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">200</text>
-          <text x="70" y="152" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">400</text>
-          <text x="70" y="96" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">600</text>
+          <text x="70" y="325" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">0</text>
+          <text x="70" y="250" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">200</text>
+          <text x="70" y="180" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">400</text>
+          <text x="70" y="110" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">600</text>
           <text x="70" y="45" fill="currentColor" fontSize="12" textAnchor="end" opacity="0.7">800</text>
           
           {/* Axis titles */}
