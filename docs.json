@@ -67,14 +67,7 @@
                 ]
               },
               "doc/features/leverage",
-              {
-                "group": "Multi-Outcome Markets",
-                "pages": [
-                  "doc/features/multi-outcome-markets/overview",
-                  "doc/features/multi-outcome-markets/share-conversion-mechanism",
-                  "doc/features/multi-outcome-markets/hedging-across-multiple-outcomes"
-                ]
-              },
+              "doc/features/multi-outcome-markets",
               "doc/features/continuous-markets",
               "doc/features/dynamic-fee-curve",
               {
