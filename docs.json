@@ -80,7 +80,7 @@
             "group": "$SPACE",
             "pages": [
               "doc/space/token-utility",
-              "doc/space/the-flywheel-mechanism"
+              "doc/space/flywheel-mechanism"
             ]
           },
           {
