@@ -63,8 +63,8 @@
               "doc/features/multi-outcome-markets",
               "doc/features/continuous-markets",
               "doc/features/dynamic-fee-curve",
-              "doc/features/rewards/liquidity-rewards",
-              "doc/features/rewards/point-system",
+              "doc/features/liquidity-rewards",
+              "doc/features/point-system",
               "doc/features/market-categories"
             ]
           },
