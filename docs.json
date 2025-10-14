@@ -1,10 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "topbarCtaButton": {
-  "name": "Launch App",
-  "url": "https://into.space"
-},
   "name": "Space",
   "colors": {
     "primary": "#5EDD2C",
