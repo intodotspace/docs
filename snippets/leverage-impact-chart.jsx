@@ -264,6 +264,7 @@ export const LeverageImpactChart = () => {
             {[...allLines].reverse().map((line, index) => {
               const gradientId = `gradient${line.leverage}x`;
               const areaPath = `${line.pathData} L 560 320 L 80 320 Z`;
+              const drawDelay = index * 2.25;
               
               return (
                 <g key={index}>
@@ -273,7 +274,7 @@ export const LeverageImpactChart = () => {
                     opacity={hoveredLine && hoveredLine.leverage !== line.leverage ? 0.3 : 1}
                     className="transition-all duration-300"
                     style={{
-                      animation: isVisible ? `fadeIn 1.6s ease-out ${index * 0.2}s both` : 'none'
+                      animation: isVisible ? `fadeIn 1.6s ease-out ${drawDelay}s both` : 'none'
                     }}
                   />
                   <path 
@@ -286,7 +287,7 @@ export const LeverageImpactChart = () => {
                     strokeDasharray="1200"
                     strokeDashoffset={isVisible ? "0" : "1200"}
                     style={{
-                      transition: isVisible ? `stroke-dashoffset 3s ease-out ${index * 0.2}s` : 'none'
+                      transition: isVisible ? `stroke-dashoffset 3s ease-out ${drawDelay}s` : 'none'
                     }}
                   />
                 </g>
