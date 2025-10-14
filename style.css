@@ -63,13 +63,8 @@ $$,
 }
 #table-of-contents-content a {
   position: relative !important;
-  color: rgba(255, 255, 255, 0.6) !important;
 }
-#table-of-contents-content a:hover {
-  color: rgba(255, 255, 255, 0.9) !important;
-}
-#table-of-contents-content a.active,
-#table-of-contents-content a[aria-current="true"],
-#table-of-contents-content a[class*="text-gray-900"] {
+#table-of-contents-content a.text-gray-900,
+#table-of-contents-content a.dark\:text-gray-200 {
   color: #ffffff !important;
 }
