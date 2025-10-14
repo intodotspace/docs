@@ -1,6 +1,7 @@
 ---
-title: "CLOB"
+title: "Central Limit Order Book"
 ---
+
 Space operates on a Central Limit Order Book (CLOB) architecture - the same model used by traditional stock exchanges which transparently displays orders on-chain within the order book. The platform continuously matches compatible buys (bids) with sells (asks) at chosen prices and traders provide liquidity by posting orders on both sides. Price emerges from user supply and demand.
 
 ## How It Works
@@ -9,16 +10,29 @@ Space operates on a Central Limit Order Book (CLOB) architecture - the same mode
   <Step title="Order Placement" titleSize="h3">
     You buy shares in a YES or NO outcome stating the price and quantity of shares. For example paying \$0.25 per share means there is a 25% chance this outcome will happen; if guessed correctly these shares will be worth \$1 on expiry, if incorrectly they'll be worth \$0.
   </Step>
-  
   <Step title="Order Matching" titleSize="h3">
     Instead of trading against the platform, you trade against other users; everyone can place buy or sell orders and when prices match, the trade takes place automatically. Orders that do not immediately match remain open in the order book until filled, cancelled, or expired.
   </Step>
-  
   <Step title="Order Resolution" titleSize="h3">
     If you bet correctly when the market resolves, all your winning shares that you bought for \$0.25 are then cashed out at \$1 value. And your incorrect shares will be cashed out at \$0.
   </Step>
-  
   <Step title="Continuous Trading" titleSize="h3">
     The Space Continuous Trading structure enables real-time, continuous trading of prediction markets where you can enter and exit at any point without needing to wait until resolution. More information on this in Continuous Markets.
   </Step>
 </Steps>
+
+## Example
+
+**Market:** _"Will BTC close above \$150,000 in 2025?"_
+
+- The YES price is \$0.25 which means the market thinks there is a 25% chance this will happen
+- You decide to buy 1,000 YES shares at \$0.25
+- If BTC closes above \$150,000, your YES shares are worth \$0 and you lose your \$250 bet
+- If you wish to exit your trade before the end of the expiry date, you'll be able to see the current price/probability of the outcome, let’s say the market is sitting at \$0.50 (50% probability), your shares are now worth 2x more so you can simply sell your 1,000 shares you bought at \$0.25 for \$0.50 each, taking out \$500, making you \$250 net profit.
+
+## Advantages
+
+- **Efficiency:** handles high volume efficiently and market prices adjust instantly based on supply and demand.
+- **Control and Flexibility:** users have the ability to set limit orders with their chosen price, size and timing.
+- **Tight Spreads:** through orderbook and limit orders.
+- **Transparency:** every order is visible and traceable.

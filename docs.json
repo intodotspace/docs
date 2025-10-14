@@ -58,14 +58,7 @@
           {
             "group": "Features",
             "pages": [
-              {
-                "group": "Central Limit Order Book",
-                "pages": [
-                  "doc/features/clob/clob",
-                  "doc/features/clob/example",
-                  "doc/features/clob/advantages"
-                ]
-              },
+              "doc/features/central-limit-order-book",
               "doc/features/leverage",
               "doc/features/multi-outcome-markets",
               "doc/features/continuous-markets",
