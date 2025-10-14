@@ -30,6 +30,10 @@ export const LiquidityRewardChart = () => {
   const points = generatePoints();
   const pathData = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.svgX} ${p.svgY}`).join(' ');
 
+  // Get specific day points
+  const day30Point = points.find(p => p.days === 30);
+  const day90Point = points.find(p => p.days === 90);
+
   const findClosestPoint = (svgX, svgY) => {
     let closestPoint = null;
     let minDistance = 40;
@@ -210,24 +214,28 @@ export const LiquidityRewardChart = () => {
           ))}
           
           {/* Milestone indicator circles at 30 and 90 days */}
-          <circle
-            cx={points[30].svgX}
-            cy={points[30].svgY}
-            r="5"
-            fill="#5EDD2C"
-            stroke="#ffffff"
-            strokeWidth="2"
-            opacity="0.9"
-          />
-          <circle
-            cx={points[90].svgX}
-            cy={points[90].svgY}
-            r="5"
-            fill="#5EDD2C"
-            stroke="#ffffff"
-            strokeWidth="2"
-            opacity="0.9"
-          />
+          {day30Point && (
+            <circle
+              cx={day30Point.svgX}
+              cy={day30Point.svgY}
+              r="5"
+              fill="#5EDD2C"
+              stroke="#ffffff"
+              strokeWidth="2"
+              opacity="0.9"
+            />
+          )}
+          {day90Point && (
+            <circle
+              cx={day90Point.svgX}
+              cy={day90Point.svgY}
+              r="5"
+              fill="#5EDD2C"
+              stroke="#ffffff"
+              strokeWidth="2"
+              opacity="0.9"
+            />
+          )}
           
           {/* Key milestone lines */}
           <line x1="152" y1="40" x2="152" y2="320" 
@@ -264,19 +272,23 @@ export const LiquidityRewardChart = () => {
           <text x="320" y="370" fill="currentColor" fontSize="14" textAnchor="middle" opacity="0.8">Days to Market Resolution</text>
           <text x="30" y="180" fill="currentColor" fontSize="14" textAnchor="middle" transform="rotate(-90 30 180)" opacity="0.8">Reward Multiplier</text>
           
-          {/* Annotations */}
+          {/* Annotations - aligned to actual curve positions */}
           <g>
             {/* 30-day annotation */}
-            <text x="120" y="80" fill="currentColor" fontSize="11" opacity="0.7">30 days:</text>
-            <text x="120" y="95" fill="currentColor" fontSize="11" opacity="0.7">Early boost</text>
+            {day30Point && (
+              <>
+                <text x="120" y={day30Point.svgY - 20} fill="currentColor" fontSize="11" opacity="0.7">30 days:</text>
+                <text x="120" y={day30Point.svgY - 5} fill="currentColor" fontSize="11" opacity="0.7">Early boost</text>
+              </>
+            )}
             
-            {/* 90-day annotation */}
-            <text x="250" y="130" fill="currentColor" fontSize="11" opacity="0.7">90 days:</text>
-            <text x="250" y="145" fill="currentColor" fontSize="11" opacity="0.7">Significant multiplier</text>
+            {/* 90-day annotation - same height as long-term */}
+            <text x="250" y="210" fill="currentColor" fontSize="11" opacity="0.7">90 days:</text>
+            <text x="250" y="225" fill="currentColor" fontSize="11" opacity="0.7">Significant multiplier</text>
             
-            {/* Long-term annotation */}
-            <text x="420" y="180" fill="currentColor" fontSize="11" opacity="0.7">Long-term markets:</text>
-            <text x="420" y="195" fill="currentColor" fontSize="11" opacity="0.7">Highest rewards</text>
+            {/* Long-term annotation - same height as 90-day */}
+            <text x="420" y="210" fill="currentColor" fontSize="11" opacity="0.7">Long-term markets:</text>
+            <text x="420" y="225" fill="currentColor" fontSize="11" opacity="0.7">Highest rewards</text>
           </g>
           
           {/* Enhanced tooltip */}
