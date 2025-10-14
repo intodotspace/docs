@@ -68,3 +68,7 @@ $$,
 #table-of-contents-content a.dark\:text-gray-200 {
   color: #ffffff !important;
 }
+/* ===== OVERRIDE PRIMARY COLOR FOR TABLE OF CONTENTS ===== */
+#table-of-contents-content .text-primary {
+  color: #ffffff !important;
+}
