@@ -10,6 +10,10 @@ Our dynamic fee curve is designed as an incentive alignment mechanism for [Maker
 - Incentivize consistent, long term participation
 - Punish market manipulation
 
+import { DynamicFeeCurves } from "/snippets/dynamic-fee-curves.jsx"
+
+<DynamicFeeCurves />
+
 Traders adding liquidity to the order book via limit orders (makers) pay 0 fees. The below fees only apply to market orders that get filled instantly (takers).
 
 There are two types of taker fees which are created to keep the orderbook and risk/reward balanced:
@@ -73,7 +77,3 @@ where
     - **Net profit:** \$800 - \$0.32 - \$304.80 = \$494.88 (162% ROI)
   </Step>
 </Steps>
-
-import { DynamicFeeCurves } from "/snippets/dynamic-fee-curves.jsx"
-
-<DynamicFeeCurves />
