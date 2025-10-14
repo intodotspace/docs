@@ -25,23 +25,6 @@ export const CommitmentQualityCurve = () => {
   // Peak point at x=0.5
   const peakPoint = points[50];
 
-  const findClosestPoint = (svgX, svgY) => {
-    let closestPoint = null;
-    let minDistance = 40;
-    
-    points.forEach(point => {
-      const distance = Math.sqrt(
-        Math.pow(svgX - point.svgX, 2) + Math.pow(svgY - point.svgY, 2)
-      );
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestPoint = point;
-      }
-    });
-    
-    return closestPoint;
-  };
-
   const updateInteraction = (clientX, clientY) => {
     if (!svgRef.current) return;
     
@@ -54,8 +37,18 @@ export const CommitmentQualityCurve = () => {
         setMousePos({ x: svgX, y: svgY });
       }
       
-      const closestPoint = findClosestPoint(svgX, svgY);
-      setHoveredPoint(closestPoint);
+      // Calculate exact values based on cursor x-position
+      const x = (svgX - 80) / 480;
+      const y = Math.exp(-Math.pow(x - 0.5, 2) / 0.04);
+      const exactSvgY = 320 - (y * 280);
+      
+      setHoveredPoint({
+        x,
+        y,
+        svgX,
+        svgY: exactSvgY,
+        reward: y.toFixed(3)
+      });
     } else {
       if (!isTouching) {
         setMousePos(null);
