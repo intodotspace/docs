@@ -1,10 +1,29 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 export const CommitmentQualityCurve = () => {
   const [hoveredPoint, setHoveredPoint] = useState(null);
   const [mousePos, setMousePos] = useState(null);
   const [isTouching, setIsTouching] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const svgRef = useRef(null);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
   
   // Generate curve points for interaction
   const generatePoints = () => {
@@ -124,7 +143,7 @@ export const CommitmentQualityCurve = () => {
   const tooltipProps = getTooltipProps(hoveredPoint);
 
   return (
-    <div className="w-full max-w-full">
+    <div ref={containerRef} className="w-full max-w-full">
       <div className="text-center mb-0">
         <h2 className="text-xl font-semibold mb-0">Commitment Quality Curve</h2>
         <p className="text-sm opacity-70">Balanced Price ($0.50)</p>
@@ -191,14 +210,22 @@ export const CommitmentQualityCurve = () => {
           
           {/* Area under curve */}
           <path d={`${pathData} L 560 320 L 80 320 Z`} 
-                fill="url(#areaGradient)"/>
+                fill="url(#areaGradient)"
+                style={{
+                  animation: isVisible ? 'fadeIn 1.6s ease-out both' : 'none'
+                }}/>
           
           {/* Main curve line */}
           <path d={pathData} 
                 fill="none" 
                 stroke="#5EDD2C" 
                 strokeWidth="3"
-                className="transition-all duration-300"/>
+                className="transition-all duration-300"
+                strokeDasharray="1200"
+                strokeDashoffset={isVisible ? "0" : "1200"}
+                style={{
+                  transition: isVisible ? 'stroke-dashoffset 3s ease-out' : 'none'
+                }}/>
           
           {/* Interactive area */}
           <rect
@@ -284,6 +311,17 @@ export const CommitmentQualityCurve = () => {
           )}
         </svg>
       </div>
+      
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+      `}</style>
     </div>
   );
 };
