@@ -64,7 +64,7 @@ export const DynamicFeeCurve = () => {
     },
     { 
       type: 'sell', 
-      color: '#DC2626', 
+      color: '#3B7DD8', 
       label: 'Sell-Side Fee', 
       points: generateSellFeeData(),
       pathData: generateSellFeeData().map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.svgX} ${p.svgY}`).join(' ')
@@ -192,10 +192,10 @@ export const DynamicFeeCurve = () => {
               </stop>
             </linearGradient>
             <linearGradient id="gradientSell" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#DC2626" stopOpacity="0.4">
+              <stop offset="0%" stopColor="#3B7DD8" stopOpacity="0.4">
                 <animate attributeName="stop-opacity" values="0.4;0.5;0.4" dur="4s" repeatCount="indefinite"/>
               </stop>
-              <stop offset="100%" stopColor="#DC2626" stopOpacity="0.067">
+              <stop offset="100%" stopColor="#3B7DD8" stopOpacity="0.067">
                 <animate attributeName="stop-opacity" values="0.067;0.1;0.067" dur="4s" repeatCount="indefinite"/>
               </stop>
             </linearGradient>
@@ -233,6 +233,11 @@ export const DynamicFeeCurve = () => {
           {/* Axes */}
           <line x1="80" y1="320" x2="560" y2="320" stroke="currentColor" strokeWidth="2" opacity="0.6"/>
           <line x1="80" y1="40" x2="80" y2="320" stroke="currentColor" strokeWidth="2" opacity="0.6"/>
+          
+          {/* 50% vertical line marker */}
+          <line x1="320" y1="40" x2="320" y2="320" stroke="currentColor" strokeWidth="2" strokeDasharray="8,4" opacity="0.6">
+            <animate attributeName="stroke-dashoffset" values="0;12;0" dur="3s" repeatCount="indefinite"/>
+          </line>
           
           {/* Fee curves */}
           {feeLines.map((line, index) => {
@@ -300,7 +305,7 @@ export const DynamicFeeCurve = () => {
           
           {/* Legend */}
           <g transform="translate(420, 60)">
-            <rect x="-15" y="-15" width="160" height="70" fill="currentColor" opacity="0.05" rx="6"/>
+            <rect x="-15" y="-15" width="160" height="70" fill="currentColor" opacity="0" rx="6"/>
             {feeLines.map((line, index) => (
               <g key={index} transform={`translate(0, ${index * 25})`}>
                 <line x1="0" y1="0" x2="20" y2="0" stroke={line.color} strokeWidth="3"/>
