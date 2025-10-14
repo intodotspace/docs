@@ -22,9 +22,12 @@ export const CommitmentQualityCurve = () => {
   const points = generatePoints();
   const pathData = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.svgX} ${p.svgY}`).join(' ');
 
+  // Peak point at x=0.5
+  const peakPoint = points[50];
+
   const findClosestPoint = (svgX, svgY) => {
     let closestPoint = null;
-    let minDistance = 40; // Increased for better mobile interaction
+    let minDistance = 40;
     
     points.forEach(point => {
       const distance = Math.sqrt(
@@ -46,7 +49,6 @@ export const CommitmentQualityCurve = () => {
     const svgX = ((clientX - rect.left) / rect.width) * 600;
     const svgY = ((clientY - rect.top) / rect.height) * 400;
     
-    // Only show crosshair within chart area
     if (svgX >= 80 && svgX <= 560 && svgY >= 40 && svgY <= 320) {
       if (!isTouching) {
         setMousePos({ x: svgX, y: svgY });
@@ -62,7 +64,6 @@ export const CommitmentQualityCurve = () => {
     }
   };
 
-  // Mouse events
   const handleMouseMove = (e) => {
     if (!isTouching) {
       updateInteraction(e.clientX, e.clientY);
@@ -76,7 +77,6 @@ export const CommitmentQualityCurve = () => {
     }
   };
 
-  // Touch events
   const handleTouchStart = (e) => {
     e.preventDefault();
     setIsTouching(true);
@@ -93,7 +93,6 @@ export const CommitmentQualityCurve = () => {
   const handleTouchEnd = () => {
     setIsTouching(false);
     setMousePos(null);
-    // Keep tooltip visible for a moment on mobile
     setTimeout(() => {
       if (isTouching === false) {
         setHoveredPoint(null);
@@ -101,14 +100,12 @@ export const CommitmentQualityCurve = () => {
     }, 2000);
   };
 
-  // Smart tooltip positioning
   const getTooltipProps = (point) => {
     if (!point) return {};
     
     let x = point.svgX - 50;
     let y = point.svgY - 55;
     
-    // Keep tooltip in bounds
     if (x < 10) x = 10;
     if (x > 500) x = 500;
     if (y < 10) y = point.svgY + 20;
@@ -195,31 +192,26 @@ export const CommitmentQualityCurve = () => {
                 strokeWidth="3"
                 className="transition-all duration-300"/>
           
-          {/* Interactive points (invisible larger hit areas) */}
-          {points.filter((_, i) => i % 2 === 0).map((point, i) => (
-            <circle
-              key={i}
-              cx={point.svgX}
-              cy={point.svgY}
-              r="12"
-              fill="transparent"
-              className="cursor-pointer"
-            />
-          ))}
+          {/* Interactive area */}
+          <rect
+            x="80"
+            y="40"
+            width="480"
+            height="280"
+            fill="transparent"
+            className="cursor-pointer"
+          />
           
-          {/* Visible curve points */}
-          {points.filter((_, i) => i % 10 === 0).map((point, i) => (
-            <circle
-              key={`visible-${i}`}
-              cx={point.svgX}
-              cy={point.svgY}
-              r={hoveredPoint === point ? "6" : "3"}
-              fill="#5EDD2C"
-              className="transition-all duration-200"
-              stroke={hoveredPoint === point ? "#ffffff" : "none"}
-              strokeWidth={hoveredPoint === point ? "2" : "0"}
-            />
-          ))}
+          {/* Peak indicator circle at x=0.5 */}
+          <circle
+            cx={peakPoint.svgX}
+            cy={peakPoint.svgY}
+            r="5"
+            fill="#5EDD2C"
+            stroke="#ffffff"
+            strokeWidth="2"
+            opacity="0.9"
+          />
           
           {/* Vertical dashed line at x=0.5 with animation */}
           <line x1="320" y1="40" x2="320" y2="320" 
