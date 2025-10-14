@@ -80,14 +80,7 @@
             "group": "$SPACE",
             "pages": [
               "doc/space/token-utility",
-              {
-                "group": "Flywheel Mechanism",
-                "pages": [
-                  "doc/space/flywheel-mechanism/overview",
-                  "doc/space/flywheel-mechanism/fee-distribution",
-                  "doc/space/flywheel-mechanism/the-flywheel-effect"
-                ]
-              }
+              "doc/space/the-flywheel-effect"
             ]
           },
           {
