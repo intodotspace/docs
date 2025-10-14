@@ -310,9 +310,9 @@ export const LiquidityRewardChart = () => {
             <text x={day90Point.svgX + 8} y={day90Point.svgY + 20} fill="currentColor" fontSize="11" opacity="0.7">90 days:</text>
             <text x={day90Point.svgX + 8} y={day90Point.svgY + 35} fill="currentColor" fontSize="11" opacity="0.7">Significant multiplier</text>
             
-            {/* Long-term annotation - unchanged */}
-            <text x="420" y="180" fill="currentColor" fontSize="11" opacity="0.7">Long-term markets:</text>
-            <text x="420" y="195" fill="currentColor" fontSize="11" opacity="0.7">Highest rewards</text>
+            {/* Long-term annotation - moved up */}
+            <text x="420" y="150" fill="currentColor" fontSize="11" opacity="0.7">Long-term markets:</text>
+            <text x="420" y="165" fill="currentColor" fontSize="11" opacity="0.7">Highest rewards</text>
           </g>
           
           {/* Enhanced tooltip */}
