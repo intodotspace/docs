@@ -58,7 +58,7 @@ export const CommitmentQualityCurve = () => {
       
       // Check distance to peak point for snapping
       const distanceToPeak = Math.abs(svgX - peakPoint.svgX);
-      const snapZone = 15; // Reduced from 30 to 15 pixels
+      const snapZone = 15;
       
       if (distanceToPeak < snapZone) {
         // Snap to peak
@@ -124,17 +124,17 @@ export const CommitmentQualityCurve = () => {
       if (isTouching === false) {
         setHoveredPoint(null);
       }
-    }, 2000);
+    }, 3000);
   };
 
   const getTooltipProps = (point) => {
     if (!point) return {};
     
     let x = point.svgX - 50;
-    let y = point.svgY - 55;
+    let y = point.svgY - 60;
     
     if (x < 10) x = 10;
-    if (x > 500) x = 500;
+    if (x > 490) x = 490;
     if (y < 10) y = point.svgY + 20;
     
     return { x, y };

@@ -85,7 +85,7 @@ export const LiquidityRewardChart = () => {
       }
       
       // Check distance to milestone points for snapping
-      const snapZone = 15; // Same reduced snap zone as commitment curve
+      const snapZone = 15;
       const distanceTo30 = Math.abs(svgX - day30Point.svgX);
       const distanceTo90 = Math.abs(svgX - day90Point.svgX);
       
@@ -159,17 +159,17 @@ export const LiquidityRewardChart = () => {
       if (isTouching === false) {
         setHoveredPoint(null);
       }
-    }, 2000);
+    }, 3000);
   };
 
   const getTooltipProps = (point) => {
     if (!point) return {};
     
     let x = point.svgX - 60;
-    let y = point.svgY - 55;
+    let y = point.svgY - 60;
     
     if (x < 10) x = 10;
-    if (x > 480) x = 480;
+    if (x > 470) x = 470;
     if (y < 10) y = point.svgY + 20;
     
     return { x, y };

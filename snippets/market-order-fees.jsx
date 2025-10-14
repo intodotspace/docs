@@ -162,17 +162,17 @@ export const MarketOrderFees = () => {
       if (isTouching === false) {
         setHoveredLine(null);
       }
-    }, 2000);
+    }, 3000);
   };
 
   const getTooltipProps = (line) => {
     if (!line || !line.point) return {};
     
     let x = line.point.svgX - 60;
-    let y = line.point.svgY - 55;
+    let y = line.point.svgY - 60;
     
     if (x < 10) x = 10;
-    if (x > 480) x = 480;
+    if (x > 470) x = 470;
     if (y < 10) y = line.point.svgY + 20;
     
     return { x, y };
@@ -218,8 +218,8 @@ export const MarketOrderFees = () => {
                 <animate attributeName="stop-opacity" values="0.067;0.1;0.067" dur="4s" repeatCount="indefinite"/>
               </stop>
             </linearGradient>
-            <pattern id="feeGrid" width="50" height="35" patternUnits="userSpaceOnUse">
-              <path d="M 50 0 L 0 0 0 35" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="2,2" opacity="0.2"/>
+            <pattern id="feeGrid" width="60" height="35" patternUnits="userSpaceOnUse">
+              <path d="M 60 0 L 0 0 0 35" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3,3" opacity="0.3"/>
             </pattern>
             <filter id="dropShadow">
               <feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.3"/>

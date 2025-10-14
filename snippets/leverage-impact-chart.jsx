@@ -88,7 +88,7 @@ export const LeverageImpactChart = () => {
       allLines.forEach(line => {
         if (line.points[marketProb]) {
           const distance = Math.abs(svgY - line.points[marketProb].svgY);
-          if (distance < minDistance && distance < 40) {
+          if (distance < minDistance && distance < 50) {
             minDistance = distance;
             closestLine = {
               ...line,
@@ -140,17 +140,17 @@ export const LeverageImpactChart = () => {
       if (isTouching === false) {
         setHoveredLine(null);
       }
-    }, 2000);
+    }, 3000);
   };
 
   const getTooltipProps = (line) => {
     if (!line || !line.point) return {};
     
     let x = line.point.svgX - 60;
-    let y = line.point.svgY - 55;
+    let y = line.point.svgY - 60;
     
     if (x < 10) x = 10;
-    if (x > 480) x = 480;
+    if (x > 470) x = 470;
     if (y < 10) y = line.point.svgY + 20;
     
     return { x, y };
@@ -274,7 +274,7 @@ export const LeverageImpactChart = () => {
                     opacity={hoveredLine && hoveredLine.leverage !== line.leverage ? 0.3 : 1}
                     className="transition-all duration-300"
                     style={{
-                      animation: isVisible ? `fadeIn 1.6s ease-out ${originalIndex * 0.3}s both` : 'none'
+                      animation: isVisible ? `fadeIn 1.6s ease-out ${originalIndex * 0.4}s both` : 'none'
                     }}
                   />
                   <path 
@@ -287,7 +287,7 @@ export const LeverageImpactChart = () => {
                     strokeDasharray="1200"
                     strokeDashoffset={isVisible ? "0" : "1200"}
                     style={{
-                      transition: isVisible ? `stroke-dashoffset 3s ease-out ${originalIndex * 0.3}s` : 'none'
+                      transition: isVisible ? `stroke-dashoffset 3s ease-out ${originalIndex * 0.4}s` : 'none'
                     }}
                   />
                 </g>
