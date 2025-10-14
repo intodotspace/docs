@@ -39,7 +39,7 @@ export const CommitmentQualityCurve = () => {
       
       // Check distance to peak point for snapping
       const distanceToPeak = Math.abs(svgX - peakPoint.svgX);
-      const snapZone = 30; // 30 pixels snap zone
+      const snapZone = 15; // Reduced from 30 to 15 pixels
       
       if (distanceToPeak < snapZone) {
         // Snap to peak
