@@ -255,7 +255,7 @@ export const MarketOrderFees = () => {
           
           {/* 50% vertical line marker */}
           <line x1="320" y1="40" x2="320" y2="320" stroke="currentColor" strokeWidth="2" strokeDasharray="8,4" opacity="0.6">
-            <animate attributeName="stroke-dashoffset" values="0;12;0" dur="3s" repeatCount="indefinite"/>
+            <animate attributeName="stroke-dashoffset" values="0;-12" dur="1.5s" repeatCount="indefinite"/>
           </line>
           
           {/* Fee curves */}
