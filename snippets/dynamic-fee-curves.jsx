@@ -164,7 +164,7 @@ export const DynamicFeeCurves = () => {
   return (
     <div className="w-full max-w-full">
       <div className="text-center mb-6">
-        <h2 className="text-xl font-semibold mb-2">Space Dynamic Fee Curves (Final Model)</h2>
+        <h2 className="text-xl font-semibold mb-2">Space Dynamic Fee Curves</h2>
       </div>
       
       <div className="w-full">
@@ -312,16 +312,19 @@ export const DynamicFeeCurves = () => {
           {/* Annotations */}
           <g>
             {/* Early phase annotation */}
-            <text x="140" y="80" fill="currentColor" fontSize="11" opacity="0.7">Early phase:</text>
-            <text x="140" y="95" fill="currentColor" fontSize="11" opacity="0.7">High buy fee (2%)</text>
+            <rect x="85" y="68" width="120" height="32" fill="#000000" opacity="0.7" rx="4"/>
+            <text x="145" y="80" fill="currentColor" fontSize="11" opacity="0.9">Early phase:</text>
+            <text x="145" y="95" fill="currentColor" fontSize="11" opacity="0.9">High buy fee (2%)</text>
             
             {/* Midpoint annotation */}
-            <text x="270" y="130" fill="currentColor" fontSize="11" opacity="0.7">Midpoint uncertainty:</text>
-            <text x="270" y="145" fill="currentColor" fontSize="11" opacity="0.7">Sell fee peaks near 50%</text>
+            <rect x="210" y="118" width="145" height="32" fill="#000000" opacity="0.7" rx="4"/>
+            <text x="282" y="130" fill="currentColor" fontSize="11" opacity="0.9">Midpoint uncertainty:</text>
+            <text x="282" y="145" fill="currentColor" fontSize="11" opacity="0.9">Sell fee peaks near 50%</text>
             
             {/* Certainty annotation */}
-            <text x="450" y="300" fill="currentColor" fontSize="11" opacity="0.7">Certainty phase:</text>
-            <text x="450" y="315" fill="currentColor" fontSize="11" opacity="0.7">Minimal fees (0.02%)</text>
+            <rect x="385" y="288" width="130" height="32" fill="#000000" opacity="0.7" rx="4"/>
+            <text x="450" y="300" fill="currentColor" fontSize="11" opacity="0.9">Certainty phase:</text>
+            <text x="450" y="315" fill="currentColor" fontSize="11" opacity="0.9">Minimal fees (0.02%)</text>
           </g>
           
           {/* Enhanced tooltip */}
