@@ -1,117 +1,143 @@
 ---
 title: "Risk & Security"
 ---
+
 Space implements multiple layers of risk controls to protect users and maintain market integrity.
+
 ## Oracle Security
+
 **Multi-Source Validation:**
-    - Median of Pyth + Switchboard prices
-    - Reject if oracles disagree by >2%
-    - 15-minute TWAP averages out manipulation
+
+- Median of Pyth + Switchboard prices
+- Reject if oracles disagree by \>2%
+- 15-minute TWAP averages out manipulation
 
 **Liveness Checks:**
-    - Require minimum updates in TWAP window
-    - Extend window if oracle temporarily down
-    - Mark invalid if insufficient data
+
+- Require minimum updates in TWAP window
+- Extend window if oracle temporarily down
+- Mark invalid if insufficient data
 
 **Price Clamping:**
-    - Maximum 1% price movement per minute
-    - Outlier detection: reject prices >3 standard deviations
-    - Multi-feed median prevents single-source manipulation
+
+- Maximum 1% price movement per minute
+- Outlier detection: reject prices \>3 standard deviations
+- Multi-feed median prevents single-source manipulation
 
 ## Circuit Breakers
+
 Markets automatically pause if price moves:
+
 - 10% in \<60 seconds
 - 25% in \<5 minutes
 
-
-
 **On Trigger:**
+
 <Steps>
   <Step title="Trading paused immediately" titleSize="h3">
+    
   </Step>
-  <Step title="Switch to call auction mode" titleSize="h3"> </Step>
+  <Step title="Switch to call auction mode" titleSize="h3">
+    
+  </Step>
   <Step title="Admins alerted" titleSize="h3">
+    
   </Step>
   <Step title="Automatic resume after cooldown or manual approval" titleSize="h3">
+    
   </Step>
 </Steps>
+
 Prevents flash crashes and manipulation attempts.
 
 ## Liquidation Controls
-Position Value < Maintenance Margin → Liquidation
+
+Position Value \< Maintenance Margin → Liquidation
 
 **Liquidation Process:**
+
 <Steps>
   <Step title="Liquidate 25% of position" titleSize="h3">
+    
   </Step>
   <Step title="Apply 10% penalty to insurance fund" titleSize="h3">
+    
   </Step>
   <Step title="Check if still underwater" titleSize="h3">
+    
   </Step>
   <Step title="If yes: liquidate another 25%" titleSize="h3">
+    
   </Step>
   <Step title="Repeat until position safe or fully liquidated" titleSize="h3">
+    
   </Step>
 </Steps>
+
 **Insurance Fund:**
-    - Funded by liquidation penalties (10% of liquidated value)
-    - Plus 5% of all platform fees
-    - Covers negative balances from latency/congestion
-    - Balance publicly visible on-chain
-    - Target reserve: 2% of platform TVL
-The insurance fund protects the platform from user accounts going negative due to rapid price movements or network congestion preventing timely liquidation.
+
+- Funded by liquidation penalties (10% of liquidated value)
+- Plus 5% of all platform fees
+- Covers negative balances from latency/congestion
+- Balance publicly visible on-chain
+- Target reserve: 2% of platform TVL The insurance fund protects the platform from user accounts going negative due to rapid price movements or network congestion preventing timely liquidation.
 
 ## Pre-Event Freeze
+
 Markets can implement freeze mechanisms before resolution:
 
 **Option 1: Fee Escalation**
 
-Time to resolution < 10 minutes: $ \text{Taker Fee} \times 3 $
+Time to resolution \< 10 minutes: $\text{Taker Fee} \times 3$
 
-Time to resolution < 5 minutes: $\text{Taker Fee} \times 5$
+Time to resolution \< 5 minutes: $\text{Taker Fee} \times 5$
 
 **Option 2: Position Freeze**
 
-Time to resolution < 5 minutes:
+Time to resolution \< 5 minutes:
+
 - New positions: DISABLED
 - Exit positions: ENABLED
 
 Prevents last-second manipulation with insider information or unfair advantage from faster information access.
 
 ## Slippage Protection
+
 Users set maximum acceptable slippage on market orders (default 5%).
 
-If $ \frac{|\text{Actual Fill Price} - \text{Expected Price}|}{ \text{Expected Price}} > \text{Max Slippage} $:
-  → Revert transaction
-  → No trade executed
-  → No fees charged
+If $\frac{|\text{Actual Fill Price} - \text{Expected Price}|}{ \text{Expected Price}} > \text{Max Slippage}$: → Revert transaction → No trade executed → No fees charged
 
 Protects users from unexpected execution prices in volatile or thin markets.
 
 ## Platform Upgrades
+
 **Timelock Requirements:**
-    - Parameter changes: 48-hour timelock
-    - Critical code changes: 72-hour timelock
+
+- Parameter changes: 48-hour timelock
+- Critical code changes: 72-hour timelock
 
 **Multisig Control:**
-    - 3-of-5 multisig for admin functions
-    - 2-of-3 multisig for resolution submissions
-    - 2-of-5 multisig for emergency pause (faster response)
+
+- 3-of-5 multisig for admin functions
+- 2-of-3 multisig for resolution submissions
+- 2-of-5 multisig for emergency pause (faster response)
 
 All governance actions are transparent and logged on-chain.
 
 ## Future: zkML & zkTLS Research
-Space is researching zero-knowledge proofs for trustless subjective resolution:
+
+Space is researching zero-knowledge proofs for an even more cutting-edge, trustless subjective resolution yet to be utilized within prediction markets:
 
 **zkML (Zero-Knowledge Machine Learning):**
-    - Prove AI model output without revealing model weights
-    - On-chain verification of resolution logic
-    - No trust required in resolution operators
+
+- Prove AI model output without revealing model weights
+- On-chain verification of resolution logic
+- No trust required in resolution operators
 
 **zkTLS (Zero-Knowledge Transport Layer Security):**
-    - Prove data was fetched from specific URL
-    - Cryptographic proof of source authenticity
-    - Combine with zkML for fully automated resolution
+
+- Prove data was fetched from specific URL
+- Cryptographic proof of source authenticity
+- Combine with zkML for fully automated resolution
 
 **Combined Architecture:** Fetch news article via zkTLS → Process with zkML → Submit proof on-chain → Automatic resolution with cryptographic guarantees.
-

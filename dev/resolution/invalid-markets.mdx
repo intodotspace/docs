@@ -1,36 +1,44 @@
 ---
 title: "Invalid Markets"
 ---
+
 Markets can be marked invalid if fair resolution isn't possible.
+
 ## Invalid Conditions
+
 **Oracle Failure:**
+
 - Insufficient data during TWAP window
 - Oracle permanently down
 - Data corrupted or clearly wrong
 
 **Ambiguous Criteria:**
+
 - Resolution terms unclear
 - Interpretation disputed
 - Multiple valid interpretations
+  
 **External Circumstances:**
 - Event cancelled (e.g., game postponed indefinitely)
 - Force majeure
 - Unforeseen circumstances preventing resolution
+
 ## Invalid Settlement
+
 All users receive full refunds:
 
-YES holders → refund purchase price
-NO holders → refund purchase price
+YES holders → refund purchase price NO holders → refund purchase price
 
 Fees → refunded
 
 No one profits, no one loses. Market treated as if it never existed.
 
 ## Admin Authority
+
 Multisig can mark markets invalid if:
+
 - Technical failure prevents fair resolution
 - Resolution would be clearly unjust
 - Community consensus that market should be voided
 
 All invalid resolutions are logged and publicly visible.
-

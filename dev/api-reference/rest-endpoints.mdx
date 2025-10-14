@@ -2,3 +2,225 @@
 title: "REST Endpoints"
 ---
 
+Base URL: `https://api.into.space/v1`
+
+<Info>
+  Availability will be announced in our official Telegram and on X/Twitter
+</Info>
+
+## Markets
+
+### GET /markets
+
+List all available markets.
+
+**Query Parameters:**
+
+- `category` (string): Filter by category (crypto, politics, sports, technology, economy, culture)
+- `status` (string): Filter by status (active, resolved, all)
+- `limit` (number): Results per page (default 50, max 100)
+- `offset` (number): Pagination offset
+
+**Response:**
+
+```json
+{
+  "markets": [
+    {
+      "id": "btc-150k-2025",
+      "question": "Will BTC close above \$150,000 in 2025?",
+      "category": "crypto",
+      "expiresAt": 1735689599,
+      "status": "active",
+      "volume24h": 1250000,
+      "liquidity": 450000,
+      "probability": 0.35
+    }
+  ],
+  "total": 245,
+  "limit": 50,
+  "offset": 0
+}
+```
+
+### GET /markets/{id}
+
+Get detailed market information.
+
+**Response:**
+
+json
+
+```
+{
+  "id": "btc-150k-2025",
+  "question": "Will BTC close above \$150,000 in 2025?",
+  "description": "Market resolves YES if Bitcoin...",
+  "category": "crypto",
+  "createdAt": 1704067200,
+  "expiresAt": 1735689599,
+  "status": "active",
+  "resolutionSource": "Pyth Oracle 15-min TWAP",
+  "yesToken": "YEStok...",
+  "noToken": "NOtok...",
+  "volume": {
+    "total": 5250000,
+    "24h": 1250000,
+    "7d": 3100000
+  },
+  "liquidity": 450000,
+  "prices": {
+    "yes": 0.35,
+    "no": 0.65,
+    "lastUpdate": 1704153600
+  },
+  "stats": {
+    "totalTrades": 12450,
+    "uniqueTraders": 1834,
+    "avgTradeSize": 421
+  }
+}
+```
+
+### GET /markets/{id}/orderbook
+
+Get current order book state.
+
+**Query Parameters:**
+
+- `outcome` (string): YES, NO, or outcome name for multi-outcome markets
+- `depth` (number): Number of price levels (default 20, max 100)
+
+**Response:**
+
+```
+{
+  "market": "btc-150k-2025",
+  "outcome": "YES",
+  "timestamp": 1704153600,
+  "bids": [
+    { "price": 0.349, "quantity": 5000, "orders": 12 },
+    { "price": 0.348, "quantity": 8500, "orders": 23 }
+  ],
+  "asks": [
+    { "price": 0.351, "quantity": 4200, "orders": 8 },
+    { "price": 0.352, "quantity": 6100, "orders": 15 }
+  ],
+  "spread": 0.002,
+  "midPrice": 0.350
+}
+```
+
+### GET /markets/{id}/trades
+
+Get recent trade history.
+
+**Query Parameters:**
+
+- `outcome` (string): Filter by outcome
+- `limit` (number): Number of trades (default 50, max 500)
+- `before` (timestamp): Pagination cursor
+- `after` (timestamp): Pagination cursor
+
+**Response:**
+
+```
+{
+  "trades": [
+    {
+      "id": "trade_abc123",
+      "market": "btc-150k-2025",
+      "outcome": "YES",
+      "price": 0.350,
+      "quantity": 1000,
+      "side": "BUY",
+      "timestamp": 1704153540
+    }
+  ],
+  "hasMore": true
+}
+```
+
+### GET /markets/{id}/candles
+
+Get OHLC candle data for charting.
+
+**Query Parameters:**
+
+- `outcome` (string): YES, NO, or outcome name
+- `resolution` (string): 1m, 5m, 15m, 1h, 4h, 1d
+- `from` (timestamp): Start time
+- `to` (timestamp): End time
+
+**Response:**
+
+```
+{
+  "candles": [
+    {
+      "time": 1704153600,
+      "open": 0.348,
+      "high": 0.355,
+      "low": 0.346,
+      "close": 0.351,
+      "volume": 125000
+    }
+  ]
+}
+```
+
+## Platform Statistics
+
+### GET /stats
+
+Get platform-wide statistics.
+
+**Response:**
+
+```
+{
+  "totalVolume": 125000000,
+  "volume24h": 3500000,
+  "totalMarkets": 245,
+  "activeMarkets": 180,
+  "totalTrades": 1250000,
+  "uniqueTraders": 45000,
+  "tvl": 12500000,
+  "timestamp": 1704153600
+}
+```
+
+## Rate Limits
+
+- **Public endpoints:** 100 requests/minute
+- **Authenticated endpoints:** 500 requests/minute
+
+**Rate Limit Headers:**
+
+```
+X-RateLimit-Limit: 100
+X-RateLimit-Remaining: 87
+X-RateLimit-Reset: 1704153660
+```
+
+## Error Handling
+
+**Error Response:**
+
+```
+{
+  "error": {
+    "code": "MARKET_NOT_FOUND",
+    "message": "The specified market does not exist",
+    "status": 404
+  }
+}
+```
+
+**Common Error Codes:**
+
+- `MARKET_NOT_FOUND` (404)
+- `INVALID_PARAMETERS` (400)
+- `RATE_LIMIT_EXCEEDED` (429)
+- `UNAUTHORIZED` (401)
+- `INTERNAL_ERROR` (500)
