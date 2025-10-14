@@ -48,13 +48,17 @@ $$,
   color: #ffffff !important;
 }
 /* ===== PAGINATION (PREV/NEXT) ===== */
+#pagination a {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+}
 #pagination a::before {
-  display: block !important;
   font-size: 11px !important;
   text-transform: uppercase !important;
   letter-spacing: 0.5px !important;
   color: rgba(255, 255, 255, 0.5) !important;
-  margin-bottom: 4px !important;
+  font-weight: normal !important;
 }
 #pagination a:first-child::before {
   content: "Prev" !important;
