@@ -18,7 +18,7 @@ export const DynamicFeeCurve = () => {
       const fee = Fmin + (Fmax - Fmin) * (1 - Math.pow(p / 100, alpha));
       
       const svgX = 80 + (p / 100) * 480;
-      const svgY = 320 - (fee / 2.2) * 280; // Scale from 0 to 2.2%
+      const svgY = 320 - (fee / 2.05) * 280; // Scale from 0 to 2.05%
       
       points.push({ 
         probability: p, 
@@ -42,7 +42,7 @@ export const DynamicFeeCurve = () => {
       const fee = Fmin + (Fpeak - Fmin) * Math.exp(-0.5 * Math.pow((p - 50) / sigma, 2));
       
       const svgX = 80 + (p / 100) * 480;
-      const svgY = 320 - (fee / 2.2) * 280; // Scale from 0 to 2.2%
+      const svgY = 320 - (fee / 2.05) * 280; // Scale from 0 to 2.05%
       
       points.push({ 
         probability: p, 
@@ -282,11 +282,11 @@ export const DynamicFeeCurve = () => {
           
           {/* X-axis labels */}
           <text x="80" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">0</text>
-          <text x="180" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">20</text>
-          <text x="280" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">40</text>
+          <text x="176" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">20</text>
+          <text x="272" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">40</text>
           <text x="320" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.9" fontWeight="bold">50</text>
-          <text x="380" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">60</text>
-          <text x="480" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">80</text>
+          <text x="368" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">60</text>
+          <text x="464" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">80</text>
           <text x="560" y="340" fill="currentColor" fontSize="12" textAnchor="middle" opacity="0.7">100</text>
           
           {/* Y-axis labels */}
