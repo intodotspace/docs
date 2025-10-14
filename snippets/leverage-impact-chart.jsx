@@ -273,7 +273,7 @@ export const LeverageImpactChart = () => {
                     opacity={hoveredLine && hoveredLine.leverage !== line.leverage ? 0.3 : 1}
                     className="transition-all duration-300"
                     style={{
-                      animation: isVisible ? `fadeIn 0.8s ease-out ${index * 0.15}s both` : 'none'
+                      animation: isVisible ? `fadeIn 1.6s ease-out ${index * 0.3}s both` : 'none'
                     }}
                   />
                   <path 
@@ -286,7 +286,7 @@ export const LeverageImpactChart = () => {
                     strokeDasharray="1200"
                     strokeDashoffset={isVisible ? "0" : "1200"}
                     style={{
-                      transition: isVisible ? `stroke-dashoffset 1.5s ease-out ${index * 0.15}s` : 'none'
+                      transition: isVisible ? `stroke-dashoffset 3s ease-out ${index * 0.3}s` : 'none'
                     }}
                   />
                 </g>
