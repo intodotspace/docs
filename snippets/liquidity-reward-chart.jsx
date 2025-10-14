@@ -6,61 +6,52 @@ export const LiquidityRewardChart = () => {
   const [isTouching, setIsTouching] = useState(false);
   const svgRef = useRef(null);
   
-  // Custom non-linear x-scale mapping to match visual axis labels
+  // Smooth easing function for non-linear x-scale
   const dayToSvgX = (days) => {
-    // Anchor points: [days, svgX]
-    const anchors = [
-      [0, 80],
-      [30, 152],
-      [60, 224],
-      [90, 320],
-      [180, 440],
-      [365, 560]
-    ];
+    const totalWidth = 480;
+    const startX = 80;
     
-    // Find the two anchor points that bracket our day value
-    for (let i = 0; i < anchors.length - 1; i++) {
-      const [day1, x1] = anchors[i];
-      const [day2, x2] = anchors[i + 1];
-      
-      if (days >= day1 && days <= day2) {
-        // Linear interpolation between the two anchors
-        const t = (days - day1) / (day2 - day1);
-        return x1 + t * (x2 - x1);
-      }
+    // Normalize days to 0-1 range
+    const t = days / 365;
+    
+    // Custom ease: compress 0-90 days, stretch 90-365 days
+    // Use a power function that creates smooth transition
+    let easedT;
+    if (days <= 90) {
+      // First 90 days compressed - use smaller exponent for slower growth
+      const localT = days / 90;
+      easedT = Math.pow(localT, 0.7) * 0.5; // Maps 0-90 days to 0-0.5 of width
+    } else {
+      // 90-365 days stretched - linear progression
+      const localT = (days - 90) / (365 - 90);
+      easedT = 0.5 + localT * 0.5; // Maps 90-365 days to 0.5-1.0 of width
     }
     
-    return 560; // Default to end if beyond range
+    return startX + easedT * totalWidth;
   };
   
-  // Inverse function: svgX to days
+  // Inverse function: svgX to days (for tooltip)
   const svgXToDay = (svgX) => {
-    const anchors = [
-      [0, 80],
-      [30, 152],
-      [60, 224],
-      [90, 320],
-      [180, 440],
-      [365, 560]
-    ];
+    const totalWidth = 480;
+    const startX = 80;
+    const easedT = (svgX - startX) / totalWidth;
     
-    for (let i = 0; i < anchors.length - 1; i++) {
-      const [day1, x1] = anchors[i];
-      const [day2, x2] = anchors[i + 1];
-      
-      if (svgX >= x1 && svgX <= x2) {
-        const t = (svgX - x1) / (x2 - x1);
-        return Math.round(day1 + t * (day2 - day1));
-      }
+    if (easedT <= 0.5) {
+      // First half represents 0-90 days
+      const localT = easedT / 0.5;
+      return Math.round(Math.pow(localT, 1/0.7) * 90);
+    } else {
+      // Second half represents 90-365 days
+      const localT = (easedT - 0.5) / 0.5;
+      return Math.round(90 + localT * (365 - 90));
     }
-    
-    return 365;
   };
   
   // Generate curve points for duration-based multiplier
   const generatePoints = () => {
     const points = [];
-    for (let i = 0; i <= 365; i++) {
+    // Generate more points for smoother curve
+    for (let i = 0; i <= 365; i += 0.5) {
       const days = i;
       const multiplier = 1 + Math.log(1 + days / 30) * 0.8;
       
@@ -68,7 +59,7 @@ export const LiquidityRewardChart = () => {
       const svgY = 320 - ((multiplier - 1) / 3) * 280;
       
       points.push({ 
-        days, 
+        days: Math.round(days), 
         multiplier: multiplier.toFixed(2), 
         svgX, 
         svgY 
@@ -252,7 +243,7 @@ export const LiquidityRewardChart = () => {
                 className="transition-all duration-300"/>
           
           {/* Interactive points (invisible larger hit areas) */}
-          {points.filter((_, i) => i % 5 === 0).map((point, i) => (
+          {points.filter((_, i) => i % 10 === 0).map((point, i) => (
             <circle
               key={i}
               cx={point.svgX}
