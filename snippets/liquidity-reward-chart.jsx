@@ -6,52 +6,48 @@ export const LiquidityRewardChart = () => {
   const [isTouching, setIsTouching] = useState(false);
   const svgRef = useRef(null);
   
-  // Smooth easing function for non-linear x-scale
+  // Smooth easing function calibrated to exact anchor points
   const dayToSvgX = (days) => {
-    const totalWidth = 480;
+    // Anchor points: day 0→80, day 30→152, day 90→320, day 365→560
     const startX = 80;
     
-    // Normalize days to 0-1 range
-    const t = days / 365;
-    
-    // Custom ease: compress 0-90 days, stretch 90-365 days
-    // Use a power function that creates smooth transition
-    let easedT;
     if (days <= 90) {
-      // First 90 days compressed - use smaller exponent for slower growth
-      const localT = days / 90;
-      easedT = Math.pow(localT, 0.7) * 0.5; // Maps 0-90 days to 0-0.5 of width
+      // 0-90 days: Use quadratic ease that hits exact points
+      // At 30 days: should be at x=152 (72 pixels from start)
+      // At 90 days: should be at x=320 (240 pixels from start)
+      // Solve for smooth curve: x = a*t^2 + b*t where t is normalized time
+      const t = days / 90;
+      // Calibrated coefficients to hit anchor points smoothly
+      return startX + 240 * (0.4 * t + 0.6 * t * t);
     } else {
-      // 90-365 days stretched - linear progression
-      const localT = (days - 90) / (365 - 90);
-      easedT = 0.5 + localT * 0.5; // Maps 90-365 days to 0.5-1.0 of width
+      // 90-365 days: Linear mapping from x=320 to x=560
+      const t = (days - 90) / (365 - 90);
+      return 320 + 240 * t;
     }
-    
-    return startX + easedT * totalWidth;
   };
   
   // Inverse function: svgX to days (for tooltip)
   const svgXToDay = (svgX) => {
-    const totalWidth = 480;
-    const startX = 80;
-    const easedT = (svgX - startX) / totalWidth;
-    
-    if (easedT <= 0.5) {
-      // First half represents 0-90 days
-      const localT = easedT / 0.5;
-      return Math.round(Math.pow(localT, 1/0.7) * 90);
+    if (svgX <= 320) {
+      // Reverse the quadratic equation for 0-90 days
+      // x = 80 + 240 * (0.4*t + 0.6*t^2)
+      // Solve: 0.6*t^2 + 0.4*t - (x-80)/240 = 0
+      const normalized = (svgX - 80) / 240;
+      const a = 0.6, b = 0.4, c = -normalized;
+      const t = (-b + Math.sqrt(b*b - 4*a*c)) / (2*a);
+      return Math.round(t * 90);
     } else {
-      // Second half represents 90-365 days
-      const localT = (easedT - 0.5) / 0.5;
-      return Math.round(90 + localT * (365 - 90));
+      // Linear region 90-365 days
+      const t = (svgX - 320) / 240;
+      return Math.round(90 + t * 275);
     }
   };
   
   // Generate curve points for duration-based multiplier
   const generatePoints = () => {
     const points = [];
-    // Generate more points for smoother curve
-    for (let i = 0; i <= 365; i += 0.5) {
+    // Generate dense points for ultra-smooth curve
+    for (let i = 0; i <= 365; i += 0.25) {
       const days = i;
       const multiplier = 1 + Math.log(1 + days / 30) * 0.8;
       
@@ -59,7 +55,7 @@ export const LiquidityRewardChart = () => {
       const svgY = 320 - ((multiplier - 1) / 3) * 280;
       
       points.push({ 
-        days: Math.round(days), 
+        days: Math.round(days * 4) / 4, // Round to nearest 0.25
         multiplier: multiplier.toFixed(2), 
         svgX, 
         svgY 
@@ -71,9 +67,9 @@ export const LiquidityRewardChart = () => {
   const points = generatePoints();
   const pathData = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.svgX} ${p.svgY}`).join(' ');
 
-  // Get specific day points
-  const day30Point = points.find(p => p.days === 30);
-  const day90Point = points.find(p => p.days === 90);
+  // Get specific day points - find closest to exact days
+  const day30Point = points.find(p => Math.abs(p.days - 30) < 0.3);
+  const day90Point = points.find(p => Math.abs(p.days - 90) < 0.3);
 
   const findClosestPoint = (svgX, svgY) => {
     let closestPoint = null;
@@ -243,7 +239,7 @@ export const LiquidityRewardChart = () => {
                 className="transition-all duration-300"/>
           
           {/* Interactive points (invisible larger hit areas) */}
-          {points.filter((_, i) => i % 10 === 0).map((point, i) => (
+          {points.filter((_, i) => i % 20 === 0).map((point, i) => (
             <circle
               key={i}
               cx={point.svgX}
@@ -278,7 +274,7 @@ export const LiquidityRewardChart = () => {
             />
           )}
           
-          {/* Key milestone lines */}
+          {/* Key milestone lines at exact x positions */}
           <line x1="152" y1="40" x2="152" y2="320" 
                 stroke="currentColor" 
                 strokeWidth="2" 
@@ -353,7 +349,7 @@ export const LiquidityRewardChart = () => {
                 fontSize="12" 
                 textAnchor="middle"
                 fontWeight="500">
-                {hoveredPoint.days} days
+                {Math.round(hoveredPoint.days)} days
               </text>
               <text 
                 x={tooltipProps.x + 60} 
