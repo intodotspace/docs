@@ -65,17 +65,40 @@ export const LiquidityRewardChart = () => {
         setMousePos({ x: svgX, y: svgY });
       }
       
-      // Calculate exact values based on cursor position
-      const days = svgXToDay(svgX);
-      const multiplier = calculateMultiplier(days);
-      const exactSvgY = multiplierToSvgY(multiplier);
+      // Check distance to milestone points for snapping
+      const snapZone = 15; // Same reduced snap zone as commitment curve
+      const distanceTo30 = Math.abs(svgX - day30Point.svgX);
+      const distanceTo90 = Math.abs(svgX - day90Point.svgX);
       
-      setHoveredPoint({
-        days,
-        multiplier: multiplier.toFixed(2),
-        svgX,
-        svgY: exactSvgY
-      });
+      if (distanceTo30 < snapZone) {
+        // Snap to 30-day point
+        setHoveredPoint({
+          days: day30Point.days,
+          multiplier: day30Point.multiplier,
+          svgX: day30Point.svgX,
+          svgY: day30Point.svgY
+        });
+      } else if (distanceTo90 < snapZone) {
+        // Snap to 90-day point
+        setHoveredPoint({
+          days: day90Point.days,
+          multiplier: day90Point.multiplier,
+          svgX: day90Point.svgX,
+          svgY: day90Point.svgY
+        });
+      } else {
+        // Calculate exact values based on cursor position
+        const days = svgXToDay(svgX);
+        const multiplier = calculateMultiplier(days);
+        const exactSvgY = multiplierToSvgY(multiplier);
+        
+        setHoveredPoint({
+          days,
+          multiplier: multiplier.toFixed(2),
+          svgX,
+          svgY: exactSvgY
+        });
+      }
     } else {
       if (!isTouching) {
         setMousePos(null);
