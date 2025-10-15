@@ -26,7 +26,7 @@ export const SpaceFlywheel = () => {
     { id: 1, label: 'More Fees\nGenerated', angle: 45 },
     { id: 2, label: 'More $SPACE\nBought Back', angle: 90 },
     { id: 3, label: 'More $SPACE\nBurned', angle: 135 },
-    { id: 4, label: 'Increased Scarcity\n& Value', angle: 180 },
+    { id: 4, label: 'Increased\nScarcity & Value', angle: 180 },
     { id: 5, label: 'Higher\nRewards', angle: 225 },
     { id: 6, label: 'More Attractive\nEconomics', angle: 270 },
     { id: 7, label: 'More Users\nJoin', angle: 315 }
@@ -59,7 +59,8 @@ export const SpaceFlywheel = () => {
           <defs>
             <radialGradient id="nodeGradient">
               <stop offset="0%" stopColor="#000000"/>
-              <stop offset="100%" stopColor="#2a5016"/>
+              <stop offset="50%" stopColor="#1a3010"/>
+              <stop offset="100%" stopColor="#0a0a0a"/>
             </radialGradient>
             <marker
               id="arrowhead"
