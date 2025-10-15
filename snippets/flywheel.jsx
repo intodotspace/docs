@@ -48,20 +48,24 @@ export const SpaceFlywheel = () => {
     const start = getPosition(startAngle);
     const end = getPosition(endAngle);
     const midAngle = (startAngle + endAngle) / 2;
-    const mid = getPosition(midAngle);
     
-    // Adjust control point to curve outward
-    const controlRadius = radius + 30;
+    // Push control point further out to avoid center
+    const controlRadius = radius + 50;
     const controlRad = (midAngle - 90) * Math.PI / 180;
     const control = {
       x: centerX + controlRadius * Math.cos(controlRad),
       y: centerY + controlRadius * Math.sin(controlRad)
     };
     
+    // Calculate tangent angle at end point for arrow direction
+    const dx = end.x - control.x;
+    const dy = end.y - control.y;
+    const tangentAngle = Math.atan2(dy, dx) * 180 / Math.PI;
+    
     return {
       path: `M ${start.x} ${start.y} Q ${control.x} ${control.y} ${end.x} ${end.y}`,
       arrowPos: end,
-      arrowAngle: endAngle
+      arrowAngle: tangentAngle
     };
   };
 
@@ -85,49 +89,9 @@ export const SpaceFlywheel = () => {
               <stop offset="0%" stopColor="#5EDD2C"/>
               <stop offset="100%" stopColor="#4BC91F"/>
             </linearGradient>
-            <filter id="glow">
-              <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-              <feMerge>
-                <feMergeNode in="coloredBlur"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-            <filter id="softGlow">
-              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-              <feMerge>
-                <feMergeNode in="coloredBlur"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
           </defs>
 
-          {/* Circular track/ring */}
-          <circle
-            cx={centerX}
-            cy={centerY}
-            r={radius}
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-            strokeDasharray="5,5"
-            opacity="0.15"
-          />
-
-          {/* Animated circular path */}
-          <circle
-            cx={centerX}
-            cy={centerY}
-            r={radius}
-            fill="none"
-            stroke="#5EDD2C"
-            strokeWidth="2"
-            opacity="0.2"
-            strokeDasharray={`${2 * Math.PI * radius}`}
-            strokeDashoffset={isVisible ? "0" : `${2 * Math.PI * radius}`}
-            style={{
-              transition: isVisible ? 'stroke-dashoffset 3s ease-out' : 'none'
-            }}
-          />
+          {/* Circular track/ring - removed */}
 
           {/* Curved arrows between nodes */}
           {nodes.map((node, i) => {
@@ -140,16 +104,16 @@ export const SpaceFlywheel = () => {
                   d={arrow.path}
                   fill="none"
                   stroke="#5EDD2C"
-                  strokeWidth="2.5"
-                  opacity="0.5"
+                  strokeWidth="3"
+                  opacity="0.6"
                   style={{
                     animation: isVisible ? `fadeIn 0.8s ease-out ${i * 0.15}s both` : 'none'
                   }}
                 />
                 <polygon
-                  points="-12,-7 0,0 -12,7"
+                  points="-15,-8 0,0 -15,8"
                   fill="#5EDD2C"
-                  opacity="0.8"
+                  opacity="0.9"
                   transform={`translate(${arrow.arrowPos.x}, ${arrow.arrowPos.y}) rotate(${arrow.arrowAngle})`}
                   style={{
                     animation: isVisible ? `fadeIn 0.8s ease-out ${i * 0.15 + 0.3}s both` : 'none'
@@ -164,28 +128,17 @@ export const SpaceFlywheel = () => {
             cx={centerX}
             cy={centerY}
             r="90"
-            fill="url(#centerGradient)"
-            filter="url(#softGlow)"
-            opacity={isVisible ? "1" : "0"}
-            style={{
-              transition: isVisible ? 'opacity 1s ease-out 0.5s' : 'none'
-            }}
-          />
-          <circle
-            cx={centerX}
-            cy={centerY}
-            r="90"
             fill="none"
-            stroke="#3B7DD8"
-            strokeWidth="2"
-            opacity="0.4"
+            stroke="#2a2a2a"
+            strokeWidth="1"
+            opacity="0.3"
           />
 
           {/* Center text */}
           <text 
             x={centerX} 
             y={centerY - 15} 
-            fill="currentColor" 
+            fill="#ffffff" 
             fontSize="22" 
             fontWeight="600" 
             textAnchor="middle"
@@ -199,7 +152,7 @@ export const SpaceFlywheel = () => {
           <text 
             x={centerX} 
             y={centerY + 12} 
-            fill="currentColor" 
+            fill="#ffffff" 
             fontSize="22" 
             fontWeight="600" 
             textAnchor="middle"
@@ -243,7 +196,6 @@ export const SpaceFlywheel = () => {
                   fill="url(#nodeGradient)"
                   stroke="#ffffff"
                   strokeWidth="3"
-                  filter="url(#glow)"
                 />
                 <text
                   x={pos.x}
