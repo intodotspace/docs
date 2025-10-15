@@ -130,7 +130,7 @@ export const SpaceFlywheel = () => {
             textAnchor="middle"
             opacity={isVisible ? "1" : "0"}
             style={{
-              transition: isVisible ? 'opacity 1s ease-out 0.8s' : 'none'
+              transition: isVisible ? 'opacity 1s ease-out 2s' : 'none'
             }}
           >
             The Flywheel
@@ -144,7 +144,7 @@ export const SpaceFlywheel = () => {
             textAnchor="middle"
             opacity={isVisible ? "1" : "0"}
             style={{
-              transition: isVisible ? 'opacity 1s ease-out 0.8s' : 'none'
+              transition: isVisible ? 'opacity 1s ease-out 2s' : 'none'
             }}
           >
             Effect
@@ -157,7 +157,7 @@ export const SpaceFlywheel = () => {
             textAnchor="middle" 
             opacity={isVisible ? "0.6" : "0"}
             style={{
-              transition: isVisible ? 'opacity 1s ease-out 1s' : 'none'
+              transition: isVisible ? 'opacity 1s ease-out 2.3s' : 'none'
             }}
           >
             Self-Sustaining Growth
