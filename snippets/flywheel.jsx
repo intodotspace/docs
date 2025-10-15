@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 
-export const SpaceFlywheel() {
+export const SpaceFlywheel = () => {
   const nodes = [
     { id: 0, label: 'More Trading\nVolume', color: '#5EDD2C', x: 300, y: 50 },
     { id: 1, label: 'More Fees\nGenerated', color: '#4BC91F', x: 500, y: 120 },
