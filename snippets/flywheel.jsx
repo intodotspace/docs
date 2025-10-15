@@ -26,7 +26,7 @@ export const SpaceFlywheel = () => {
     { id: 1, label: 'More Fees\nGenerated', angle: 45 },
     { id: 2, label: 'More $SPACE\nBought Back', angle: 90 },
     { id: 3, label: 'More $SPACE\nBurned', angle: 135 },
-    { id: 4, label: 'Increased Scarcity\n& Token Value', angle: 180 },
+    { id: 4, label: 'Increased Scarcity\n& Value', angle: 180 },
     { id: 5, label: 'Higher\nRewards', angle: 225 },
     { id: 6, label: 'More Attractive\nEconomics', angle: 270 },
     { id: 7, label: 'More Users\nJoin', angle: 315 }
@@ -57,10 +57,10 @@ export const SpaceFlywheel = () => {
           style={{ minHeight: '400px', maxHeight: '600px' }}
         >
           <defs>
-            <linearGradient id="nodeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#2a5016"/>
-              <stop offset="100%" stopColor="#000000"/>
-            </linearGradient>
+            <radialGradient id="nodeGradient">
+              <stop offset="0%" stopColor="#000000"/>
+              <stop offset="100%" stopColor="#2a5016"/>
+            </radialGradient>
             <marker
               id="arrowhead"
               markerWidth="20"
@@ -73,7 +73,7 @@ export const SpaceFlywheel = () => {
             </marker>
           </defs>
 
-          {/* Connecting lines and arrows */}
+          {/* Connecting lines and arrows - sequential animation */}
           {nodes.map((node, i) => {
             const nextNode = nodes[(i + 1) % nodes.length];
             const currentPos = getPosition(node.angle);
@@ -93,7 +93,7 @@ export const SpaceFlywheel = () => {
 
             return (
               <g key={`connection-${i}`}>
-                {/* Line */}
+                {/* Line with sequential pulse */}
                 <line
                   x1={startX}
                   y1={startY}
@@ -101,18 +101,17 @@ export const SpaceFlywheel = () => {
                   y2={endY}
                   stroke="#ffffff"
                   strokeWidth="4"
-                  opacity="0.8"
                   style={{
-                    animation: isVisible ? `fadeIn 0.8s ease-out ${i * 0.15}s both` : 'none'
+                    animation: isVisible ? `connectionPulse 2s ease-in-out ${i * 0.25}s infinite` : 'none'
                   }}
                 />
-                {/* Arrow at end of line with pulsing animation */}
+                {/* Arrow with same timing as line */}
                 <polygon
                   points="-20,-10 0,0 -20,10"
                   fill="#ffffff"
                   transform={`translate(${endX}, ${endY}) rotate(${arrowAngle})`}
                   style={{
-                    animation: isVisible ? `fadeIn 0.8s ease-out ${i * 0.15}s both, arrowPulse 2s ease-in-out ${i * 0.25 + 0.8}s infinite` : 'none'
+                    animation: isVisible ? `connectionPulse 2s ease-in-out ${i * 0.25}s infinite` : 'none'
                   }}
                 />
               </g>
@@ -216,9 +215,9 @@ export const SpaceFlywheel = () => {
             opacity: 1;
           }
         }
-        @keyframes arrowPulse {
+        @keyframes connectionPulse {
           0%, 100% {
-            opacity: 0.3;
+            opacity: 0.2;
           }
           50% {
             opacity: 1;
