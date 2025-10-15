@@ -61,17 +61,19 @@ export const SpaceFlywheel = () => {
               <stop offset="0%" stopColor="#000000"/>
               <stop offset="100%" stopColor="#1a3d0f"/>
             </radialGradient>
-            <marker
-              id="arrowhead"
-              markerWidth="20"
-              markerHeight="20"
-              refX="10"
-              refY="10"
-              orient="auto"
-            >
-              <polygon points="0,5 0,15 15,10" fill="#ffffff" />
-            </marker>
+            <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+              <path d="M 60 0 L 0 0 0 60" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3,3" opacity="0.15"/>
+            </pattern>
           </defs>
+
+          {/* Background grid circle */}
+          <circle
+            cx={centerX}
+            cy={centerY}
+            r={radius + 60}
+            fill="url(#grid)"
+            opacity="0.5"
+          />
 
           {/* Connecting lines and arrows - sequential animation */}
           {nodes.map((node, i) => {
