@@ -62,7 +62,7 @@ export const SpaceFlywheel = () => {
               <stop offset="100%" stopColor="#1a3d0f"/>
             </radialGradient>
             <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-              <path d="M 60 0 L 0 0 0 60" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3,3" opacity="0.15"/>
+              <path d="M 60 0 L 0 0 0 60" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3,3" opacity="0.3"/>
             </pattern>
           </defs>
 
