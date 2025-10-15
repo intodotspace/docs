@@ -40,9 +40,9 @@
           {
             "group": "Introduction",
             "pages": [
-              "doc/introduction/preface",
+              "doc/introduction/origin",
               "doc/introduction/what-is-space",
-              "doc/introduction/our-vision"
+              "doc/introduction/vision"
             ]
           },
           {
