@@ -90,10 +90,18 @@ export const SpaceFlywheel = () => {
             
             // Arrow angle pointing in direction of flow
             const arrowAngle = (Math.atan2(endY - startY, endX - startX) * 180 / Math.PI);
+            
+            const animationDelay = i * 0.25;
 
             return (
-              <g key={`connection-${i}`}>
-                {/* Line with sequential pulse */}
+              <g 
+                key={`connection-${i}`}
+                style={{
+                  animation: isVisible ? `connectionPulse 2s ease-in-out ${animationDelay + 1.2}s infinite` : 'none',
+                  opacity: 0
+                }}
+              >
+                {/* Line */}
                 <line
                   x1={startX}
                   y1={startY}
@@ -101,18 +109,12 @@ export const SpaceFlywheel = () => {
                   y2={endY}
                   stroke="#ffffff"
                   strokeWidth="4"
-                  style={{
-                    animation: isVisible ? `connectionPulse 2s ease-in-out ${i * 0.25}s infinite` : 'none'
-                  }}
                 />
-                {/* Arrow with same timing as line */}
+                {/* Arrow */}
                 <polygon
                   points="-20,-10 0,0 -20,10"
                   fill="#ffffff"
                   transform={`translate(${endX}, ${endY}) rotate(${arrowAngle})`}
-                  style={{
-                    animation: isVisible ? `connectionPulse 2s ease-in-out ${i * 0.25}s infinite` : 'none'
-                  }}
                 />
               </g>
             );
@@ -131,7 +133,7 @@ export const SpaceFlywheel = () => {
               transition: isVisible ? 'opacity 1s ease-out 0.8s' : 'none'
             }}
           >
-            Flywheel
+            The Flywheel
           </text>
           <text 
             x={centerX} 
@@ -216,11 +218,14 @@ export const SpaceFlywheel = () => {
           }
         }
         @keyframes connectionPulse {
-          0%, 100% {
+          0% {
             opacity: 0.2;
           }
           50% {
             opacity: 1;
+          }
+          100% {
+            opacity: 0.2;
           }
         }
       `}</style>
