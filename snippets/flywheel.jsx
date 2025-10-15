@@ -44,6 +44,27 @@ export const SpaceFlywheel = () => {
     };
   };
 
+  const drawCurvedArrow = (startAngle, endAngle) => {
+    const start = getPosition(startAngle);
+    const end = getPosition(endAngle);
+    const midAngle = (startAngle + endAngle) / 2;
+    const mid = getPosition(midAngle);
+    
+    // Adjust control point to curve outward
+    const controlRadius = radius + 30;
+    const controlRad = (midAngle - 90) * Math.PI / 180;
+    const control = {
+      x: centerX + controlRadius * Math.cos(controlRad),
+      y: centerY + controlRadius * Math.sin(controlRad)
+    };
+    
+    return {
+      path: `M ${start.x} ${start.y} Q ${control.x} ${control.y} ${end.x} ${end.y}`,
+      arrowPos: end,
+      arrowAngle: endAngle
+    };
+  };
+
   return (
     <div ref={containerRef} className="w-full max-w-full">
       <div className="w-full">
@@ -57,12 +78,12 @@ export const SpaceFlywheel = () => {
         >
           <defs>
             <linearGradient id="centerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#3B7DD8" stopOpacity="0.2"/>
-              <stop offset="100%" stopColor="#5EDD2C" stopOpacity="0.2"/>
+              <stop offset="0%" stopColor="#3B7DD8" stopOpacity="0.15"/>
+              <stop offset="100%" stopColor="#2563EB" stopOpacity="0.15"/>
             </linearGradient>
             <linearGradient id="nodeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#5EDD2C" stopOpacity="0.9"/>
-              <stop offset="100%" stopColor="#4BC91F" stopOpacity="0.9"/>
+              <stop offset="0%" stopColor="#5EDD2C"/>
+              <stop offset="100%" stopColor="#4BC91F"/>
             </linearGradient>
             <filter id="glow">
               <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
@@ -72,7 +93,7 @@ export const SpaceFlywheel = () => {
               </feMerge>
             </filter>
             <filter id="softGlow">
-              <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
               <feMerge>
                 <feMergeNode in="coloredBlur"/>
                 <feMergeNode in="SourceGraphic"/>
@@ -89,7 +110,7 @@ export const SpaceFlywheel = () => {
             stroke="currentColor"
             strokeWidth="1"
             strokeDasharray="5,5"
-            opacity="0.2"
+            opacity="0.15"
           />
 
           {/* Animated circular path */}
@@ -100,7 +121,7 @@ export const SpaceFlywheel = () => {
             fill="none"
             stroke="#5EDD2C"
             strokeWidth="2"
-            opacity="0.3"
+            opacity="0.2"
             strokeDasharray={`${2 * Math.PI * radius}`}
             strokeDashoffset={isVisible ? "0" : `${2 * Math.PI * radius}`}
             style={{
@@ -108,25 +129,30 @@ export const SpaceFlywheel = () => {
             }}
           />
 
-          {/* Arrows between nodes */}
+          {/* Curved arrows between nodes */}
           {nodes.map((node, i) => {
             const nextNode = nodes[(i + 1) % nodes.length];
-            const startPos = getPosition(node.angle);
-            const endPos = getPosition(nextNode.angle);
-            
-            const midAngle = (node.angle + nextNode.angle) / 2;
-            const arrowPos = getPosition(midAngle);
-            const arrowAngle = midAngle - 90;
+            const arrow = drawCurvedArrow(node.angle, nextNode.angle);
 
             return (
               <g key={`arrow-${i}`}>
-                <polygon
-                  points="-10,-5 0,0 -10,5"
-                  fill="#5EDD2C"
-                  opacity="0.7"
-                  transform={`translate(${arrowPos.x}, ${arrowPos.y}) rotate(${arrowAngle})`}
+                <path
+                  d={arrow.path}
+                  fill="none"
+                  stroke="#5EDD2C"
+                  strokeWidth="2.5"
+                  opacity="0.5"
                   style={{
                     animation: isVisible ? `fadeIn 0.8s ease-out ${i * 0.15}s both` : 'none'
+                  }}
+                />
+                <polygon
+                  points="-12,-7 0,0 -12,7"
+                  fill="#5EDD2C"
+                  opacity="0.8"
+                  transform={`translate(${arrow.arrowPos.x}, ${arrow.arrowPos.y}) rotate(${arrow.arrowAngle})`}
+                  style={{
+                    animation: isVisible ? `fadeIn 0.8s ease-out ${i * 0.15 + 0.3}s both` : 'none'
                   }}
                 />
               </g>
@@ -137,10 +163,10 @@ export const SpaceFlywheel = () => {
           <circle
             cx={centerX}
             cy={centerY}
-            r="85"
+            r="90"
             fill="url(#centerGradient)"
             filter="url(#softGlow)"
-            opacity={isVisible ? "0.8" : "0"}
+            opacity={isVisible ? "1" : "0"}
             style={{
               transition: isVisible ? 'opacity 1s ease-out 0.5s' : 'none'
             }}
@@ -148,11 +174,11 @@ export const SpaceFlywheel = () => {
           <circle
             cx={centerX}
             cy={centerY}
-            r="85"
+            r="90"
             fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-            opacity="0.3"
+            stroke="#3B7DD8"
+            strokeWidth="2"
+            opacity="0.4"
           />
 
           {/* Center text */}
@@ -160,7 +186,7 @@ export const SpaceFlywheel = () => {
             x={centerX} 
             y={centerY - 15} 
             fill="currentColor" 
-            fontSize="20" 
+            fontSize="22" 
             fontWeight="600" 
             textAnchor="middle"
             opacity={isVisible ? "1" : "0"}
@@ -172,9 +198,9 @@ export const SpaceFlywheel = () => {
           </text>
           <text 
             x={centerX} 
-            y={centerY + 10} 
+            y={centerY + 12} 
             fill="currentColor" 
-            fontSize="20" 
+            fontSize="22" 
             fontWeight="600" 
             textAnchor="middle"
             opacity={isVisible ? "1" : "0"}
@@ -186,11 +212,11 @@ export const SpaceFlywheel = () => {
           </text>
           <text 
             x={centerX} 
-            y={centerY + 30} 
+            y={centerY + 33} 
             fill="currentColor" 
             fontSize="12" 
             textAnchor="middle" 
-            opacity={isVisible ? "0.7" : "0"}
+            opacity={isVisible ? "0.6" : "0"}
             style={{
               transition: isVisible ? 'opacity 1s ease-out 1s' : 'none'
             }}
@@ -213,17 +239,17 @@ export const SpaceFlywheel = () => {
                 <circle
                   cx={pos.x}
                   cy={pos.y}
-                  r="48"
+                  r="55"
                   fill="url(#nodeGradient)"
                   stroke="#ffffff"
-                  strokeWidth="2"
+                  strokeWidth="3"
                   filter="url(#glow)"
                 />
                 <text
                   x={pos.x}
                   y={pos.y}
                   fill="white"
-                  fontSize="12"
+                  fontSize="13"
                   fontWeight="600"
                   textAnchor="middle"
                   className="select-none"
