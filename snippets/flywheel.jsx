@@ -72,7 +72,7 @@ export const SpaceFlywheel = () => {
             cy={centerY}
             r={radius + 60}
             fill="url(#grid)"
-            opacity="0.5"
+            opacity="1"
           />
 
           {/* Connecting lines and arrows - sequential animation */}
