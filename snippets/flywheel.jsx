@@ -88,10 +88,6 @@ export const SpaceFlywheel = () => {
             const endX = nextPos.x + nodeRadius * Math.cos(angleFromPrev);
             const endY = nextPos.y + nodeRadius * Math.sin(angleFromPrev);
             
-            // Calculate midpoint for arrow placement
-            const midX = (startX + endX) / 2;
-            const midY = (startY + endY) / 2;
-            
             // Arrow angle pointing in direction of flow
             const arrowAngle = (Math.atan2(endY - startY, endX - startX) * 180 / Math.PI);
 
@@ -110,14 +106,13 @@ export const SpaceFlywheel = () => {
                     animation: isVisible ? `fadeIn 0.8s ease-out ${i * 0.15}s both` : 'none'
                   }}
                 />
-                {/* Arrow */}
+                {/* Arrow at end of line with pulsing animation */}
                 <polygon
                   points="-20,-10 0,0 -20,10"
                   fill="#ffffff"
-                  opacity="1"
-                  transform={`translate(${midX}, ${midY}) rotate(${arrowAngle})`}
+                  transform={`translate(${endX}, ${endY}) rotate(${arrowAngle})`}
                   style={{
-                    animation: isVisible ? `fadeIn 0.8s ease-out ${i * 0.15 + 0.3}s both` : 'none'
+                    animation: isVisible ? `fadeIn 0.8s ease-out ${i * 0.15}s both, arrowPulse 2s ease-in-out ${i * 0.25 + 0.8}s infinite` : 'none'
                   }}
                 />
               </g>
@@ -218,6 +213,14 @@ export const SpaceFlywheel = () => {
             opacity: 0;
           }
           to {
+            opacity: 1;
+          }
+        }
+        @keyframes arrowPulse {
+          0%, 100% {
+            opacity: 0.3;
+          }
+          50% {
             opacity: 1;
           }
         }
