@@ -97,7 +97,7 @@ export const SpaceFlywheel = () => {
               <g 
                 key={`connection-${i}`}
                 style={{
-                  animation: isVisible ? `connectionPulse 2s ease-in-out ${animationDelay + 1.2}s infinite` : 'none',
+                  animation: isVisible ? `connectionPulse 4s ease-in-out ${animationDelay + 1.2}s infinite` : 'none',
                   opacity: 0
                 }}
               >
@@ -219,13 +219,16 @@ export const SpaceFlywheel = () => {
         }
         @keyframes connectionPulse {
           0% {
-            opacity: 0.2;
+            opacity: 0;
           }
-          50% {
+          20% {
             opacity: 1;
           }
+          40% {
+            opacity: 0;
+          }
           100% {
-            opacity: 0.2;
+            opacity: 0;
           }
         }
       `}</style>
