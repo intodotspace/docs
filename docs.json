@@ -79,8 +79,8 @@
           {
             "group": "$SPACE",
             "pages": [
-              "doc/space/token-utility",
-              "doc/space/flywheel-mechanism"
+              "doc/space/flywheel-mechanism",
+              "doc/space/token-utility"
             ]
           },
           {
