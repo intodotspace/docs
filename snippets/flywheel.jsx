@@ -59,8 +59,7 @@ export const SpaceFlywheel = () => {
           <defs>
             <radialGradient id="nodeGradient">
               <stop offset="0%" stopColor="#000000"/>
-              <stop offset="50%" stopColor="#1a3010"/>
-              <stop offset="100%" stopColor="#0a0a0a"/>
+              <stop offset="100%" stopColor="#1a3d0f"/>
             </radialGradient>
             <marker
               id="arrowhead"
