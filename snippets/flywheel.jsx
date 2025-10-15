@@ -45,26 +45,29 @@ export const SpaceFlywheel = () => {
   };
 
   const drawCurvedArrow = (startAngle, endAngle) => {
-    const start = getPosition(startAngle);
-    const end = getPosition(endAngle);
-    const midAngle = (startAngle + endAngle) / 2;
+    const nodeRadius = 55;
     
-    // Push control point further out to avoid center
-    const controlRadius = radius + 50;
-    const controlRad = (midAngle - 90) * Math.PI / 180;
-    const control = {
-      x: centerX + controlRadius * Math.cos(controlRad),
-      y: centerY + controlRadius * Math.sin(controlRad)
+    // Start from edge of first circle (going out)
+    const startRad = (startAngle - 90) * Math.PI / 180;
+    const startEdge = {
+      x: centerX + radius * Math.cos(startRad) + nodeRadius * Math.cos(startRad),
+      y: centerY + radius * Math.sin(startRad) + nodeRadius * Math.sin(startRad)
     };
     
-    // Calculate tangent angle at end point for arrow direction
-    const dx = end.x - control.x;
-    const dy = end.y - control.y;
-    const tangentAngle = Math.atan2(dy, dx) * 180 / Math.PI;
+    // End at edge of next circle (coming in)
+    const endRad = (endAngle - 90) * Math.PI / 180;
+    const endEdge = {
+      x: centerX + radius * Math.cos(endRad) - nodeRadius * Math.cos(endRad),
+      y: centerY + radius * Math.sin(endRad) - nodeRadius * Math.sin(endRad)
+    };
+    
+    // Arrow points tangent to circle (perpendicular to radius at that point)
+    // For clockwise motion, tangent angle = radius angle + 90 degrees
+    const tangentAngle = endAngle - 90 + 90; // simplifies to endAngle
     
     return {
-      path: `M ${start.x} ${start.y} Q ${control.x} ${control.y} ${end.x} ${end.y}`,
-      arrowPos: end,
+      path: `M ${startEdge.x} ${startEdge.y} A ${radius} ${radius} 0 0 1 ${endEdge.x} ${endEdge.y}`,
+      arrowPos: endEdge,
       arrowAngle: tangentAngle
     };
   };
@@ -104,16 +107,16 @@ export const SpaceFlywheel = () => {
                   d={arrow.path}
                   fill="none"
                   stroke="#5EDD2C"
-                  strokeWidth="3"
-                  opacity="0.6"
+                  strokeWidth="4"
+                  opacity="0.8"
                   style={{
                     animation: isVisible ? `fadeIn 0.8s ease-out ${i * 0.15}s both` : 'none'
                   }}
                 />
                 <polygon
-                  points="-15,-8 0,0 -15,8"
+                  points="-20,-10 0,0 -20,10"
                   fill="#5EDD2C"
-                  opacity="0.9"
+                  opacity="1"
                   transform={`translate(${arrow.arrowPos.x}, ${arrow.arrowPos.y}) rotate(${arrow.arrowAngle})`}
                   style={{
                     animation: isVisible ? `fadeIn 0.8s ease-out ${i * 0.15 + 0.3}s both` : 'none'
