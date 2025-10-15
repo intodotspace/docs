@@ -35,40 +35,13 @@ export const SpaceFlywheel = () => {
   const radius = 200;
   const centerX = 300;
   const centerY = 280;
+  const nodeRadius = 55;
 
   const getPosition = (angle) => {
     const rad = (angle - 90) * Math.PI / 180;
     return {
       x: centerX + radius * Math.cos(rad),
       y: centerY + radius * Math.sin(rad)
-    };
-  };
-
-  const drawCurvedArrow = (startAngle, endAngle) => {
-    const nodeRadius = 55;
-    
-    // Start from edge of first circle (going out)
-    const startRad = (startAngle - 90) * Math.PI / 180;
-    const startEdge = {
-      x: centerX + radius * Math.cos(startRad) + nodeRadius * Math.cos(startRad),
-      y: centerY + radius * Math.sin(startRad) + nodeRadius * Math.sin(startRad)
-    };
-    
-    // End at edge of next circle (coming in)
-    const endRad = (endAngle - 90) * Math.PI / 180;
-    const endEdge = {
-      x: centerX + radius * Math.cos(endRad) - nodeRadius * Math.cos(endRad),
-      y: centerY + radius * Math.sin(endRad) - nodeRadius * Math.sin(endRad)
-    };
-    
-    // Arrow points tangent to circle (perpendicular to radius at that point)
-    // For clockwise motion, tangent angle = radius angle + 90 degrees
-    const tangentAngle = endAngle - 90 + 90; // simplifies to endAngle
-    
-    return {
-      path: `M ${startEdge.x} ${startEdge.y} A ${radius} ${radius} 0 0 1 ${endEdge.x} ${endEdge.y}`,
-      arrowPos: endEdge,
-      arrowAngle: tangentAngle
     };
   };
 
@@ -84,40 +57,65 @@ export const SpaceFlywheel = () => {
           style={{ minHeight: '400px', maxHeight: '600px' }}
         >
           <defs>
-            <linearGradient id="centerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#3B7DD8" stopOpacity="0.15"/>
-              <stop offset="100%" stopColor="#2563EB" stopOpacity="0.15"/>
+            <linearGradient id="nodeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#2a5016"/>
+              <stop offset="100%" stopColor="#000000"/>
             </linearGradient>
-            <linearGradient id="nodeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#5EDD2C"/>
-              <stop offset="100%" stopColor="#4BC91F"/>
-            </linearGradient>
+            <marker
+              id="arrowhead"
+              markerWidth="20"
+              markerHeight="20"
+              refX="10"
+              refY="10"
+              orient="auto"
+            >
+              <polygon points="0,5 0,15 15,10" fill="#ffffff" />
+            </marker>
           </defs>
 
-          {/* Circular track/ring - removed */}
-
-          {/* Curved arrows between nodes */}
+          {/* Connecting lines and arrows */}
           {nodes.map((node, i) => {
             const nextNode = nodes[(i + 1) % nodes.length];
-            const arrow = drawCurvedArrow(node.angle, nextNode.angle);
+            const currentPos = getPosition(node.angle);
+            const nextPos = getPosition(nextNode.angle);
+            
+            // Calculate start and end points at circle edges
+            const angleToNext = Math.atan2(nextPos.y - currentPos.y, nextPos.x - currentPos.x);
+            const startX = currentPos.x + nodeRadius * Math.cos(angleToNext);
+            const startY = currentPos.y + nodeRadius * Math.sin(angleToNext);
+            
+            const angleFromPrev = Math.atan2(currentPos.y - nextPos.y, currentPos.x - nextPos.x);
+            const endX = nextPos.x + nodeRadius * Math.cos(angleFromPrev);
+            const endY = nextPos.y + nodeRadius * Math.sin(angleFromPrev);
+            
+            // Calculate midpoint for arrow placement
+            const midX = (startX + endX) / 2;
+            const midY = (startY + endY) / 2;
+            
+            // Arrow angle pointing in direction of flow
+            const arrowAngle = (Math.atan2(endY - startY, endX - startX) * 180 / Math.PI);
 
             return (
-              <g key={`arrow-${i}`}>
-                <path
-                  d={arrow.path}
-                  fill="none"
-                  stroke="#5EDD2C"
+              <g key={`connection-${i}`}>
+                {/* Line */}
+                <line
+                  x1={startX}
+                  y1={startY}
+                  x2={endX}
+                  y2={endY}
+                  stroke="#ffffff"
                   strokeWidth="4"
                   opacity="0.8"
                   style={{
                     animation: isVisible ? `fadeIn 0.8s ease-out ${i * 0.15}s both` : 'none'
                   }}
                 />
+                {/* Arrow */}
                 <polygon
                   points="-20,-10 0,0 -20,10"
-                  fill="#5EDD2C"
+                  fill="#ffffff"
                   opacity="1"
-                  transform={`translate(${arrow.arrowPos.x}, ${arrow.arrowPos.y}) rotate(${arrow.arrowAngle})`}
+                  transform={`translate(${midX}, ${midY}) rotate(${arrowAngle})`}
                   style={{
                     animation: isVisible ? `fadeIn 0.8s ease-out ${i * 0.15 + 0.3}s both` : 'none'
                   }}
@@ -126,18 +124,7 @@ export const SpaceFlywheel = () => {
             );
           })}
 
-          {/* Center circle */}
-          <circle
-            cx={centerX}
-            cy={centerY}
-            r="90"
-            fill="none"
-            stroke="#2a2a2a"
-            strokeWidth="1"
-            opacity="0.3"
-          />
-
-          {/* Center text */}
+          {/* Center text - no background circle */}
           <text 
             x={centerX} 
             y={centerY - 15} 
@@ -197,7 +184,7 @@ export const SpaceFlywheel = () => {
                   cy={pos.y}
                   r="55"
                   fill="url(#nodeGradient)"
-                  stroke="#ffffff"
+                  stroke="#5EDD2C"
                   strokeWidth="3"
                 />
                 <text
