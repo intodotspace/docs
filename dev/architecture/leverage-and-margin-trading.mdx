@@ -1,90 +1,109 @@
 ---
 title: "Leverage & Margin Trading"
 ---
+
 Leverage multiplies exposure through margin trading on the CLOB. You borrow USDC from the platform to buy more shares than your collateral would normally allow.
+
 ## How It Works
-|          | **Value**            |
-|---------------------:|----------------------|
-| **Margin**           | \$100                |
-| **Leverage**         | 5×                   |
-| **Position Size**    | \$500                |
-| **Shares at \$0.15** | 3,333 shares         |
 
+|                      | **Value**    |
+| -------------------: | ------------ |
+| **Margin**           | \$100        |
+| **Leverage**         | 5×           |
+| **Position Size**    | \$500        |
+| **Shares at \$0.15** | 3,333 shares |
 
-If price → \$0.30: +\$500 profit (500% ROE)
-If price → \$0.12: Liquidation triggered
+If price → \$0.30: +\$500 profit (500% ROE) If price → \$0.133: Liquidation triggered
+
 ## Key Parameters
+
 - **Initial Margin (IM):** 20% (required to open position)
 - **Maintenance Margin (MM):** 10% (required to keep position open)
 - **Max Leverage:** 10x
 
 ## Position Sizing
-$$ \text{Position Size} = \text{Margin} \times \text{Leverage}$$
 
-$$ \text{Shares} = \text{Position Size} / \text{Entry Price} $$
+$ \text{Position Size} = \text{Margin} \times \text{Leverage}$
+
+$\text{Shares} = \text{Position Size} / \text{Entry Price}$
 
 **Example:**
+
 $$
 \$100 \ \text{margin} \times 5 = \$500 \ \text{position}
 $$
+
 $$
 \$500 / \$0.15 = 3,333 \ \text{shares}
 $$
 
 ## Liquidation Price
-$$\text{Liquidation Price} = \text{Entry Price} - (\text{Margin} / \text{Shares})$$
+
+$\text{Liquidation Price} = \text{Borrowed Amount} / (\text{Shares} × \text{0.9})$
+
+Where $\text{0.9} = \text{1} - (\text{Shares} × \text{Maintenance Margin %})$
 
 **Example:**
-|        | **Value**                                   |
-|------------------:|---------------------------------------------|
-| **Entry Price**   | \$0.15                                      |
-| **Margin**        | \$100                                       |
-| **Shares**        | 3,333                                       |
-| **Liquidation Price** | \$0.15 − (\$100 ÷ 3,333) = **\$0.12**         |
-| **Explanation**   | If the market price hits \$0.12, your equity equals the maintenance margin, and liquidation begins. |
 
+|                       | **Value**                                                                                                          |
+| --------------------: | ------------------------------------------------------------------------------------------------------------------ |
+| **Entry Price**       | \$0.15                                                                                                             |
+| **Margin**            | \$100                                                                                                              |
+| **Shares**            | 3,333                                                                                                              |
+| **Liquidation Price** | \$0.133                                                                                                            |
+| **Explanation**       | If the market price hits \$0.1333, your equity equals 10% of the position value (\$44.39), and liquidation begins. |
 
 ## Partial Liquidation
+
 Liquidation happens in stages:
+
 <Steps>
   <Step title="
 First trigger: liquidate 25% of position" titleSize="h3">
+    
   </Step>
   <Step title="
 Apply 10% penalty to insurance fund" titleSize="h3">
+    
   </Step>
   <Step title="
 Check if still underwater" titleSize="h3">
+    
   </Step>
   <Step title="If yes: liquidate another 25%" titleSize="h3">
+    
   </Step>
   <Step title="Full liquidation only if necessary" titleSize="h3">
+    
   </Step>
 </Steps>
 
 This prevents complete wipeout on brief volatility.
 
 ## Profit & Loss
+
 $$
 \text{PnL} = (\text{Exit Price} - \text{Entry Price}) \times \text{Shares}
 $$
+
 **Example:**
-| | Value |
-|----------------|--------|
-| **Exit** | $0.30 |
-| **Entry** | $0.15 |
-| **Shares** | 3,333 |
-| **PnL** | (\$0.30 - \$0.15) × 3,333 = **+$500** |
-| **ROE** | \$500 / \$100 = **500%** |
+
+|            | Value                                   |
+| ---------- | --------------------------------------- |
+| **Exit**   | \$0.30                                  |
+| **Entry**  | \$0.15                                  |
+| **Shares** | 3,333                                   |
+| **PnL**    | (\$0.30 - \$0.15) × 3,333 = **\+\$500** |
+| **ROE**    | \$500 / \$100 = **500%**                |
 
 Leverage amplifies both gains and losses proportionally.
 
 **Example:**
-| | Value |
-|----------------|--------|
-| **Exit** | $0.10 |
-| **Entry** | $0.15 |
-| **Shares** | 3,333 |
-| **PnL** | (\$0.10 - \$0.15) × 3,333 = **-\$167** |
-| **ROE** | -\$167 / \$100 = **-167%** |
 
+|            | Value                                  |
+| ---------- | -------------------------------------- |
+| **Exit**   | \$0.10                                 |
+| **Entry**  | \$0.15                                 |
+| **Shares** | 3,333                                  |
+| **PnL**    | (\$0.10 - \$0.15) × 3,333 = **-\$167** |
+| **ROE**    | -\$167 / \$100 = **-167%**             |
