@@ -38,11 +38,11 @@
         "url": "doc",
         "groups": [
           {
-            "group": "Introduction",
+            "group": "Start Here",
             "pages": [
-              "doc/introduction/origin",
-              "doc/introduction/what-is-space",
-              "doc/introduction/vision"
+              "doc/start-here/origin",
+              "doc/start-here/what-is-space",
+              "doc/start-here/vision"
             ]
           },
           {
