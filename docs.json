@@ -112,7 +112,7 @@
             "group": "Resolution",
             "pages": [
               "dev/resolution/deterministic-resolution",
-              "dev/resolution/subjective-resolution",
+              "dev/resolution/oracle-resolution",
               "dev/resolution/invalid-markets"
             ]
           },
