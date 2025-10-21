@@ -49,6 +49,7 @@
             "group": "Core Concepts",
             "pages": [
               "doc/core-concepts/how-prediction-markets-work",
+              "doc/core-concepts/market-categories",
               "doc/core-concepts/share-minting-and-burning",
               "doc/core-concepts/makers-and-takers",
               "doc/core-concepts/market-resolution"
@@ -63,8 +64,7 @@
               "doc/features/continuous-markets",
               "doc/features/dynamic-fee-curve",
               "doc/features/liquidity-rewards",
-              "doc/features/point-system",
-              "doc/features/market-categories"
+              "doc/features/point-system"
             ]
           },
           {
