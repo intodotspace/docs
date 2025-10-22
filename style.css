@@ -3,8 +3,8 @@ nav a[aria-current="page"],
 nav a.active,
 #sidebar a[class*="bg-primary"] {
   color: #5EDD2C !important;
-  background-color: rgba(94, 221, 44, 0.15) !important;
-  border-radius: 6px;
+  background-color: transparent !important;
+  border-radius: 0 !important;
 }
 /* ===== SIDEBAR GROUP WITH LEFT BORDER ===== */
 #sidebar-group {
@@ -26,6 +26,7 @@ nav a.active,
 /* ===== ACTIVE SIDEBAR LINK - GREEN LEFT BORDER ===== */
 a[class*="bg-primary"][class*="text-primary"] {
   position: relative !important;
+  padding-left: 0 !important;
 }
 a[class*="bg-primary"][class*="text-primary"]::before {
   content: '' !important;
