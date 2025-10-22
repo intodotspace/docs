@@ -1,11 +1,8 @@
-ok now i have a backup thanks. lets keep going w this one just say ok first
-
 /* ===== ACTIVE SIDEBAR LINK ===== */
 nav a[aria-current="page"],
 nav a.active,
 #sidebar a[class*="bg-primary"] {
-  color: 
-#5EDD2C !important;
+  color: #5EDD2C !important;
   background-color: transparent !important;
   border-radius: 0 !important;
 }
@@ -17,6 +14,7 @@ nav a.active,
 /* ===== SIDEBAR GROUP WITH BORDER ===== */
 #sidebar-group {
   position: relative !important;
+  margin-left: 16px !important;
   padding-left: 16px !important;
   border-left: 1px solid rgba(255, 255, 255, 0.15) !important;
 }
@@ -28,7 +26,7 @@ nav a.active,
   top: 0 !important;
   bottom: 0 !important;
   width: 1px !important;
-  background-color: rgba(255, 255, 255, 0.4) !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
 }
 /* ===== ACTIVE SIDEBAR LINK - GREEN LEFT BORDER ===== */
 a[class*="bg-primary"][class*="text-primary"] {
@@ -41,15 +39,13 @@ a[class*="bg-primary"][class*="text-primary"]::before {
   top: 0 !important;
   bottom: 0 !important;
   width: 1px !important;
-  background-color: 
-#5EDD2C !important;
+  background-color: #5EDD2C !important;
 }
 /* ===== SUPER TITLE (ANCHOR ABOVE H1) ===== */
 .subtitle,
 [class*="subtitle"],
 .text-primary {
-  color: 
-#5EDD2C !important;
+  color: #5EDD2C !important;
 }
 /* ===== HOVER STATE FOR SIDEBAR LINKS ===== */
 nav a:hover,
@@ -73,23 +69,19 @@ video {
 .katex-display,
 $$, 
 [class*="math-display"] {
-  background-color: 
-#1a1a1a !important;
+  background-color: #1a1a1a !important;
   border-radius: 12px !important;
   padding: 40px !important;
   margin: 16px 0 !important;
-  color: 
-#ffffff !important;
+  color: #ffffff !important;
 }
 .math-inline, 
 .katex,
 [class*="math-inline"] {
-  background-color: 
-#1a1a1a !important;
+  background-color: #1a1a1a !important;
   border-radius: 8px !important;
   padding: 4px 8px !important;
-  color: 
-#ffffff !important;
+  color: #ffffff !important;
 }
 /* ===== TABLE OF CONTENTS (ON THIS PAGE) ===== */
 #table-of-contents-content {
@@ -110,8 +102,7 @@ $$,
 }
 #table-of-contents-content a.text-gray-900,
 #table-of-contents-content a.dark\:text-gray-200 {
-  color: 
-#ffffff !important;
+  color: #ffffff !important;
 }
 /* ===== ACTIVE TOC LINK - GREEN LEFT BORDER ===== */
 #table-of-contents-content a[class*="border-primary"]::before {
@@ -121,11 +112,9 @@ $$,
   top: 0 !important;
   bottom: 0 !important;
   width: 1px !important;
-  background-color: 
-#5EDD2C !important;
+  background-color: #5EDD2C !important;
 }
 /* ===== OVERRIDE PRIMARY COLOR FOR TABLE OF CONTENTS ===== */
 #table-of-contents-content .text-primary {
-  color: 
-#ffffff !important;
+  color: #ffffff !important;
 }
