@@ -41,7 +41,8 @@ a[class*="bg-primary"][class*="text-primary"]::before {
   color: #5EDD2C !important;
 }
 /* ===== HOVER STATE FOR SIDEBAR LINKS ===== */
-nav a:hover {
+nav a:hover,
+#sidebar-group a:hover {
   background-color: transparent !important;
   border-radius: 0 !important;
 }
