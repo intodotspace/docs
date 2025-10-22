@@ -9,13 +9,9 @@ nav a.active,
 /* ===== SIDEBAR GROUP WITH LEFT BORDER ===== */
 #sidebar-group {
   position: relative !important;
-  padding-left: 0 !important;
-}
-#sidebar-group ul {
-  position: relative !important;
   padding-left: 16px !important;
 }
-#sidebar-group ul::before {
+#sidebar-group::before {
   content: '' !important;
   position: absolute !important;
   left: 0 !important;
@@ -35,7 +31,7 @@ a[class*="bg-primary"][class*="text-primary"]::before {
   left: -16px !important;
   top: 0 !important;
   bottom: 0 !important;
-  width: 2px !important;
+  width: 1px !important;
   background-color: #5EDD2C !important;
 }
 /* ===== SUPER TITLE (ANCHOR ABOVE H1) ===== */
