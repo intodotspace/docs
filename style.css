@@ -5,23 +5,36 @@ nav a.active,
   color: #5EDD2C !important;
   background-color: transparent !important;
   border-radius: 0 !important;
+  padding-left: 12px !important;
 }
-/* ===== SIDEBAR LINKS - REMOVE PADDING ===== */
+/* ===== SIDEBAR LINKS - CONSISTENT PADDING ===== */
 #sidebar-group a {
-  padding-left: 0 !important;
+  padding-left: 12px !important;
   position: relative !important;
 }
-/* ===== SIDEBAR GROUP WITH BORDER ===== */
+/* ===== SIDEBAR GROUP WITH LEFT BORDER ===== */
 #sidebar-group {
   position: relative !important;
-  padding-left: 16px !important;
-  border-left: 1px solid rgba(255, 255, 255, 0.15) !important;
+  padding-left: 0 !important;
 }
-/* ===== HOVER STATE LEFT BORDER (INACTIVE ONLY) ===== */
-#sidebar-group a:not([class*="bg-primary"]):hover::before {
+.sidebar-group-header {
+  position: relative !important;
+  padding-left: 16px !important;
+}
+.sidebar-group-header::before {
   content: '' !important;
   position: absolute !important;
-  left: -16px !important;
+  left: 0 !important;
+  top: 0 !important;
+  bottom: -9999px !important;
+  width: 1px !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+/* ===== HOVER STATE LEFT BORDER ===== */
+#sidebar-group a:hover::before {
+  content: '' !important;
+  position: absolute !important;
+  left: -12px !important;
   top: 0 !important;
   bottom: 0 !important;
   width: 1px !important;
@@ -34,7 +47,7 @@ a[class*="bg-primary"][class*="text-primary"] {
 a[class*="bg-primary"][class*="text-primary"]::before {
   content: '' !important;
   position: absolute !important;
-  left: -16px !important;
+  left: -12px !important;
   top: 0 !important;
   bottom: 0 !important;
   width: 1px !important;
