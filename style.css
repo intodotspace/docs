@@ -5,6 +5,19 @@ nav a.active,
   color: #5EDD2C !important;
   background-color: rgba(94, 221, 44, 0.15) !important;
   border-radius: 6px;
+  position: relative !important;
+}
+nav a[aria-current="page"]::before,
+nav a.active::before,
+#sidebar a[class*="bg-primary"]::before {
+  content: '' !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 2px !important;
+  background-color: #5EDD2C !important;
+  border-radius: 6px 0 0 6px !important;
 }
 /* ===== SUPER TITLE (ANCHOR ABOVE H1) ===== */
 .subtitle,
