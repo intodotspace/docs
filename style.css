@@ -68,6 +68,16 @@ $$,
 #table-of-contents-content a.dark\:text-gray-200 {
   color: #ffffff !important;
 }
+/* ===== ACTIVE TOC LINK - GREEN LEFT BORDER ===== */
+#table-of-contents-content a.text-primary::before {
+  content: '' !important;
+  position: absolute !important;
+  left: -16px !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 1px !important;
+  background-color: #5EDD2C !important;
+}
 /* ===== OVERRIDE PRIMARY COLOR FOR TABLE OF CONTENTS ===== */
 #table-of-contents-content .text-primary {
   color: #ffffff !important;
