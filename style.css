@@ -3,43 +3,8 @@ nav a[aria-current="page"],
 nav a.active,
 #sidebar a[class*="bg-primary"] {
   color: #5EDD2C !important;
-  background-color: transparent !important;
-  border-radius: 0 !important;
-}
-/* ===== SIDEBAR LINKS - REMOVE PADDING ===== */
-#sidebar-group a {
-  padding-left: 0 !important;
-  position: relative !important;
-}
-/* ===== SIDEBAR GROUP WITH BORDER ===== */
-#sidebar-group {
-  position: relative !important;
-  margin-left: 16px !important;
-  padding-left: 0 !important;
-  border-left: 1px solid rgba(255, 255, 255, 0.15) !important;
-}
-/* ===== HOVER STATE LEFT BORDER (INACTIVE ONLY) ===== */
-#sidebar-group a:not([class*="bg-primary"]):hover::before {
-  content: '' !important;
-  position: absolute !important;
-  left: 0 !important;
-  top: 0 !important;
-  bottom: 0 !important;
-  width: 1px !important;
-  background-color: rgba(255, 255, 255, 0.15) !important;
-}
-/* ===== ACTIVE SIDEBAR LINK - GREEN LEFT BORDER ===== */
-a[class*="bg-primary"][class*="text-primary"] {
-  position: relative !important;
-}
-a[class*="bg-primary"][class*="text-primary"]::before {
-  content: '' !important;
-  position: absolute !important;
-  left: 0 !important;
-  top: 0 !important;
-  bottom: 0 !important;
-  width: 1px !important;
-  background-color: #5EDD2C !important;
+  background-color: rgba(94, 221, 44, 0.15) !important;
+  border-radius: 6px;
 }
 /* ===== SUPER TITLE (ANCHOR ABOVE H1) ===== */
 .subtitle,
@@ -48,10 +13,9 @@ a[class*="bg-primary"][class*="text-primary"]::before {
   color: #5EDD2C !important;
 }
 /* ===== HOVER STATE FOR SIDEBAR LINKS ===== */
-nav a:hover,
-#sidebar-group a:hover {
-  background-color: transparent !important;
-  border-radius: 0 !important;
+nav a:hover {
+  background-color: rgba(94, 221, 44, 0.08) !important;
+  border-radius: 6px;
 }
 /* ===== ROUNDED BORDERS FOR CONTENT IMAGES & VIDEOS ===== */
 article img,
@@ -100,10 +64,9 @@ $$,
 #table-of-contents-content a {
   position: relative !important;
 }
-/* ===== ACTIVE TOC LINK TEXT COLOR ===== */
 #table-of-contents-content a.text-gray-900,
 #table-of-contents-content a.dark\:text-gray-200 {
-  color: rgba(255, 255, 255, 0.7) !important;
+  color: #ffffff !important;
 }
 /* ===== ACTIVE TOC LINK - GREEN LEFT BORDER ===== */
 #table-of-contents-content a[class*="border-primary"]::before {
@@ -117,5 +80,5 @@ $$,
 }
 /* ===== OVERRIDE PRIMARY COLOR FOR TABLE OF CONTENTS ===== */
 #table-of-contents-content .text-primary {
-  color: #5EDD2C !important;
+  color: #ffffff !important;
 }
