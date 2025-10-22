@@ -45,8 +45,8 @@ a[class*="bg-primary"][class*="text-primary"]::before {
 }
 /* ===== HOVER STATE FOR SIDEBAR LINKS ===== */
 nav a:hover {
-  background-color: rgba(94, 221, 44, 0.08) !important;
-  border-radius: 6px;
+  background-color: transparent !important;
+  border-radius: 0 !important;
 }
 /* ===== ROUNDED BORDERS FOR CONTENT IMAGES & VIDEOS ===== */
 article img,
