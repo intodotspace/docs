@@ -15,14 +15,14 @@ nav a.active,
 #sidebar-group {
   position: relative !important;
   margin-left: 16px !important;
-  padding-left: 16px !important;
+  padding-left: 0 !important;
   border-left: 1px solid rgba(255, 255, 255, 0.15) !important;
 }
 /* ===== HOVER STATE LEFT BORDER (INACTIVE ONLY) ===== */
 #sidebar-group a:not([class*="bg-primary"]):hover::before {
   content: '' !important;
   position: absolute !important;
-  left: -16px !important;
+  left: 0 !important;
   top: 0 !important;
   bottom: 0 !important;
   width: 1px !important;
@@ -35,7 +35,7 @@ a[class*="bg-primary"][class*="text-primary"] {
 a[class*="bg-primary"][class*="text-primary"]::before {
   content: '' !important;
   position: absolute !important;
-  left: -16px !important;
+  left: 0 !important;
   top: 0 !important;
   bottom: 0 !important;
   width: 1px !important;
@@ -100,9 +100,10 @@ $$,
 #table-of-contents-content a {
   position: relative !important;
 }
+/* ===== ACTIVE TOC LINK TEXT COLOR ===== */
 #table-of-contents-content a.text-gray-900,
 #table-of-contents-content a.dark\:text-gray-200 {
-  color: #ffffff !important;
+  color: rgba(255, 255, 255, 0.7) !important;
 }
 /* ===== ACTIVE TOC LINK - GREEN LEFT BORDER ===== */
 #table-of-contents-content a[class*="border-primary"]::before {
@@ -116,5 +117,5 @@ $$,
 }
 /* ===== OVERRIDE PRIMARY COLOR FOR TABLE OF CONTENTS ===== */
 #table-of-contents-content .text-primary {
-  color: #ffffff !important;
+  color: #5EDD2C !important;
 }
