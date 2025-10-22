@@ -69,7 +69,7 @@ $$,
   color: #ffffff !important;
 }
 /* ===== ACTIVE TOC LINK - GREEN LEFT BORDER ===== */
-#table-of-contents-content a.text-primary::before {
+#table-of-contents-content a[class*="border-primary"]::before {
   content: '' !important;
   position: absolute !important;
   left: -16px !important;
