@@ -100,6 +100,13 @@
         "url": "dev",
         "groups": [
           {
+            "group": "Building on Space",
+            "pages": [
+              "dev/building-on-space",
+              "dev/developer-resources"
+            ]
+          },
+          {
             "group": "Architecture",
             "pages": [
               "dev/architecture/clob-and-order-matching",
@@ -127,13 +134,6 @@
             "pages": [
               "dev/api-reference/rest-endpoints",
               "dev/api-reference/websocket-feeds"
-            ]
-          },
-          {
-            "group": "Building on Space",
-            "pages": [
-              "dev/building-on-space",
-              "dev/developer-resources"
             ]
           }
         ]
