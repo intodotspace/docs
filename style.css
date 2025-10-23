@@ -88,3 +88,11 @@ main a:not(nav a, #sidebar a, #table-of-contents-content a),
 .prose a:not(nav a, #sidebar a, #table-of-contents-content a) {
   border-bottom-color: #8dcbec !important;
 }
+
+/* ===== ACTIVE TAB UNDERLINE ===== */
+[role="tablist"] [aria-selected="true"],
+[role="tablist"] [data-state="active"],
+.tabs [aria-selected="true"],
+.tabs [data-state="active"] {
+  border-bottom: 1px solid #8dcbec !important;
+}
