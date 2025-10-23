@@ -82,3 +82,18 @@ $$,
 #table-of-contents-content .text-primary {
   color: #ffffff !important;
 }
+/* ===== SIDEBAR CATEGORY TITLES ===== */
+#sidebar [class*="group"],
+#sidebar h3,
+nav [class*="group-title"],
+nav h3 {
+  color: #ffffff !important;
+}
+/* ===== ACTIVE TAB ===== */
+nav[class*="tabs"] a[aria-current="page"],
+[role="tablist"] a[aria-current="page"],
+.tabs a[aria-current="page"],
+a[data-active="true"] {
+  color: #ffffff !important;
+  border-bottom: 1px solid #8dcbec !important;
+}
