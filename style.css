@@ -2,7 +2,8 @@
 nav a[aria-current="page"],
 nav a.active,
 #sidebar a[class*="bg-primary"] {
-  color: #8dcbec !important;
+  color: 
+#8dcbec !important;
   background-color: rgba(141, 203, 236, 0.15) !important;
   border-radius: 6px;
 }
@@ -10,7 +11,8 @@ nav a.active,
 .subtitle,
 [class*="subtitle"],
 .text-primary {
-  color: #8dcbec !important;
+  color: 
+#8dcbec !important;
 }
 /* ===== HOVER STATE FOR SIDEBAR LINKS ===== */
 nav a:hover {
@@ -33,19 +35,23 @@ video {
 .katex-display,
 $$,
 [class*="math-display"] {
-  background-color: #1a1a1a !important;
+  background-color: 
+#1a1a1a !important;
   border-radius: 12px !important;
   padding: 40px !important;
   margin: 16px 0 !important;
-  color: #ffffff !important;
+  color: 
+#ffffff !important;
 }
 .math-inline,
 .katex,
 [class*="math-inline"] {
-  background-color: #1a1a1a !important;
+  background-color: 
+#1a1a1a !important;
   border-radius: 8px !important;
   padding: 4px 8px !important;
-  color: #ffffff !important;
+  color: 
+#ffffff !important;
 }
 /* ===== TABLE OF CONTENTS (ON THIS PAGE) ===== */
 #table-of-contents-content {
@@ -66,7 +72,8 @@ $$,
 }
 #table-of-contents-content a.text-gray-900,
 #table-of-contents-content a.dark\:text-gray-200 {
-  color: #ffffff !important;
+  color: 
+#ffffff !important;
 }
 /* ===== ACTIVE TOC LINK - BLUE LEFT BORDER ===== */
 #table-of-contents-content a[class*="border-primary"]::before {
@@ -76,26 +83,31 @@ $$,
   top: 0 !important;
   bottom: 0 !important;
   width: 1px !important;
-  background-color: #8dcbec !important;
+  background-color: 
+#8dcbec !important;
 }
 /* ===== OVERRIDE PRIMARY COLOR FOR TABLE OF CONTENTS ===== */
 #table-of-contents-content .text-primary {
-  color: #ffffff !important;
+  color: 
+#ffffff !important;
 }
 /* ===== LINKS IN PAGE CONTENT ONLY ===== */
-article a:not(nav a, #sidebar a, #table-of-contents-content a, [data-component-part="card-content-container"]),
-main a:not(nav a, #sidebar a, #table-of-contents-content a, [data-component-part="card-content-container"]),
-.prose a:not(nav a, #sidebar a, #table-of-contents-content a, [data-component-part="card-content-container"]) {
-  border-bottom-color: #8dcbec !important;
+article a:not(nav a, #sidebar a, #table-of-contents-content a),
+main a:not(nav a, #sidebar a, #table-of-contents-content a),
+.prose a:not(nav a, #sidebar a, #table-of-contents-content a) {
+  border-bottom-color: 
+#8dcbec !important;
 }
 /* ===== ACTIVE TAB UNDERLINE ===== */
 .nav-tabs-item .bg-primary {
-  background-color: #8dcbec !important;
+  background-color: 
+#8dcbec !important;
 }
 /* ===== CARD ICONS DEFAULT COLOR ===== */
 [data-component-part="card-icon"] svg,
 .bg-primary svg {
-  background-color: #8dcbec !important;
+  background-color: 
+#8dcbec !important;
 }
 /* ===== H2 STYLING - MATCH H1 ===== */
 .prose h2 {
@@ -104,24 +116,13 @@ main a:not(nav a, #sidebar a, #table-of-contents-content a, [data-component-part
 /* ===== ACTIVE ANCHOR LINKS ICON COLOR ===== */
 .bg-gray-400 svg,
 .dark\:bg-gray-500 svg {
-  background-color: #8dcbec !important;
+  background-color: 
+#8dcbec !important;
 }
 #sidebar a[aria-current="page"] .bg-gray-400,
 #sidebar a.active .bg-gray-400,
 #sidebar a[aria-current="page"] .dark\:bg-gray-500,
 #sidebar a.active .dark\:bg-gray-500 {
-  background-color: #8dcbec !important;
-}
-/* ===== CARD LINKS - REMOVE UNDERLINE ===== */
-[data-component-part="card-content-container"] {
-  border-bottom: none !important;
-}
-/* ===== CARD HOVER STATE - BLUE BORDER ===== */
-[data-component-part="card-content-container"]:hover {
-  border: 1px solid #8dcbec !important;
-}
-
-/* ANCHOR COLOR ON HOVER */
-.dark\:hover\:brightness-150:hover:is(.dark *) {
-	--tw-brightness: brightness(1.0);
+  background-color: 
+#8dcbec !important;
 }
