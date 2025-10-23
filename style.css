@@ -90,7 +90,12 @@ main a:not(nav a, #sidebar a, #table-of-contents-content a),
 }
 
 /* ===== ACTIVE TAB UNDERLINE ===== */
-/* ===== ACTIVE TAB UNDERLINE ===== */
 .nav-tabs-item .bg-primary {
+  background-color: #8dcbec !important;
+}
+
+/* ===== CARD ICONS DEFAULT COLOR ===== */
+[data-component-part="card-icon"] svg,
+.bg-primary svg {
   background-color: #8dcbec !important;
 }
