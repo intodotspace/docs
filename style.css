@@ -130,5 +130,6 @@ main a:not(nav a, #sidebar a, #table-of-contents-content a),
 /* ===== CARD LINKS HOVER - BLUE BORDER ===== */
 a[data-component-part="card-content-container"]:hover,
 a:has([data-component-part="card-content-container"]):hover [data-component-part="card-content-container"] {
-  border-color: #8dcbec !important;
+  border: 1px solid #8dcbec !important;
+  border-radius: inherit !important;
 }
