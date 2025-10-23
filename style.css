@@ -88,19 +88,21 @@ main a:not(nav a, #sidebar a, #table-of-contents-content a),
 .prose a:not(nav a, #sidebar a, #table-of-contents-content a) {
   border-bottom-color: #8dcbec !important;
 }
-
 /* ===== ACTIVE TAB UNDERLINE ===== */
 .nav-tabs-item .bg-primary {
   background-color: #8dcbec !important;
 }
-
 /* ===== CARD ICONS DEFAULT COLOR ===== */
 [data-component-part="card-icon"] svg,
 .bg-primary svg {
   background-color: #8dcbec !important;
 }
-
 /* ===== H2 STYLING - MATCH H1 ===== */
 .prose h2 {
   color: rgb(var(--gray-200)) !important;
+}
+/* ===== ANCHOR LINKS HOVER STATE ===== */
+aside a:hover svg,
+nav a:hover svg {
+  color: #8dcbec !important;
 }
