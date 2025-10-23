@@ -2,19 +2,19 @@
 nav a[aria-current="page"],
 nav a.active,
 #sidebar a[class*="bg-primary"] {
-  color: #5EDD2C !important;
-  background-color: rgba(94, 221, 44, 0.15) !important;
+  color: #8dcbec !important;
+  background-color: rgba(141, 203, 236, 0.15) !important;
   border-radius: 6px;
 }
 /* ===== SUPER TITLE (ANCHOR ABOVE H1) ===== */
 .subtitle,
 [class*="subtitle"],
 .text-primary {
-  color: #5EDD2C !important;
+  color: #8dcbec !important;
 }
 /* ===== HOVER STATE FOR SIDEBAR LINKS ===== */
 nav a:hover {
-  background-color: rgba(94, 221, 44, 0.08) !important;
+  background-color: rgba(141, 203, 236, 0.08) !important;
   border-radius: 6px;
 }
 /* ===== ROUNDED BORDERS FOR CONTENT IMAGES & VIDEOS ===== */
@@ -68,7 +68,7 @@ $$,
 #table-of-contents-content a.dark\:text-gray-200 {
   color: #ffffff !important;
 }
-/* ===== ACTIVE TOC LINK - GREEN LEFT BORDER ===== */
+/* ===== ACTIVE TOC LINK - BLUE LEFT BORDER ===== */
 #table-of-contents-content a[class*="border-primary"]::before {
   content: '' !important;
   position: absolute !important;
@@ -76,7 +76,7 @@ $$,
   top: 0 !important;
   bottom: 0 !important;
   width: 1px !important;
-  background-color: #5EDD2C !important;
+  background-color: #8dcbec !important;
 }
 /* ===== OVERRIDE PRIMARY COLOR FOR TABLE OF CONTENTS ===== */
 #table-of-contents-content .text-primary {
