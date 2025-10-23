@@ -54,46 +54,4 @@ $$,
 }
 #table-of-contents-content::before {
   content: '' !important;
-  position: absolute !important;
-  left: 0 !important;
-  top: 0 !important;
-  bottom: 0 !important;
-  width: 1px !important;
-  background-color: rgba(255, 255, 255, 0.15) !important;
-}
-#table-of-contents-content a {
-  position: relative !important;
-}
-#table-of-contents-content a.text-gray-900,
-#table-of-contents-content a.dark\:text-gray-200 {
-  color: #ffffff !important;
-}
-/* ===== ACTIVE TOC LINK - BLUE LEFT BORDER ===== */
-#table-of-contents-content a[class*="border-primary"]::before {
-  content: '' !important;
-  position: absolute !important;
-  left: -16px !important;
-  top: 0 !important;
-  bottom: 0 !important;
-  width: 1px !important;
-  background-color: #8dcbec !important;
-}
-/* ===== OVERRIDE PRIMARY COLOR FOR TABLE OF CONTENTS ===== */
-#table-of-contents-content .text-primary {
-  color: #ffffff !important;
-}
-/* ===== SIDEBAR CATEGORY TITLES ===== */
-#sidebar [class*="group"],
-#sidebar h3,
-nav [class*="group-title"],
-nav h3 {
-  color: #ffffff !important;
-}
-/* ===== ACTIVE TAB ===== */
-nav[class*="tabs"] a[aria-current="page"],
-[role="tablist"] a[aria-current="page"],
-.tabs a[aria-current="page"],
-a[data-active="true"] {
-  color: #ffffff !important;
-  border-bottom: 1px solid #8dcbec !important;
-}
+  position: absolute !im
