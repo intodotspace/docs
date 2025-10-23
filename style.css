@@ -83,9 +83,9 @@ $$,
   color: #ffffff !important;
 }
 /* ===== LINKS IN PAGE CONTENT ONLY ===== */
-article a:not(nav a, #sidebar a, #table-of-contents-content a),
-main a:not(nav a, #sidebar a, #table-of-contents-content a),
-.prose a:not(nav a, #sidebar a, #table-of-contents-content a) {
+article a:not(nav a, #sidebar a, #table-of-contents-content a, [data-component-part="card-content-container"]),
+main a:not(nav a, #sidebar a, #table-of-contents-content a, [data-component-part="card-content-container"]),
+.prose a:not(nav a, #sidebar a, #table-of-contents-content a, [data-component-part="card-content-container"]) {
   border-bottom-color: #8dcbec !important;
 }
 /* ===== ACTIVE TAB UNDERLINE ===== */
@@ -111,4 +111,12 @@ main a:not(nav a, #sidebar a, #table-of-contents-content a),
 #sidebar a[aria-current="page"] .dark\:bg-gray-500,
 #sidebar a.active .dark\:bg-gray-500 {
   background-color: #8dcbec !important;
+}
+/* ===== CARD LINKS - REMOVE UNDERLINE ===== */
+[data-component-part="card-content-container"] {
+  border-bottom: none !important;
+}
+/* ===== CARD HOVER STATE - BLUE BORDER ===== */
+[data-component-part="card-content-container"]:hover {
+  border: 1px solid #8dcbec !important;
 }
