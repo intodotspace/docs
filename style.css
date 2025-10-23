@@ -139,6 +139,13 @@ a:has([data-component-part="card-content-container"]):hover [data-component-part
   border: 1px solid #8dcbec !important;
   border-radius: inherit !important;
 }
-article a:not(nav a, #sidebar a, #table-of-contents-content a), main a:not(nav a, #sidebar a, #table-of-contents-content a), .prose a:not(nav a, #sidebar a, #table-of-contents-content a){
-  border-bottom-color:none !important;
+
+/* ===== REMOVE UNDERLINE FROM CARD LINKS ===== */
+article a[data-component-part="card-content-container"],
+main a[data-component-part="card-content-container"],
+.prose a[data-component-part="card-content-container"],
+article a:has([data-component-part="card-content-container"]),
+main a:has([data-component-part="card-content-container"]),
+.prose a:has([data-component-part="card-content-container"]) {
+  border-bottom: none !important;
 }
