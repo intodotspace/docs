@@ -120,3 +120,8 @@ main a:not(nav a, #sidebar a, #table-of-contents-content a, [data-component-part
 [data-component-part="card-content-container"]:hover {
   border: 1px solid #8dcbec !important;
 }
+
+/* ANCHOR COLOR ON HOVER */
+.dark\:hover\:brightness-150:hover:is(.dark *) {
+	--tw-brightness: brightness(1.0);
+}
