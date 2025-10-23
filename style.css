@@ -99,3 +99,13 @@ main a:not(nav a, #sidebar a, #table-of-contents-content a),
 .bg-primary svg {
   background-color: #8dcbec !important;
 }
+
+/* ===== H2 STYLING - MATCH H1 ===== */
+.prose h2 {
+  color: rgb(var(--gray-200)) !important;
+  font-weight: inherit !important;
+  font-size: inherit !important;
+  margin-top: inherit !important;
+  margin-bottom: inherit !important;
+  line-height: inherit !important;
+}
