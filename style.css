@@ -102,10 +102,13 @@ main a:not(nav a, #sidebar a, #table-of-contents-content a),
   color: rgb(var(--gray-200)) !important;
 }
 /* ===== ACTIVE ANCHOR LINKS ICON COLOR ===== */
-#sidebar a[aria-current="page"] svg,
-#sidebar a.active svg,
-aside a[aria-current="page"] svg,
-aside a.active svg {
-  color: #8dcbec !important;
-  fill: #8dcbec !important;
+.bg-gray-400 svg,
+.dark\:bg-gray-500 svg {
+  background-color: #8dcbec !important;
+}
+#sidebar a[aria-current="page"] .bg-gray-400,
+#sidebar a.active .bg-gray-400,
+#sidebar a[aria-current="page"] .dark\:bg-gray-500,
+#sidebar a.active .dark\:bg-gray-500 {
+  background-color: #8dcbec !important;
 }
