@@ -140,5 +140,5 @@ a:has([data-component-part="card-content-container"]):hover [data-component-part
   border-radius: inherit !important;
 }
 article a:not(nav a, #sidebar a, #table-of-contents-content a), main a:not(nav a, #sidebar a, #table-of-contents-content a), .prose a:not(nav a, #sidebar a, #table-of-contents-content a){
-  border-bottom-color:none;
+  border-bottom-color:none !important;
 }
