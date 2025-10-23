@@ -101,8 +101,11 @@ main a:not(nav a, #sidebar a, #table-of-contents-content a),
 .prose h2 {
   color: rgb(var(--gray-200)) !important;
 }
-/* ===== ANCHOR LINKS HOVER STATE ===== */
-aside a:hover svg,
-nav a:hover svg {
+/* ===== ACTIVE ANCHOR LINKS ICON COLOR ===== */
+#sidebar a[aria-current="page"] svg,
+#sidebar a.active svg,
+aside a[aria-current="page"] svg,
+aside a.active svg {
   color: #8dcbec !important;
+  fill: #8dcbec !important;
 }
