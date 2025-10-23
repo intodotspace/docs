@@ -29,9 +29,9 @@ video {
   border-radius: 18px !important;
 }
 /* ===== MATH STYLING ===== */
-.math-display, 
+.math-display,
 .katex-display,
-$$, 
+$$,
 [class*="math-display"] {
   background-color: #1a1a1a !important;
   border-radius: 12px !important;
@@ -39,7 +39,7 @@ $$,
   margin: 16px 0 !important;
   color: #ffffff !important;
 }
-.math-inline, 
+.math-inline,
 .katex,
 [class*="math-inline"] {
   background-color: #1a1a1a !important;
@@ -82,12 +82,10 @@ $$,
 #table-of-contents-content .text-primary {
   color: #ffffff !important;
 }
-/* ===== LINKS UNDERLINE ===== */
-a {
-  text-decoration: underline !important;
-  text-decoration-color: #8dcbec !important;
-}
-a:hover {
-  text-decoration: underline !important;
-  text-decoration-color: #8dcbec !important;
+/* ===== LINKS IN PAGE CONTENT ONLY ===== */
+article a:not(nav a, #sidebar a, #table-of-contents-content a),
+main a:not(nav a, #sidebar a, #table-of-contents-content a),
+.prose a:not(nav a, #sidebar a, #table-of-contents-content a) {
+  color: #8dcbec !important;
+  border-bottom-color: #8dcbec !important;
 }
