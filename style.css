@@ -127,9 +127,18 @@ main a:not(nav a, #sidebar a, #table-of-contents-content a),
 #8dcbec !important;
 }
 
+/* ===== CARD LINKS DEFAULT - TRANSPARENT BORDER ===== */
+a[data-component-part="card-content-container"],
+a:has([data-component-part="card-content-container"]) [data-component-part="card-content-container"] {
+  border: 1px solid transparent !important;
+}
+
 /* ===== CARD LINKS HOVER - BLUE BORDER ===== */
 a[data-component-part="card-content-container"]:hover,
 a:has([data-component-part="card-content-container"]):hover [data-component-part="card-content-container"] {
   border: 1px solid #8dcbec !important;
   border-radius: inherit !important;
+}
+article a:not(nav a, #sidebar a, #table-of-contents-content a), main a:not(nav a, #sidebar a, #table-of-contents-content a), .prose a:not(nav a, #sidebar a, #table-of-contents-content a){
+  border-bottom-color:none;
 }
