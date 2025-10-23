@@ -82,3 +82,12 @@ $$,
 #table-of-contents-content .text-primary {
   color: #ffffff !important;
 }
+/* ===== LINKS UNDERLINE ===== */
+a {
+  text-decoration: underline !important;
+  text-decoration-color: #8dcbec !important;
+}
+a:hover {
+  text-decoration: underline !important;
+  text-decoration-color: #8dcbec !important;
+}
