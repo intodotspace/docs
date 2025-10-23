@@ -16,7 +16,6 @@ nav a.active,
 nav a:hover {
   background-color: rgba(141, 203, 236, 0.08) !important;
   border-radius: 6px;
-  color: #ffffff !important;
 }
 /* ===== ROUNDED BORDERS FOR CONTENT IMAGES & VIDEOS ===== */
 article img,
@@ -81,22 +80,5 @@ $$,
 }
 /* ===== OVERRIDE PRIMARY COLOR FOR TABLE OF CONTENTS ===== */
 #table-of-contents-content .text-primary {
-  color: #ffffff !important;
-}
-/* ===== SIDEBAR GROUP HEADERS ===== */
-#sidebar [class*="group"],
-#sidebar h3,
-nav [class*="group-title"],
-nav h3,
-aside [class*="group"],
-aside h3 {
-  color: #ffffff !important;
-}
-/* ===== HEADINGS ===== */
-h1, h2, h3, h4, h5, h6 {
-  color: #ffffff !important;
-}
-/* ===== BOLD TEXT ===== */
-strong, b {
   color: #ffffff !important;
 }
