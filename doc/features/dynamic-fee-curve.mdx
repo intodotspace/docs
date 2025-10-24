@@ -13,8 +13,10 @@ The Space Dynamic Fee Curve is designed as an incentive alignment mechanism for 
 import { MarketOrderFees } from "/snippets/market-order-fees.jsx"
 
 <MarketOrderFees />
-  
-<Note>Traders adding liquidity to the order book via limit orders (makers) pay 0 fees. The below fees only apply to market orders that get filled instantly (takers)</Note>
+
+<Note>
+  Traders adding liquidity to the order book via limit orders (makers) pay 0 fees. The below fees only apply to market orders that get filled instantly (takers)
+</Note>
 
 1. **Buy Fee**: when a market order position is opened, fees start higher during uncertain phases of the market where your odds are highest and gradually decrease as the market gains more certainty
 
@@ -54,7 +56,7 @@ where
 
 |                                | **Value**                                      |
 | -----------------------------: | ---------------------------------------------- |
-| **Market Order Type**          | Market (fee applies; limit orders have no fee) |
+| **Order Type**                 | Market (fee applies; limit orders have no fee) |
 | **Market**                     | "Will BTC close above \$150,000 this year?"    |
 | **Current BTC Price**          | \$125,000                                      |
 | **Current Market Probability** | 30%                                            |
