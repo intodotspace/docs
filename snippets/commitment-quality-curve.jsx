@@ -166,10 +166,10 @@ export const CommitmentQualityCurve = () => {
         >
           <defs>
             <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#5EDD2C" stopOpacity="0.6">
+              <stop offset="0%" stopColor="#2C9EDD" stopOpacity="0.6">
                 <animate attributeName="stop-opacity" values="0.6;0.75;0.6" dur="4s" repeatCount="indefinite"/>
               </stop>
-              <stop offset="100%" stopColor="#5EDD2C" stopOpacity="0.1">
+              <stop offset="100%" stopColor="#2C9EDD" stopOpacity="0.1">
                 <animate attributeName="stop-opacity" values="0.1;0.15;0.1" dur="4s" repeatCount="indefinite"/>
               </stop>
             </linearGradient>
@@ -218,7 +218,7 @@ export const CommitmentQualityCurve = () => {
           {/* Main curve line */}
           <path d={pathData} 
                 fill="none" 
-                stroke="#5EDD2C" 
+                stroke="#2C9EDD" 
                 strokeWidth="3"
                 className="transition-all duration-300"
                 strokeDasharray="1200"
@@ -242,7 +242,7 @@ export const CommitmentQualityCurve = () => {
             cx={peakPoint.svgX}
             cy={peakPoint.svgY}
             r="5"
-            fill="#5EDD2C"
+            fill="#2C9EDD"
             stroke="#ffffff"
             strokeWidth="2"
             opacity="0.9"
@@ -284,7 +284,7 @@ export const CommitmentQualityCurve = () => {
                 width="100" 
                 height="45" 
                 fill="#1a1a1a" 
-                stroke="#5EDD2C" 
+                stroke="#2C9EDD" 
                 strokeWidth="2" 
                 rx="6"
                 opacity="0.95"
@@ -301,7 +301,7 @@ export const CommitmentQualityCurve = () => {
               <text 
                 x={tooltipProps.x + 50} 
                 y={tooltipProps.y + 32} 
-                fill="#5EDD2C" 
+                fill="#2C9EDD" 
                 fontSize="12" 
                 textAnchor="middle"
                 fontWeight="500">
