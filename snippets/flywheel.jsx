@@ -59,7 +59,7 @@ export const SpaceFlywheel = () => {
           <defs>
             <radialGradient id="nodeGradient">
               <stop offset="0%" stopColor="#000000"/>
-              <stop offset="100%" stopColor="#1a3d0f"/>
+              <stop offset="100%" stopColor="#0f1f3d"/>
             </radialGradient>
             <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
               <path d="M 60 0 L 0 0 0 60" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3,3" opacity="0.3"/>
@@ -182,7 +182,7 @@ export const SpaceFlywheel = () => {
                   cy={pos.y}
                   r="55"
                   fill="url(#nodeGradient)"
-                  stroke="#5EDD2C"
+                  stroke="#2C9EDD"
                   strokeWidth="3"
                 />
                 <text
