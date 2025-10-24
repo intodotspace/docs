@@ -107,7 +107,7 @@ main a:not(nav a, #sidebar a, #table-of-contents-content a),
 [data-component-part="card-icon"] svg,
 .bg-primary svg {
   background-color: 
-#8dcbec !important;
+#8dcbec;
 }
 /* ===== H2 STYLING - MATCH H1 ===== */
 .prose h2 {
