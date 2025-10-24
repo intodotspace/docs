@@ -42,7 +42,7 @@ export const SpaceFlywheel = () => {
     } else if (index === 1) {
       t = 1; // Full white
     } else {
-      // Gradually return to blue from index 2-7
+      // Gradually return to blue from index 2-7 (over 6 steps)
       t = 1 - (index - 1) / 7;
     }
     
@@ -182,7 +182,7 @@ export const SpaceFlywheel = () => {
               <g 
                 key={`glow-${i}`}
                 style={{
-                  animation: isVisible ? `glowWave 2s ease-in-out ${3.2 + glowDelay}s infinite` : 'none',
+                  animation: isVisible ? `glowWave 2s ease-in-out ${3.5 + glowDelay}s infinite 4s` : 'none',
                   opacity: 0
                 }}
               >
@@ -247,13 +247,16 @@ export const SpaceFlywheel = () => {
           {/* Nodes */}
           {nodes.map((node, i) => {
             const pos = getPosition(node.angle);
+            const nodePulseDelay = i * 0.15;
             
             return (
               <g 
                 key={node.id}
                 opacity={isVisible ? "1" : "0"}
                 style={{
-                  transition: isVisible ? `opacity 0.6s ease-out ${i * 0.15}s` : 'none'
+                  transition: isVisible ? `opacity 0.6s ease-out ${i * 0.15}s` : 'none',
+                  transformOrigin: `${pos.x}px ${pos.y}px`,
+                  animation: isVisible ? `nodePulse 0.3s ease-out ${3.5 + nodePulseDelay}s infinite 4s` : 'none'
                 }}
               >
                 <circle
@@ -321,6 +324,17 @@ export const SpaceFlywheel = () => {
           }
           100% {
             opacity: 0;
+          }
+        }
+        @keyframes nodePulse {
+          0% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.08);
+          }
+          100% {
+            transform: scale(1);
           }
         }
       `}</style>
