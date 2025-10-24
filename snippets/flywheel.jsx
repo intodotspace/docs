@@ -182,7 +182,9 @@ export const SpaceFlywheel = () => {
               <g 
                 key={`glow-${i}`}
                 style={{
-                  animation: isVisible ? `glowWave 2s ease-in-out ${3.5 + glowDelay}s infinite 4s` : 'none',
+                  animation: isVisible ? `glowWave 2s ease-in-out ${3.5 + glowDelay}s infinite` : 'none',
+                  animationIterationCount: 'infinite',
+                  animationDuration: '4s',
                   opacity: 0
                 }}
               >
@@ -247,7 +249,7 @@ export const SpaceFlywheel = () => {
           {/* Nodes */}
           {nodes.map((node, i) => {
             const pos = getPosition(node.angle);
-            const nodePulseDelay = i * 0.15;
+            const nodePulseDelay = 3.5 + (i * 0.15);
             
             return (
               <g 
@@ -256,7 +258,8 @@ export const SpaceFlywheel = () => {
                 style={{
                   transition: isVisible ? `opacity 0.6s ease-out ${i * 0.15}s` : 'none',
                   transformOrigin: `${pos.x}px ${pos.y}px`,
-                  animation: isVisible ? `nodePulse 0.3s ease-out ${3.5 + nodePulseDelay}s infinite 4s` : 'none'
+                  animation: isVisible ? `nodePulse 0.3s ease-out ${nodePulseDelay}s infinite` : 'none',
+                  animationDuration: '4s'
                 }}
               >
                 <circle
