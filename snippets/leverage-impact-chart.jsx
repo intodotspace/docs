@@ -53,10 +53,10 @@ export const LeverageImpactChart = () => {
   };
 
   const leverageLines = [
-    { leverage: 1, color: '#FF9500', label: 'No Leverage' },
-    { leverage: 3, color: '#3B7DD8', label: '3× Leverage' },
-    { leverage: 5, color: '#5EDD2C', label: '5× Leverage' },
-    { leverage: 10, color: '#9333EA', label: '10× Leverage' }
+    { leverage: 1, color: '#FFFFFF', label: 'No Leverage' },
+    { leverage: 3, color: '#8CC9F0', label: '3× Leverage' },
+    { leverage: 5, color: '#5AB4E8', label: '5× Leverage' },
+    { leverage: 10, color: '#2C9EDD', label: '10× Leverage' }
   ];
 
   const allLines = leverageLines.map(line => {
@@ -182,34 +182,34 @@ export const LeverageImpactChart = () => {
         >
           <defs>
             <linearGradient id="gradient1x" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#FF9500" stopOpacity="0.4">
+              <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.4">
                 <animate attributeName="stop-opacity" values="0.4;0.5;0.4" dur="4s" repeatCount="indefinite"/>
               </stop>
-              <stop offset="100%" stopColor="#FF9500" stopOpacity="0.067">
+              <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0.067">
                 <animate attributeName="stop-opacity" values="0.067;0.1;0.067" dur="4s" repeatCount="indefinite"/>
               </stop>
             </linearGradient>
             <linearGradient id="gradient3x" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#3B7DD8" stopOpacity="0.4">
+              <stop offset="0%" stopColor="#8CC9F0" stopOpacity="0.4">
                 <animate attributeName="stop-opacity" values="0.4;0.5;0.4" dur="4s" repeatCount="indefinite"/>
               </stop>
-              <stop offset="100%" stopColor="#3B7DD8" stopOpacity="0.067">
+              <stop offset="100%" stopColor="#8CC9F0" stopOpacity="0.067">
                 <animate attributeName="stop-opacity" values="0.067;0.1;0.067" dur="4s" repeatCount="indefinite"/>
               </stop>
             </linearGradient>
             <linearGradient id="gradient5x" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#5EDD2C" stopOpacity="0.4">
+              <stop offset="0%" stopColor="#5AB4E8" stopOpacity="0.4">
                 <animate attributeName="stop-opacity" values="0.4;0.5;0.4" dur="4s" repeatCount="indefinite"/>
               </stop>
-              <stop offset="100%" stopColor="#5EDD2C" stopOpacity="0.067">
+              <stop offset="100%" stopColor="#5AB4E8" stopOpacity="0.067">
                 <animate attributeName="stop-opacity" values="0.067;0.1;0.067" dur="4s" repeatCount="indefinite"/>
               </stop>
             </linearGradient>
             <linearGradient id="gradient10x" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#9333EA" stopOpacity="0.4">
+              <stop offset="0%" stopColor="#2C9EDD" stopOpacity="0.4">
                 <animate attributeName="stop-opacity" values="0.4;0.5;0.4" dur="4s" repeatCount="indefinite"/>
               </stop>
-              <stop offset="100%" stopColor="#9333EA" stopOpacity="0.067">
+              <stop offset="100%" stopColor="#2C9EDD" stopOpacity="0.067">
                 <animate attributeName="stop-opacity" values="0.067;0.1;0.067" dur="4s" repeatCount="indefinite"/>
               </stop>
             </linearGradient>
