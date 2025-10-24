@@ -32,6 +32,28 @@ export const SpaceFlywheel = () => {
     { id: 7, label: 'More Users\nJoin', angle: 315 }
   ];
 
+  const baseBlue = { r: 44, g: 158, b: 221 }; // #2C9EDD
+  const white = { r: 255, g: 255, b: 255 };
+
+  const getStrokeColor = (index) => {
+    // Peak white at index 1, then gradually back to blue
+    let t;
+    if (index === 0) {
+      t = 0; // Full blue
+    } else if (index === 1) {
+      t = 0.5; // 50% to white
+    } else {
+      // Gradually return to blue from index 2-7
+      t = 0.5 * (1 - (index - 1) / 7);
+    }
+    
+    const r = Math.round(baseBlue.r + (white.r - baseBlue.r) * t);
+    const g = Math.round(baseBlue.g + (white.g - baseBlue.g) * t);
+    const b = Math.round(baseBlue.b + (white.b - baseBlue.b) * t);
+    
+    return `rgb(${r}, ${g}, ${b})`;
+  };
+
   const radius = 200;
   const centerX = 300;
   const centerY = 280;
@@ -81,7 +103,6 @@ export const SpaceFlywheel = () => {
             const currentPos = getPosition(node.angle);
             const nextPos = getPosition(nextNode.angle);
             
-            // Calculate start and end points at circle edges
             const angleToNext = Math.atan2(nextPos.y - currentPos.y, nextPos.x - currentPos.x);
             const startX = currentPos.x + nodeRadius * Math.cos(angleToNext);
             const startY = currentPos.y + nodeRadius * Math.sin(angleToNext);
@@ -90,7 +111,6 @@ export const SpaceFlywheel = () => {
             const endX = nextPos.x + nodeRadius * Math.cos(angleFromPrev);
             const endY = nextPos.y + nodeRadius * Math.sin(angleFromPrev);
             
-            // Arrow angle pointing in direction of flow
             const arrowAngle = (Math.atan2(endY - startY, endX - startX) * 180 / Math.PI);
             
             const animationDelay = i * 0.25;
@@ -103,7 +123,6 @@ export const SpaceFlywheel = () => {
                   opacity: 0
                 }}
               >
-                {/* Line */}
                 <line
                   x1={startX}
                   y1={startY}
@@ -112,7 +131,6 @@ export const SpaceFlywheel = () => {
                   stroke="#ffffff"
                   strokeWidth="4"
                 />
-                {/* Arrow */}
                 <polygon
                   points="-20,-10 0,0 -20,10"
                   fill="#ffffff"
@@ -122,7 +140,7 @@ export const SpaceFlywheel = () => {
             );
           })}
 
-          {/* Center text - no background circle */}
+          {/* Center text */}
           <text 
             x={centerX} 
             y={centerY - 15} 
@@ -182,7 +200,7 @@ export const SpaceFlywheel = () => {
                   cy={pos.y}
                   r="55"
                   fill="url(#nodeGradient)"
-                  stroke="#2C9EDD"
+                  stroke={getStrokeColor(i)}
                   strokeWidth="3"
                 />
                 <text
