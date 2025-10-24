@@ -36,20 +36,40 @@ export const SpaceFlywheel = () => {
   const white = { r: 255, g: 255, b: 255 };
 
   const getStrokeColor = (index) => {
-    // Peak white at index 1, then gradually back to blue
     let t;
     if (index === 0) {
       t = 0; // Full blue
     } else if (index === 1) {
-      t = 0.5; // 50% to white
+      t = 1; // Full white
     } else {
       // Gradually return to blue from index 2-7
-      t = 0.5 * (1 - (index - 1) / 7);
+      t = 1 - (index - 1) / 7;
     }
     
     const r = Math.round(baseBlue.r + (white.r - baseBlue.r) * t);
     const g = Math.round(baseBlue.g + (white.g - baseBlue.g) * t);
     const b = Math.round(baseBlue.b + (white.b - baseBlue.b) * t);
+    
+    return `rgb(${r}, ${g}, ${b})`;
+  };
+
+  const getGradientEndColor = (index) => {
+    let t;
+    if (index === 0) {
+      t = 0; // Full blue tint
+    } else if (index === 1) {
+      t = 1; // White tint
+    } else {
+      t = 1 - (index - 1) / 7;
+    }
+    
+    // Blend between dark blue (#0f1f3d) and lighter color
+    const darkBlue = { r: 15, g: 31, b: 61 };
+    const lightColor = { r: 200, g: 200, b: 200 };
+    
+    const r = Math.round(darkBlue.r + (lightColor.r - darkBlue.r) * t);
+    const g = Math.round(darkBlue.g + (lightColor.g - darkBlue.g) * t);
+    const b = Math.round(darkBlue.b + (lightColor.b - darkBlue.b) * t);
     
     return `rgb(${r}, ${g}, ${b})`;
   };
@@ -79,10 +99,12 @@ export const SpaceFlywheel = () => {
           style={{ minHeight: '400px', maxHeight: '600px' }}
         >
           <defs>
-            <radialGradient id="nodeGradient">
-              <stop offset="0%" stopColor="#000000"/>
-              <stop offset="100%" stopColor="#0f1f3d"/>
-            </radialGradient>
+            {nodes.map((node, i) => (
+              <radialGradient key={`gradient-${i}`} id={`nodeGradient-${i}`}>
+                <stop offset="0%" stopColor="#000000"/>
+                <stop offset="100%" stopColor={getGradientEndColor(i)}/>
+              </radialGradient>
+            ))}
             <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
               <path d="M 60 0 L 0 0 0 60" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3,3" opacity="0.3"/>
             </pattern>
@@ -199,7 +221,7 @@ export const SpaceFlywheel = () => {
                   cx={pos.x}
                   cy={pos.y}
                   r="55"
-                  fill="url(#nodeGradient)"
+                  fill={`url(#nodeGradient-${i})`}
                   stroke={getStrokeColor(i)}
                   strokeWidth="3"
                 />
