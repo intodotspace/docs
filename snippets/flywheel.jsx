@@ -162,6 +162,45 @@ export const SpaceFlywheel = () => {
             );
           })}
 
+          {/* Glow wave effect on connections */}
+          {nodes.map((node, i) => {
+            const nextNode = nodes[(i + 1) % nodes.length];
+            const currentPos = getPosition(node.angle);
+            const nextPos = getPosition(nextNode.angle);
+            
+            const angleToNext = Math.atan2(nextPos.y - currentPos.y, nextPos.x - currentPos.x);
+            const startX = currentPos.x + nodeRadius * Math.cos(angleToNext);
+            const startY = currentPos.y + nodeRadius * Math.sin(angleToNext);
+            
+            const angleFromPrev = Math.atan2(currentPos.y - nextPos.y, currentPos.x - nextPos.x);
+            const endX = nextPos.x + nodeRadius * Math.cos(angleFromPrev);
+            const endY = nextPos.y + nodeRadius * Math.sin(angleFromPrev);
+            
+            const glowDelay = i * 0.15;
+
+            return (
+              <g 
+                key={`glow-${i}`}
+                style={{
+                  animation: isVisible ? `glowWave 2s ease-in-out ${3.2 + glowDelay}s infinite` : 'none',
+                  opacity: 0
+                }}
+              >
+                <line
+                  x1={startX}
+                  y1={startY}
+                  x2={endX}
+                  y2={endY}
+                  stroke={getStrokeColor(i)}
+                  strokeWidth="6"
+                  style={{
+                    filter: 'blur(3px)'
+                  }}
+                />
+              </g>
+            );
+          })}
+
           {/* Center text */}
           <text 
             x={centerX} 
@@ -268,6 +307,17 @@ export const SpaceFlywheel = () => {
           }
           40% {
             opacity: 0;
+          }
+          100% {
+            opacity: 0;
+          }
+        }
+        @keyframes glowWave {
+          0% {
+            opacity: 0;
+          }
+          50% {
+            opacity: 0.8;
           }
           100% {
             opacity: 0;
