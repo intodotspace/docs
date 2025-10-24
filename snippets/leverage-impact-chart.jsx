@@ -361,7 +361,7 @@ export const LeverageImpactChart = () => {
               </g>
             ))}
             <line x1="0" y1="80" x2="20" y2="80" stroke="currentColor" strokeWidth="2" strokeDasharray="4,4" opacity="0.6"/>
-            <text x="25" y="84" fill="currentColor" fontSize="12" opacity="0.8">Entry Price (15%)</text>
+            <text x="25" y="84" fill="currentColor" fontSize="12" opacity="0.8">Entry</text>
           </g>
           
           {/* Enhanced tooltip */}
@@ -422,4 +422,4 @@ export const LeverageImpactChart = () => {
       `}</style>
     </div>
   );
-};
+};e
