@@ -103,7 +103,8 @@
             "group": "Building on Space",
             "pages": [
               "dev/whats-possible",
-              "dev/developer-resources"
+              "dev/developer-resources",
+              "dev/security"
             ]
           },
           {
@@ -121,12 +122,6 @@
               "dev/resolution/deterministic-resolution",
               "dev/resolution/oracle-resolution",
               "dev/resolution/invalid-markets"
-            ]
-          },
-          {
-            "group": "Risk & Security",
-            "pages": [
-              "dev/risk-and-security"
             ]
           },
           {
