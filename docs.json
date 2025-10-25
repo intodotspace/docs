@@ -102,9 +102,9 @@
           {
             "group": "Building on Space",
             "pages": [
-              "dev/whats-possible",
-              "dev/developer-resources",
-              "dev/security"
+              "dev/build/whats-possible",
+              "dev/build/developer-resources",
+              "dev/build/security"
             ]
           },
           {
