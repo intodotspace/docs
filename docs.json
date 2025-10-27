@@ -35,61 +35,60 @@
       {
         "tab": "Documentation",
         "icon": "book",
-        "url": "doc",
         "groups": [
           {
             "group": "Start Here",
             "pages": [
-              "doc/start-here/origin",
-              "doc/start-here/what-is-space",
-              "doc/start-here/vision"
+              "start/origin",
+              "start/what-is-space",
+              "start/vision"
             ]
           },
           {
             "group": "Core Concepts",
             "pages": [
-              "doc/core-concepts/how-prediction-markets-work",
-              "doc/core-concepts/share-minting-and-burning",
-              "doc/core-concepts/makers-and-takers",
-              "doc/core-concepts/market-resolution"
+              "concepts/how-prediction-markets-work",
+              "concepts/share-minting-and-burning",
+              "concepts/makers-and-takers",
+              "concepts/market-resolution"
             ]
           },
           {
             "group": "Features",
             "pages": [
-              "doc/features/central-limit-order-book",
-              "doc/features/leverage",
-              "doc/features/multi-outcome-markets",
-              "doc/features/continuous-markets",
-              "doc/features/dynamic-fee-curve",
-              "doc/features/liquidity-rewards",
-              "doc/features/airdrops-points",
-              "doc/features/market-categories"
+              "features/central-limit-order-book",
+              "features/leverage",
+              "features/multi-outcome-markets",
+              "features/continuous-markets",
+              "features/dynamic-fee-curve",
+              "features/liquidity-rewards",
+              "features/airdrops-points",
+              "features/market-categories"
             ]
           },
           {
             "group": "User Guides",
             "pages": [
-              "doc/user-guides/placing-market-order",
-              "doc/user-guides/placing-limit-order",
-              "doc/user-guides/managing-orders-and-positions"
+              "guides/placing-market-order",
+              "guides/placing-limit-order",
+              "guides/managing-orders-and-positions"
             ]
           },
           {
             "group": "$SPACE",
             "pages": [
-              "doc/space/flywheel-mechanism",
-              "doc/space/token-utility"
+              "space/flywheel-mechanism",
+              "space/token-utility"
             ]
           },
           {
             "group": "Resources",
             "pages": [
-              "doc/resources/support",
-              "doc/resources/developers",
-              "doc/resources/partnerships",
-              "doc/resources/privacy-policy",
-              "doc/resources/terms-of-service"
+              "resources/support",
+              "resources/developers",
+              "resources/partnerships",
+              "resources/privacy-policy",
+              "resources/terms-of-service"
             ]
           }
         ]
@@ -97,38 +96,37 @@
       {
         "tab": "Developers",
         "icon": "code",
-        "url": "dev",
         "groups": [
           {
             "group": "Building on Space",
             "pages": [
-              "dev/build/whats-possible",
-              "dev/build/developer-resources",
-              "dev/build/security"
+              "build/whats-possible",
+              "build/developer-resources",
+              "build/security"
             ]
           },
           {
             "group": "Architecture",
             "pages": [
-              "dev/architecture/clob-and-order-matching",
-              "dev/architecture/spl-token-structure",
-              "dev/architecture/multi-outcome-markets",
-              "dev/architecture/leverage-and-margin-trading"
+              "architecture/clob-and-order-matching",
+              "architecture/spl-token-structure",
+              "architecture/multi-outcome-markets",
+              "architecture/leverage-and-margin-trading"
             ]
           },
           {
             "group": "Resolution",
             "pages": [
-              "dev/resolution/deterministic-resolution",
-              "dev/resolution/oracle-resolution",
-              "dev/resolution/invalid-markets"
+              "resolution/deterministic-resolution",
+              "resolution/oracle-resolution",
+              "resolution/invalid-markets"
             ]
           },
           {
             "group": "API Reference",
             "pages": [
-              "dev/api-reference/rest-endpoints",
-              "dev/api-reference/websocket-feeds"
+              "api/rest-endpoints",
+              "api/websocket-feeds"
             ]
           }
         ]
