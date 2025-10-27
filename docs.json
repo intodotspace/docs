@@ -11,6 +11,12 @@
     "default": "dark",
     "strict": true
   },
+  "redirects": [
+    {
+      "source": "/:path*",
+      "destination": "/"
+    }
+  ],
   "navigation": {
     "global": {
       "anchors": [
