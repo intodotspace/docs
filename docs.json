@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Space",
+  "name": "Space Docs",
   "colors": {
     "primary": "#8DCBEC",
     "light": "#0E0E0E",
