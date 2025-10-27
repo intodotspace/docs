@@ -40,45 +40,45 @@
             "group": "Start Here",
             "pages": [
               "start/origin",
-              "start/what-is-space",
+              "start/space",
               "start/vision"
             ]
           },
           {
             "group": "Core Concepts",
             "pages": [
-              "concepts/how-prediction-markets-work",
-              "concepts/share-minting-and-burning",
-              "concepts/makers-and-takers",
-              "concepts/market-resolution"
+              "concepts/how-works",
+              "concepts/minting-burning",
+              "concepts/makers-takers",
+              "concepts/resolution"
             ]
           },
           {
             "group": "Features",
             "pages": [
-              "features/central-limit-order-book",
+              "features/clob",
               "features/leverage",
-              "features/multi-outcome-markets",
-              "features/continuous-markets",
-              "features/dynamic-fee-curve",
-              "features/liquidity-rewards",
-              "features/airdrops-points",
-              "features/market-categories"
+              "features/multi-outcome",
+              "features/continuous",
+              "features/dynamic-fees",
+              "features/rewards",
+              "features/airdrops",
+              "features/categories"
             ]
           },
           {
             "group": "User Guides",
             "pages": [
-              "guides/placing-market-order",
-              "guides/placing-limit-order",
-              "guides/managing-orders-and-positions"
+              "guides/market-order",
+              "guides/limit-order",
+              "guides/managing-orders"
             ]
           },
           {
             "group": "$SPACE",
             "pages": [
-              "space/flywheel-mechanism",
-              "space/token-utility"
+              "space/flywheel",
+              "space/utility"
             ]
           },
           {
@@ -87,8 +87,8 @@
               "resources/support",
               "resources/developers",
               "resources/partnerships",
-              "resources/privacy-policy",
-              "resources/terms-of-service"
+              "resources/privacy",
+              "resources/tos"
             ]
           }
         ]
@@ -100,33 +100,33 @@
           {
             "group": "Building on Space",
             "pages": [
-              "build/whats-possible",
-              "build/developer-resources",
+              "build/possibilities",
+              "build/resources",
               "build/security"
             ]
           },
           {
             "group": "Architecture",
             "pages": [
-              "architecture/clob-and-order-matching",
-              "architecture/spl-token-structure",
-              "architecture/multi-outcome-markets",
-              "architecture/leverage-and-margin-trading"
+              "architecture/clob",
+              "architecture/spl-structure",
+              "architecture/multi-outcome",
+              "architecture/leverage"
             ]
           },
           {
             "group": "Resolution",
             "pages": [
-              "resolution/deterministic-resolution",
-              "resolution/oracle-resolution",
-              "resolution/invalid-markets"
+              "resolution/deterministic",
+              "resolution/oracle",
+              "resolution/invalid"
             ]
           },
           {
             "group": "API Reference",
             "pages": [
-              "api/rest-endpoints",
-              "api/websocket-feeds"
+              "api/rest",
+              "api/websocket"
             ]
           }
         ]
