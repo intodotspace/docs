@@ -1,27 +1,29 @@
 ---
 title: "SPL Token Structure"
 ---
+
 Every market uses SPL tokens to represent shares:
+
 - **YES tokens** = outcome happens
 - **NO tokens** = outcome doesn't happen
 - Each pair is backed by 1 USDC
 
 ## Minting & Burning
-Mint: 1 USDC → 1 YES + 1 NO
-Burn: 1 YES + 1 NO → 1 USDC
-This mechanism ensures:
+
+Mint: 1 USDC → 1 YES + 1 NO Burn: 1 YES + 1 NO → 1 USDC This mechanism ensures:
+
 - YES + NO ≈ \$1 (price integrity)
 - Always-available liquidity
 - Capital efficiency in multi-outcome markets
+
 ## Why This Matters
 
-If the order book is thin, you're never stuck. Mint a pair for \$1, sell the side you don't want. This creates your own liquidity without relying on other traders.
+If the [order book](/architecture/clob) is thin, you're never stuck. Mint a pair for \$1, sell the side you don't want. This creates your own liquidity without relying on other traders.
 
 ### Arbitrage Enforcement
 
 If YES = \$0.65 and NO = \$0.40 (sum = \$1.05), arbitrageurs can:
-    1. Buy both for \$1.05
-    2. Burn for \$1.00
-    3. Repeat until prices balance
-This keeps YES + NO ≈ \$1 across all markets.
 
+1. Buy both for \$1.05
+2. Burn for \$1.00
+3. Repeat until prices balance This keeps YES + NO ≈ \$1 across all markets.

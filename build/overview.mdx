@@ -4,21 +4,21 @@ title: "Overview"
 
 ![Dev1 Pn](/images/build.png)
 
-Space provides the infrastructure for prediction markets. Here are some examples of what developers will be able to build on top.
+Space provides the infrastructure for prediction markets. Here are some examples of what developers will be able to build on top with data [pushed](/api/websocket) and and [pulled](/api/rest) from our platform.
 
 ## Trading Tools
 
 **Automated Bots**\
-Monitor probability movements and execute strategies. Buy when the market underprices an outcome, sell when it corrects. Space's 0% maker fees and transparent order book make algorithmic trading viable.
+Monitor probability movements and execute strategies. Buy when the market underprices an outcome, sell when it corrects. Space's [0% maker fees](/concepts/makers-takers) and [transparent order book](/architecture/clob) make algorithmic trading viable.
 
 _Example strategy:_ Mean reversion bot that buys YES shares when probability drops below historical average and sells when it rises above threshold.
 
 **Arbitrage Scanners**\
 Compare Space prices to Polymarket, Kalshi, or traditional trading markets. Execute when spreads exceed transaction fees.\
-Multi-outcome markets create additional arbitrage opportunities - if NO shares for one outcome are mispriced relative to YES shares for another, convert and capture the spread.
+[Multi-outcome markets](/architecture/multi-outcome) create additional arbitrage opportunities - if NO shares for one outcome are mispriced relative to YES shares for another, convert and capture the spread.
 
 **Portfolio Managers**\
-Track positions across multiple markets, calculate total PnL, manage risk exposure. With leverage available, capital efficiency matters. Portfolio tools help users optimize allocation and monitor liquidation risk.
+Track positions across multiple markets, calculate total PnL, manage risk exposure. With [leverage](/architecture/leverage) available, capital efficiency matters. Portfolio tools help users optimize allocation and monitor liquidation risk.
 
 **Alert Systems**\
 Notify users when:
@@ -28,7 +28,7 @@ Notify users when:
 - Market approaching resolution
 - Liquidation risk increases
 
-Real-time WebSocket feeds make this straightforward. Push notifications via email, SMS, Discord, or Telegram.
+Real-time [WebSocket feeds](/api/websocket) make this straightforward. Push notifications via email, SMS, Discord, or Telegram.
 
 ## Analytics Platforms
 
@@ -123,8 +123,8 @@ A bot monitoring BTC price markets:
 
 <Steps>
   <Step title="Monitor Market">
-    Fetch current probability via REST API.\
-    Subscribe to trades via WebSocket for real-time updates.
+    Fetch current probability via [REST API](/api/rest).\
+    Subscribe to trades via [WebSocket](/api/websocket) for real-time updates.
   </Step>
   <Step title="Evaluate Opportunity">
     Compare current probability to historical average.\
@@ -152,4 +152,4 @@ A bot monitoring BTC price markets:
   </Step>
 </Steps>
 
-All of this is possible with Space's transparent order book, real-time data feeds, and 0% maker fees.
+All of this is possible with Space's [transparent order book](/architecture/clob), real-time data feeds, and 0% maker fees.

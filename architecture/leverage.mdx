@@ -2,7 +2,7 @@
 title: "Leverage & Margin Trading"
 ---
 
-Leverage multiplies exposure through margin trading on the CLOB. You post collateral to control a position larger than your margin would normally allow.
+Leverage multiplies exposure through margin trading on the [CLOB](/architecture/clob). You post collateral to control a position larger than your margin would normally allow.
 
 ## How It Works
 
@@ -47,14 +47,13 @@ $$
 
 **Example:**
 
-|                       | **Value**                                                                                                  |
-| --------------------: | ---------------------------------------------------------------------------------------------------------- |
-| **Entry Price**       | \$0.15                                                                                                     |
-| **Margin**            | \$100                                                                                                      |
-| **Shares**            | 3,333                                                                                                      |
-| **Liq. Price**        | ≈\$0.13              |
-| **Explanation**       |If the market price ≈\$0.13, your equity equals 10\% of the position value (\$44.39), and liquidation begins. |
-
+|                 | **Value**                                                                                                    |
+| --------------: | ------------------------------------------------------------------------------------------------------------ |
+| **Entry Price** | \$0.15                                                                                                       |
+| **Margin**      | \$100                                                                                                        |
+| **Shares**      | 3,333                                                                                                        |
+| **Liq. Price**  | ≈\$0.13                                                                                                      |
+| **Explanation** | If the market price ≈\$0.13, your equity equals 10% of the position value (\$44.39), and liquidation begins. |
 
 ## Partial Liquidation
 
@@ -103,10 +102,10 @@ Leverage amplifies both gains and losses proportionally.
 
 **Example:**
 
-|            | Value                                  |
-| ---------- | -------------------------------------- |
-| **Exit**   | \$0.13                                 |
-| **Entry**  | \$0.15                                 |
-| **Shares** | 3,333                                  |
-| **PnL**    | (\$0.13 - \$0.15) × 3,333 = **-\$67**  |
-| **ROE**    | -\$67 / \$100 = **-67%**               |
+|            | Value                                 |
+| ---------- | ------------------------------------- |
+| **Exit**   | \$0.13                                |
+| **Entry**  | \$0.15                                |
+| **Shares** | 3,333                                 |
+| **PnL**    | (\$0.13 - \$0.15) × 3,333 = **-\$67** |
+| **ROE**    | -\$67 / \$100 = **-67%**              |

@@ -47,7 +47,7 @@
           {
             "group": "Core Concepts",
             "pages": [
-              "concepts/how",
+              "concepts/how-it-works",
               "concepts/minting-burning",
               "concepts/makers-takers",
               "concepts/resolution"
