@@ -149,3 +149,8 @@ main a:has([data-component-part="card-content-container"]),
 .prose a:has([data-component-part="card-content-container"]) {
   border-bottom: inherit !important;
 }
+
+/* HIDE POWERED BY MINTLIFY */
+a[href*="mintlify.com"][href*="utm_campaign=poweredBy"] {
+  display: none !important;
+}
