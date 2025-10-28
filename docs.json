@@ -20,7 +20,17 @@
                 "start/what-is-space",
                 "start/vision"
             ]
+        },
+        {
+            "group": "Core Concepts",
+            "pages": [
+                "concepts/how-it-works",
+                "concepts/minting-burning",
+                "concepts/makers-takers",
+                "concepts/resolution"
+            ]
         }
+
       ],
       "global": {
           "anchors": [
