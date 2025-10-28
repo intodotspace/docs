@@ -157,6 +157,5 @@ a[href*="mintlify.com"][href*="utm_campaign=poweredBy"] {
 }
 
 a[href*="mintlify.com"][href*="utm_campaign=poweredBy"]::after {
-  font-size: 14px; /* adjust as needed */
-  content: "c";
+  content: "© 2025 Space. All Rights Reserved.";
 }
