@@ -150,7 +150,13 @@ main a:has([data-component-part="card-content-container"]),
   border-bottom: inherit !important;
 }
 
-/* HIDE POWERED BY MINTLIFY */
+/* CUSTOM */
 a[href*="mintlify.com"][href*="utm_campaign=poweredBy"] {
-  display: none !important;
+  font-size: 0 !important;
+  display: inline-block !important;
+}
+
+a[href*="mintlify.com"][href*="utm_campaign=poweredBy"]::after {
+  font-size: 14px; /* adjust as needed */
+  content: "Your text here";
 }
