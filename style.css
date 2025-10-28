@@ -167,7 +167,7 @@ a[href*="mintlify.com"][href*="utm_campaign=poweredBy"]::after {
     gap: 1rem !important;
   }
   footer#footer > div.flex.gap-6 {
-    flex-direction: column !important;
+    flex-direction: row !important;
     align-items: flex-start !important;
   }
 }
