@@ -160,13 +160,14 @@ a[href*="mintlify.com"][href*="utm_campaign=poweredBy"]::after {
   content: "© 2025 Space. All Rights Reserved.";
   color: rgb(var(--gray-500));
 }
-@media (max-width: 640px) {
+@media (max-width: 600px) {
   footer#footer {
     flex-direction: column !important;
-    align-items: center !important;
+    align-items: flex-start !important;
     gap: 1rem !important;
   }
   footer#footer > div.flex.gap-6 {
-    flex-direction: row !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
   }
 }
