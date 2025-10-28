@@ -161,10 +161,12 @@ a[href*="mintlify.com"][href*="utm_campaign=poweredBy"]::after {
   color: rgb(var(--gray-500));
 }
 @media (max-width: 640px) {
-  footer#footer,
-  footer#footer > div {
+  footer#footer {
     flex-direction: column !important;
     align-items: center !important;
     gap: 1rem !important;
+  }
+  footer#footer > div.flex.gap-6 {
+    flex-direction: row !important;
   }
 }
