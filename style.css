@@ -155,8 +155,15 @@ a[href*="mintlify.com"][href*="utm_campaign=poweredBy"] {
   font-size: 0 !important;
   display: inline-block !important;
 }
-
 a[href*="mintlify.com"][href*="utm_campaign=poweredBy"]::after {
   font-size: 14px;
   content: "© 2025 Space. All Rights Reserved.";
+  color: rgb(var(--gray-500));
+}
+@media (max-width: 640px) {
+  footer#footer {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1rem !important;
+  }
 }
