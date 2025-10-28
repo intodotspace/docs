@@ -135,6 +135,11 @@
   },
   "logo": "/images/logo.png",
   "favicon": "/images/favicon.png",
+  "seo": {
+      "metatags": {
+          "description": "The arena where truth wins, capital flows, and minds compete. Trade with leverage, stack rewards, win more when you're right."
+      }
+  },
   "footer": {
     "socials": {
       "x": "https://x.com/intodotspace",
