@@ -77,8 +77,8 @@
           {
             "group": "$SPACE",
             "pages": [
-              "token/flywheel",
-              "token/utility"
+              "token/utility",
+              "token/flywheel"
             ]
           },
           {
