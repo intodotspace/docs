@@ -85,8 +85,9 @@
             "group": "Resources",
             "pages": [
               "resources/support",
-              "resources/developers",
+              "resources/creators",
               "resources/partnerships",
+              "resources/developers",
               "resources/privacy",
               "resources/tos"
             ]
