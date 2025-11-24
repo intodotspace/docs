@@ -1,0 +1,133 @@
+---
+title: "WebSocket 피드"
+description: "실시간 오더북 및 거래 스트림"
+---
+연결 주소: `wss://ws.into.space/v1`
+<Info>
+공개 출시는 공식 X/Twitter, Telegram 및 Discord에서 발표될 예정입니다
+</Info>
+## 연결
+```javascript
+const ws = new WebSocket('wss://ws.into.space/v1');
+ws.onopen = () => {
+  // 연결 완료
+  // 구독 메시지 전송
+};
+ws.onmessage = (event) => {
+  const data = JSON.parse(event.data);
+  // 업데이트 처리
+};
+```
+## 구독 형식
+```json
+{
+  "type": "subscribe",
+  "channels": [
+    "trades:btc-150k-2025",
+    "orderbook:btc-150k-2025:YES",
+    "markets"
+  ]
+}
+```
+## 채널: 거래
+**구독:**
+```json
+{
+  "type": "subscribe",
+  "channels": ["trades:btc-150k-2025"]
+}
+```
+**업데이트 메시지:**
+```json
+{
+  "channel": "trades",
+  "market": "btc-150k-2025",
+  "data": {
+    "id": "trade_xyz789",
+    "outcome": "YES",
+    "price": 0.352,
+    "quantity": 2500,
+    "side": "BUY",
+    "timestamp": 1704153650
+  }
+}
+```
+## 채널: 오더북
+**구독:**
+```json
+{
+  "type": "subscribe",
+  "channels": ["orderbook:btc-150k-2025:YES"]
+}
+```
+**업데이트 메시지 (스냅샷):**
+```json
+{
+  "channel": "orderbook",
+  "market": "btc-150k-2025",
+  "outcome": "YES",
+  "type": "snapshot",
+  "data": {
+    "bids": [
+      { "price": 0.349, "quantity": 5000 },
+      { "price": 0.348, "quantity": 8500 }
+    ],
+    "asks": [
+      { "price": 0.351, "quantity": 4200 },
+      { "price": 0.352, "quantity": 6100 }
+    ],
+    "timestamp": 1704153650
+  }
+}
+```
+**업데이트 메시지 (델타):**
+```json
+{
+  "channel": "orderbook",
+  "market": "btc-150k-2025",
+  "outcome": "YES",
+  "type": "delta",
+  "data": {
+    "side": "bids",
+    "price": 0.349,
+    "quantity": 5500,
+    "timestamp": 1704153655
+  }
+}
+```
+## 채널: 마켓
+**구독:**
+```json
+{
+  "type": "subscribe",
+  "channels": ["markets"]
+}
+```
+**업데이트 메시지:**
+```json
+{
+  "channel": "markets",
+  "data": {
+    "id": "btc-150k-2025",
+    "probability": 0.352,
+    "volume24h": 1260000,
+    "liquidity": 455000,
+    "timestamp": 1704153650
+  }
+}
+```
+## 요청 제한
+- **WebSocket 연결:** 사용자당 최대 10개 동시 연결
+## 오류 처리
+**WebSocket 오류:**
+```json
+{
+  "type": "error",
+  "code": "INVALID_CHANNEL",
+  "message": "Channel format is invalid"
+}
+```
+**일반 오류 코드:**
+- `INVALID_CHANNEL` - 구독 형식이 올바르지 않음
+- `RATE_LIMIT_EXCEEDED` - 연결 수 초과
+- `CONNECTION_TIMEOUT` - 장시간 활동 없음

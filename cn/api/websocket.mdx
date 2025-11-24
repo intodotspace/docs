@@ -1,0 +1,133 @@
+---
+title: "WebSocket 数据流"
+description: "实时订单簿和交易推送"
+---
+连接地址：`wss://ws.into.space/v1`
+<Info>
+公开发布将在我们的官方 X/Twitter、Telegram 和 Discord 上公布
+</Info>
+## 连接
+```javascript
+const ws = new WebSocket('wss://ws.into.space/v1');
+ws.onopen = () => {
+  // 连接已建立
+  // 发送订阅消息
+};
+ws.onmessage = (event) => {
+  const data = JSON.parse(event.data);
+  // 处理更新
+};
+```
+## 订阅格式
+```json
+{
+  "type": "subscribe",
+  "channels": [
+    "trades:btc-150k-2025",
+    "orderbook:btc-150k-2025:YES",
+    "markets"
+  ]
+}
+```
+## 频道：交易
+**订阅：**
+```json
+{
+  "type": "subscribe",
+  "channels": ["trades:btc-150k-2025"]
+}
+```
+**更新消息：**
+```json
+{
+  "channel": "trades",
+  "market": "btc-150k-2025",
+  "data": {
+    "id": "trade_xyz789",
+    "outcome": "YES",
+    "price": 0.352,
+    "quantity": 2500,
+    "side": "BUY",
+    "timestamp": 1704153650
+  }
+}
+```
+## 频道：订单簿
+**订阅：**
+```json
+{
+  "type": "subscribe",
+  "channels": ["orderbook:btc-150k-2025:YES"]
+}
+```
+**更新消息（快照）：**
+```json
+{
+  "channel": "orderbook",
+  "market": "btc-150k-2025",
+  "outcome": "YES",
+  "type": "snapshot",
+  "data": {
+    "bids": [
+      { "price": 0.349, "quantity": 5000 },
+      { "price": 0.348, "quantity": 8500 }
+    ],
+    "asks": [
+      { "price": 0.351, "quantity": 4200 },
+      { "price": 0.352, "quantity": 6100 }
+    ],
+    "timestamp": 1704153650
+  }
+}
+```
+**更新消息（增量）：**
+```json
+{
+  "channel": "orderbook",
+  "market": "btc-150k-2025",
+  "outcome": "YES",
+  "type": "delta",
+  "data": {
+    "side": "bids",
+    "price": 0.349,
+    "quantity": 5500,
+    "timestamp": 1704153655
+  }
+}
+```
+## 频道：市场
+**订阅：**
+```json
+{
+  "type": "subscribe",
+  "channels": ["markets"]
+}
+```
+**更新消息：**
+```json
+{
+  "channel": "markets",
+  "data": {
+    "id": "btc-150k-2025",
+    "probability": 0.352,
+    "volume24h": 1260000,
+    "liquidity": 455000,
+    "timestamp": 1704153650
+  }
+}
+```
+## 速率限制
+- **WebSocket 连接：** 每用户最多 10 个并发连接
+## 错误处理
+**WebSocket 错误：**
+```json
+{
+  "type": "error",
+  "code": "INVALID_CHANNEL",
+  "message": "Channel format is invalid"
+}
+```
+**常见错误代码：**
+- `INVALID_CHANNEL` - 订阅格式不正确
+- `RATE_LIMIT_EXCEEDED` - 连接数过多
+- `CONNECTION_TIMEOUT` - 长时间无活动

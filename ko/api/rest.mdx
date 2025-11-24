@@ -1,0 +1,174 @@
+---
+title: "REST 엔드포인트"
+description: "마켓, 오더북, 거래 데이터 조회"
+---
+기본 URL: `https://api.into.space/v1`
+<Info>
+공개 출시는 공식 X/Twitter, Telegram 및 Discord에서 발표될 예정입니다
+</Info>
+## 마켓
+### GET /markets
+**쿼리 파라미터:**
+- `category` (문자열): 카테고리별 필터 (crypto, politics, sports, technology, economy, culture)
+- `status` (문자열): 상태별 필터 (active, resolved, all)
+- `limit` (숫자): 페이지당 결과 수 (기본값 50, 최대 100)
+- `offset` (숫자): 페이지네이션 오프셋
+**응답:**
+```json
+{
+  "markets": [
+    {
+      "id": "btc-150k-2025",
+      "question": "Will BTC close above \$150,000 in 2025?",
+      "category": "crypto",
+      "expiresAt": 1735689599,
+      "status": "active",
+      "volume24h": 1250000,
+      "liquidity": 450000,
+      "probability": 0.35
+    }
+  ],
+  "total": 245,
+  "limit": 50,
+  "offset": 0
+}
+```
+### GET /markets/id
+**응답:**
+```json
+{
+  "id": "btc-150k-2025",
+  "question": "Will BTC close above \$150,000 in 2025?",
+  "description": "Market resolves YES if Bitcoin...",
+  "category": "crypto",
+  "createdAt": 1704067200,
+  "expiresAt": 1735689599,
+  "status": "active",
+  "resolutionSource": "Pyth Oracle 15-min TWAP",
+  "yesToken": "YEStok...",
+  "noToken": "NOtok...",
+  "volume": {
+    "total": 5250000,
+    "24h": 1250000,
+    "7d": 3100000
+  },
+  "liquidity": 450000,
+  "prices": {
+    "yes": 0.35,
+    "no": 0.65,
+    "lastUpdate": 1704153600
+  },
+  "stats": {
+    "totalTrades": 12450,
+    "uniqueTraders": 1834,
+    "avgTradeSize": 421
+  }
+}
+```
+### GET /markets/id/orderbook
+**쿼리 파라미터:**
+- `outcome` (문자열): YES, NO, 또는 다중 결과 마켓의 결과 이름
+- `depth` (숫자): 가격 레벨 수 (기본값 20, 최대 100)
+**응답:**
+```json
+{
+  "market": "btc-150k-2025",
+  "outcome": "YES",
+  "timestamp": 1704153600,
+  "bids": [
+    { "price": 0.349, "quantity": 5000, "orders": 12 },
+    { "price": 0.348, "quantity": 8500, "orders": 23 }
+  ],
+  "asks": [
+    { "price": 0.351, "quantity": 4200, "orders": 8 },
+    { "price": 0.352, "quantity": 6100, "orders": 15 }
+  ],
+  "spread": 0.002,
+  "midPrice": 0.350
+}
+```
+### GET /markets/id/trades
+**쿼리 파라미터:**
+- `outcome` (문자열): 결과별 필터
+- `limit` (숫자): 거래 수 (기본값 50, 최대 500)
+- `before` (타임스탬프): 페이지네이션 커서
+- `after` (타임스탬프): 페이지네이션 커서
+**응답:**
+```json
+{
+  "trades": [
+    {
+      "id": "trade_abc123",
+      "market": "btc-150k-2025",
+      "outcome": "YES",
+      "price": 0.350,
+      "quantity": 1000,
+      "side": "BUY",
+      "timestamp": 1704153540
+    }
+  ],
+  "hasMore": true
+}
+```
+### GET /markets/id/candles
+**쿼리 파라미터:**
+- `outcome` (문자열): YES, NO, 또는 결과 이름
+- `resolution` (문자열): 1m, 5m, 15m, 1h, 4h, 1d
+- `from` (타임스탬프): 시작 시간
+- `to` (타임스탬프): 종료 시간
+**응답:**
+```json
+{
+  "candles": [
+    {
+      "time": 1704153600,
+      "open": 0.348,
+      "high": 0.355,
+      "low": 0.346,
+      "close": 0.351,
+      "volume": 125000
+    }
+  ]
+}
+```
+## 플랫폼 통계
+### GET /stats
+**응답:**
+```json
+{
+  "totalVolume": 125000000,
+  "volume24h": 3500000,
+  "totalMarkets": 245,
+  "activeMarkets": 180,
+  "totalTrades": 1250000,
+  "uniqueTraders": 45000,
+  "tvl": 12500000,
+  "timestamp": 1704153600
+}
+```
+## 요청 제한
+- **공개 엔드포인트:** 100 요청/분
+- **인증 엔드포인트:** 500 요청/분
+**요청 제한 헤더:**
+```json
+X-RateLimit-Limit: 100
+X-RateLimit-Remaining: 87
+X-RateLimit-Reset: 1704153660
+```
+## 오류 처리
+**오류 응답:**
+```json
+{
+  "error": {
+    "code": "MARKET_NOT_FOUND",
+    "message": "The specified market does not exist",
+    "status": 404
+  }
+}
+```
+**일반 오류 코드:**
+- `MARKET_NOT_FOUND` (404)
+- `INVALID_PARAMETERS` (400)
+- `RATE_LIMIT_EXCEEDED` (429)
+- `UNAUTHORIZED` (401)
+- `INTERNAL_ERROR` (500)

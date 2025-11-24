@@ -12,16 +12,46 @@
     "strict": true
   },
   "redirects": [
-    { "source": "/start/:slug*", "destination": "/en/start/:slug*" },
-    { "source": "/concepts/:slug*", "destination": "/en/concepts/:slug*" },
-    { "source": "/features/:slug*", "destination": "/en/features/:slug*" },
-    { "source": "/guides/:slug*", "destination": "/en/guides/:slug*" },
-    { "source": "/token/:slug*", "destination": "/en/token/:slug*" },
-    { "source": "/resources/:slug*", "destination": "/en/resources/:slug*" },
-    { "source": "/build/:slug*", "destination": "/en/build/:slug*" },
-    { "source": "/architecture/:slug*", "destination": "/en/architecture/:slug*" },
-    { "source": "/resolution/:slug*", "destination": "/en/resolution/:slug*" },
-    { "source": "/api/:slug*", "destination": "/en/api/:slug*" }
+    {
+      "source": "/start/:slug*",
+      "destination": "/en/start/:slug*"
+    },
+    {
+      "source": "/concepts/:slug*",
+      "destination": "/en/concepts/:slug*"
+    },
+    {
+      "source": "/features/:slug*",
+      "destination": "/en/features/:slug*"
+    },
+    {
+      "source": "/guides/:slug*",
+      "destination": "/en/guides/:slug*"
+    },
+    {
+      "source": "/token/:slug*",
+      "destination": "/en/token/:slug*"
+    },
+    {
+      "source": "/resources/:slug*",
+      "destination": "/en/resources/:slug*"
+    },
+    {
+      "source": "/build/:slug*",
+      "destination": "/en/build/:slug*"
+    },
+    {
+      "source": "/architecture/:slug*",
+      "destination": "/en/architecture/:slug*"
+    },
+    {
+      "source": "/resolution/:slug*",
+      "destination": "/en/resolution/:slug*"
+    },
+    {
+      "source": "/api/:slug*",
+      "destination": "/en/api/:slug*"
+    }
   ],
   "navigation": {
     "languages": [
@@ -29,9 +59,21 @@
         "language": "en",
         "global": {
           "anchors": [
-            { "anchor": "Main Site", "icon": "globe", "href": "https://into.space" },
-            { "anchor": "Twitter", "icon": "x-twitter", "href": "https://x.com/intodotspace" },
-            { "anchor": "Telegram", "icon": "telegram", "href": "https://t.me/intodotspace" }
+            {
+              "anchor": "Main Site",
+              "icon": "globe",
+              "href": "https://into.space"
+            },
+            {
+              "anchor": "Twitter",
+              "icon": "x-twitter",
+              "href": "https://x.com/intodotspace"
+            },
+            {
+              "anchor": "Telegram",
+              "icon": "telegram",
+              "href": "https://t.me/intodotspace"
+            }
           ]
         },
         "tabs": [
@@ -141,9 +183,21 @@
         "language": "cn",
         "global": {
           "anchors": [
-            { "anchor": "Main Site", "icon": "globe", "href": "https://into.space" },
-            { "anchor": "Twitter", "icon": "x-twitter", "href": "https://x.com/intodotspace" },
-            { "anchor": "Telegram", "icon": "telegram", "href": "https://t.me/intodotspace" }
+            {
+              "anchor": "Main Site",
+              "icon": "globe",
+              "href": "https://into.space"
+            },
+            {
+              "anchor": "Twitter",
+              "icon": "x-twitter",
+              "href": "https://x.com/intodotspace"
+            },
+            {
+              "anchor": "Telegram",
+              "icon": "telegram",
+              "href": "https://t.me/intodotspace"
+            }
           ]
         },
         "tabs": [
@@ -253,9 +307,21 @@
         "language": "ko",
         "global": {
           "anchors": [
-            { "anchor": "Main Site", "icon": "globe", "href": "https://into.space" },
-            { "anchor": "Twitter", "icon": "x-twitter", "href": "https://x.com/intodotspace" },
-            { "anchor": "Telegram", "icon": "telegram", "href": "https://t.me/intodotspace" }
+            {
+              "anchor": "Main Site",
+              "icon": "globe",
+              "href": "https://into.space"
+            },
+            {
+              "anchor": "Twitter",
+              "icon": "x-twitter",
+              "href": "https://x.com/intodotspace"
+            },
+            {
+              "anchor": "Telegram",
+              "icon": "telegram",
+              "href": "https://t.me/intodotspace"
+            }
           ]
         },
         "tabs": [
@@ -340,14 +406,6 @@
                   "ko/architecture/spl-structure",
                   "ko/architecture/multi-outcome",
                   "ko/architecture/leverage"
-                ]
-              },
-              {
-                "group": "Resolution",
-                "pages": [
-                  "ko/resolution/deterministic",
-                  "ko/resolution/oracle",
-                  "ko/resolution/invalid"
                 ]
               },
               {

@@ -1,0 +1,174 @@
+---
+title: "REST 接口"
+description: "获取市场、订单簿和交易数据"
+---
+基础 URL：`https://api.into.space/v1`
+<Info>
+公开发布将在我们的官方 X/Twitter、Telegram 和 Discord 上公布
+</Info>
+## 市场
+### GET /markets
+**查询参数：**
+- `category`（字符串）：按类别筛选（crypto、politics、sports、technology、economy、culture）
+- `status`（字符串）：按状态筛选（active、resolved、all）
+- `limit`（数字）：每页结果数（默认 50，最大 100）
+- `offset`（数字）：分页偏移量
+**响应：**
+```json
+{
+  "markets": [
+    {
+      "id": "btc-150k-2025",
+      "question": "Will BTC close above \$150,000 in 2025?",
+      "category": "crypto",
+      "expiresAt": 1735689599,
+      "status": "active",
+      "volume24h": 1250000,
+      "liquidity": 450000,
+      "probability": 0.35
+    }
+  ],
+  "total": 245,
+  "limit": 50,
+  "offset": 0
+}
+```
+### GET /markets/id
+**响应：**
+```json
+{
+  "id": "btc-150k-2025",
+  "question": "Will BTC close above \$150,000 in 2025?",
+  "description": "Market resolves YES if Bitcoin...",
+  "category": "crypto",
+  "createdAt": 1704067200,
+  "expiresAt": 1735689599,
+  "status": "active",
+  "resolutionSource": "Pyth Oracle 15-min TWAP",
+  "yesToken": "YEStok...",
+  "noToken": "NOtok...",
+  "volume": {
+    "total": 5250000,
+    "24h": 1250000,
+    "7d": 3100000
+  },
+  "liquidity": 450000,
+  "prices": {
+    "yes": 0.35,
+    "no": 0.65,
+    "lastUpdate": 1704153600
+  },
+  "stats": {
+    "totalTrades": 12450,
+    "uniqueTraders": 1834,
+    "avgTradeSize": 421
+  }
+}
+```
+### GET /markets/id/orderbook
+**查询参数：**
+- `outcome`（字符串）：YES、NO，或多结果市场的结果名称
+- `depth`（数字）：价格档位数量（默认 20，最大 100）
+**响应：**
+```json
+{
+  "market": "btc-150k-2025",
+  "outcome": "YES",
+  "timestamp": 1704153600,
+  "bids": [
+    { "price": 0.349, "quantity": 5000, "orders": 12 },
+    { "price": 0.348, "quantity": 8500, "orders": 23 }
+  ],
+  "asks": [
+    { "price": 0.351, "quantity": 4200, "orders": 8 },
+    { "price": 0.352, "quantity": 6100, "orders": 15 }
+  ],
+  "spread": 0.002,
+  "midPrice": 0.350
+}
+```
+### GET /markets/id/trades
+**查询参数：**
+- `outcome`（字符串）：按结果筛选
+- `limit`（数字）：交易数量（默认 50，最大 500）
+- `before`（时间戳）：分页游标
+- `after`（时间戳）：分页游标
+**响应：**
+```json
+{
+  "trades": [
+    {
+      "id": "trade_abc123",
+      "market": "btc-150k-2025",
+      "outcome": "YES",
+      "price": 0.350,
+      "quantity": 1000,
+      "side": "BUY",
+      "timestamp": 1704153540
+    }
+  ],
+  "hasMore": true
+}
+```
+### GET /markets/id/candles
+**查询参数：**
+- `outcome`（字符串）：YES、NO，或结果名称
+- `resolution`（字符串）：1m、5m、15m、1h、4h、1d
+- `from`（时间戳）：开始时间
+- `to`（时间戳）：结束时间
+**响应：**
+```json
+{
+  "candles": [
+    {
+      "time": 1704153600,
+      "open": 0.348,
+      "high": 0.355,
+      "low": 0.346,
+      "close": 0.351,
+      "volume": 125000
+    }
+  ]
+}
+```
+## 平台统计
+### GET /stats
+**响应：**
+```json
+{
+  "totalVolume": 125000000,
+  "volume24h": 3500000,
+  "totalMarkets": 245,
+  "activeMarkets": 180,
+  "totalTrades": 1250000,
+  "uniqueTraders": 45000,
+  "tvl": 12500000,
+  "timestamp": 1704153600
+}
+```
+## 速率限制
+- **公开接口：** 100 次请求/分钟
+- **认证接口：** 500 次请求/分钟
+**速率限制响应头：**
+```json
+X-RateLimit-Limit: 100
+X-RateLimit-Remaining: 87
+X-RateLimit-Reset: 1704153660
+```
+## 错误处理
+**错误响应：**
+```json
+{
+  "error": {
+    "code": "MARKET_NOT_FOUND",
+    "message": "The specified market does not exist",
+    "status": 404
+  }
+}
+```
+**常见错误代码：**
+- `MARKET_NOT_FOUND`（404）
+- `INVALID_PARAMETERS`（400）
+- `RATE_LIMIT_EXCEEDED`（429）
+- `UNAUTHORIZED`（401）
+- `INTERNAL_ERROR`（500）
