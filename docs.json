@@ -39,22 +39,100 @@
             "tab": "Documentation",
             "icon": "book",
             "groups": [
-              { "group": "Start Here", "pages": ["en/start/origin", "en/start/what-is-space", "en/start/vision"] },
-              { "group": "Core Concepts", "pages": ["en/concepts/how-it-works", "en/concepts/minting-burning", "en/concepts/makers-takers", "en/concepts/resolution"] },
-              { "group": "Features", "pages": ["en/features/clob", "en/features/leverage", "en/features/multi-outcome", "en/features/continuous", "en/features/dynamic-fees", "en/features/rewards", "en/features/airdrops", "en/features/categories"] },
-              { "group": "User Guides", "pages": ["en/guides/market-order", "en/guides/limit-order", "en/guides/managing-orders"] },
-              { "group": "$SPACE", "pages": ["en/token/utility", "en/token/flywheel"] },
-              { "group": "Resources", "pages": ["en/resources/support", "en/resources/partnerships", "en/resources/creators", "en/resources/developers", "en/resources/privacy", "en/resources/tos"] }
+              {
+                "group": "Start Here",
+                "pages": [
+                  "en/start/origin",
+                  "en/start/what-is-space",
+                  "en/start/vision"
+                ]
+              },
+              {
+                "group": "Core Concepts",
+                "pages": [
+                  "en/concepts/how-it-works",
+                  "en/concepts/minting-burning",
+                  "en/concepts/makers-takers",
+                  "en/concepts/resolution"
+                ]
+              },
+              {
+                "group": "Features",
+                "pages": [
+                  "en/features/clob",
+                  "en/features/leverage",
+                  "en/features/multi-outcome",
+                  "en/features/continuous",
+                  "en/features/dynamic-fees",
+                  "en/features/rewards",
+                  "en/features/airdrops",
+                  "en/features/categories"
+                ]
+              },
+              {
+                "group": "User Guides",
+                "pages": [
+                  "en/guides/market-order",
+                  "en/guides/limit-order",
+                  "en/guides/managing-orders"
+                ]
+              },
+              {
+                "group": "$SPACE",
+                "pages": [
+                  "en/token/utility",
+                  "en/token/flywheel"
+                ]
+              },
+              {
+                "group": "Resources",
+                "pages": [
+                  "en/resources/support",
+                  "en/resources/partnerships",
+                  "en/resources/creators",
+                  "en/resources/developers",
+                  "en/resources/privacy",
+                  "en/resources/tos"
+                ]
+              }
             ]
           },
           {
             "tab": "Developers",
             "icon": "code",
             "groups": [
-              { "group": "Building on Space", "pages": ["en/build/overview", "en/build/resources", "en/build/security"] },
-              { "group": "Architecture", "pages": ["en/architecture/clob", "en/architecture/spl-structure", "en/architecture/multi-outcome", "en/architecture/leverage"] },
-              { "group": "Resolution", "pages": ["en/resolution/deterministic", "en/resolution/oracle", "en/resolution/invalid"] },
-              { "group": "API Reference", "pages": ["en/api/rest", "en/api/websocket"] }
+              {
+                "group": "Building on Space",
+                "pages": [
+                  "en/build/overview",
+                  "en/build/resources",
+                  "en/build/security"
+                ]
+              },
+              {
+                "group": "Architecture",
+                "pages": [
+                  "en/architecture/clob",
+                  "en/architecture/spl-structure",
+                  "en/architecture/multi-outcome",
+                  "en/architecture/leverage"
+                ]
+              },
+              {
+                "group": "Resolution",
+                "pages": [
+                  "en/resolution/deterministic",
+                  "en/resolution/oracle",
+                  "en/resolution/invalid"
+                ]
+              },
+              {
+                "group": "API Reference",
+                "pages": [
+                  "en/api/rest",
+                  "en/api/websocket"
+                ]
+              }
             ]
           }
         ]
@@ -73,22 +151,100 @@
             "tab": "Documentation",
             "icon": "book",
             "groups": [
-              { "group": "Start Here", "pages": ["cn/start/origin", "cn/start/what-is-space", "cn/start/vision"] },
-              { "group": "Core Concepts", "pages": ["cn/concepts/how-it-works", "cn/concepts/minting-burning", "cn/concepts/makers-takers", "cn/concepts/resolution"] },
-              { "group": "Features", "pages": ["cn/features/clob", "cn/features/leverage", "cn/features/multi-outcome", "cn/features/continuous", "cn/features/dynamic-fees", "cn/features/rewards", "cn/features/airdrops", "cn/features/categories"] },
-              { "group": "User Guides", "pages": ["cn/guides/market-order", "cn/guides/limit-order", "cn/guides/managing-orders"] },
-              { "group": "$SPACE", "pages": ["cn/token/utility", "cn/token/flywheel"] },
-              { "group": "Resources", "pages": ["cn/resources/support", "cn/resources/partnerships", "cn/resources/creators", "cn/resources/developers", "cn/resources/privacy", "cn/resources/tos"] }
+              {
+                "group": "Start Here",
+                "pages": [
+                  "cn/start/origin",
+                  "cn/start/what-is-space",
+                  "cn/start/vision"
+                ]
+              },
+              {
+                "group": "Core Concepts",
+                "pages": [
+                  "cn/concepts/how-it-works",
+                  "cn/concepts/minting-burning",
+                  "cn/concepts/makers-takers",
+                  "cn/concepts/resolution"
+                ]
+              },
+              {
+                "group": "Features",
+                "pages": [
+                  "cn/features/clob",
+                  "cn/features/leverage",
+                  "cn/features/multi-outcome",
+                  "cn/features/continuous",
+                  "cn/features/dynamic-fees",
+                  "cn/features/rewards",
+                  "cn/features/airdrops",
+                  "cn/features/categories"
+                ]
+              },
+              {
+                "group": "User Guides",
+                "pages": [
+                  "cn/guides/market-order",
+                  "cn/guides/limit-order",
+                  "cn/guides/managing-orders"
+                ]
+              },
+              {
+                "group": "$SPACE",
+                "pages": [
+                  "cn/token/utility",
+                  "cn/token/flywheel"
+                ]
+              },
+              {
+                "group": "Resources",
+                "pages": [
+                  "cn/resources/support",
+                  "cn/resources/partnerships",
+                  "cn/resources/creators",
+                  "cn/resources/developers",
+                  "cn/resources/privacy",
+                  "cn/resources/tos"
+                ]
+              }
             ]
           },
           {
             "tab": "Developers",
             "icon": "code",
             "groups": [
-              { "group": "Building on Space", "pages": ["cn/build/overview", "cn/build/resources", "cn/build/security"] },
-              { "group": "Architecture", "pages": ["cn/architecture/clob", "cn/architecture/spl-structure", "cn/architecture/multi-outcome", "cn/architecture/leverage"] },
-              { "group": "Resolution", "pages": ["cn/resolution/deterministic", "cn/resolution/oracle", "cn/resolution/invalid"] },
-              { "group": "API Reference", "pages": ["cn/api/rest", "cn/api/websocket"] }
+              {
+                "group": "Building on Space",
+                "pages": [
+                  "cn/build/overview",
+                  "cn/build/resources",
+                  "cn/build/security"
+                ]
+              },
+              {
+                "group": "Architecture",
+                "pages": [
+                  "cn/architecture/clob",
+                  "cn/architecture/spl-structure",
+                  "cn/architecture/multi-outcome",
+                  "cn/architecture/leverage"
+                ]
+              },
+              {
+                "group": "Resolution",
+                "pages": [
+                  "cn/resolution/deterministic",
+                  "cn/resolution/oracle",
+                  "cn/resolution/invalid"
+                ]
+              },
+              {
+                "group": "API Reference",
+                "pages": [
+                  "cn/api/rest",
+                  "cn/api/websocket"
+                ]
+              }
             ]
           }
         ]
@@ -107,22 +263,100 @@
             "tab": "Documentation",
             "icon": "book",
             "groups": [
-              { "group": "Start Here", "pages": ["ko/start/origin", "ko/start/what-is-space", "ko/start/vision"] },
-              { "group": "Core Concepts", "pages": ["ko/concepts/how-it-works", "ko/concepts/minting-burning", "ko/concepts/makers-takers", "ko/concepts/resolution"] },
-              { "group": "Features", "pages": ["ko/features/clob", "ko/features/leverage", "ko/features/multi-outcome", "ko/features/continuous", "ko/features/dynamic-fees", "ko/features/rewards", "ko/features/airdrops", "ko/features/categories"] },
-              { "group": "User Guides", "pages": ["ko/guides/market-order", "ko/guides/limit-order", "ko/guides/managing-orders"] },
-              { "group": "$SPACE", "pages": ["ko/token/utility", "ko/token/flywheel"] },
-              { "group": "Resources", "pages": ["ko/resources/support", "ko/resources/partnerships", "ko/resources/creators", "ko/resources/developers", "ko/resources/privacy", "ko/resources/tos"] }
+              {
+                "group": "Start Here",
+                "pages": [
+                  "ko/start/origin",
+                  "ko/start/what-is-space",
+                  "ko/start/vision"
+                ]
+              },
+              {
+                "group": "Core Concepts",
+                "pages": [
+                  "ko/concepts/how-it-works",
+                  "ko/concepts/minting-burning",
+                  "ko/concepts/makers-takers",
+                  "ko/concepts/resolution"
+                ]
+              },
+              {
+                "group": "Features",
+                "pages": [
+                  "ko/features/clob",
+                  "ko/features/leverage",
+                  "ko/features/multi-outcome",
+                  "ko/features/continuous",
+                  "ko/features/dynamic-fees",
+                  "ko/features/rewards",
+                  "ko/features/airdrops",
+                  "ko/features/categories"
+                ]
+              },
+              {
+                "group": "User Guides",
+                "pages": [
+                  "ko/guides/market-order",
+                  "ko/guides/limit-order",
+                  "ko/guides/managing-orders"
+                ]
+              },
+              {
+                "group": "$SPACE",
+                "pages": [
+                  "ko/token/utility",
+                  "ko/token/flywheel"
+                ]
+              },
+              {
+                "group": "Resources",
+                "pages": [
+                  "ko/resources/support",
+                  "ko/resources/partnerships",
+                  "ko/resources/creators",
+                  "ko/resources/developers",
+                  "ko/resources/privacy",
+                  "ko/resources/tos"
+                ]
+              }
             ]
           },
           {
             "tab": "Developers",
             "icon": "code",
             "groups": [
-              { "group": "Building on Space", "pages": ["ko/build/overview", "ko/build/resources", "ko/build/security"] },
-              { "group": "Architecture", "pages": ["ko/architecture/clob", "ko/architecture/spl-structure", "ko/architecture/multi-outcome", "ko/architecture/leverage"] },
-              { "group": "Resolution", "pages": ["ko/resolution/deterministic", "ko/resolution/oracle", "ko/resolution/invalid"] },
-              { "group": "API Reference", "pages": ["ko/api/rest", "ko/api/websocket"] }
+              {
+                "group": "Building on Space",
+                "pages": [
+                  "ko/build/overview",
+                  "ko/build/resources",
+                  "ko/build/security"
+                ]
+              },
+              {
+                "group": "Architecture",
+                "pages": [
+                  "ko/architecture/clob",
+                  "ko/architecture/spl-structure",
+                  "ko/architecture/multi-outcome",
+                  "ko/architecture/leverage"
+                ]
+              },
+              {
+                "group": "Resolution",
+                "pages": [
+                  "ko/resolution/deterministic",
+                  "ko/resolution/oracle",
+                  "ko/resolution/invalid"
+                ]
+              },
+              {
+                "group": "API Reference",
+                "pages": [
+                  "ko/api/rest",
+                  "ko/api/websocket"
+                ]
+              }
             ]
           }
         ]
