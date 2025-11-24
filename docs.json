@@ -12,122 +12,251 @@
     "strict": true
   },
   "navigation": {
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Main Site",
-          "icon": "globe",
-          "href": "https://into.space"
-        },
-        {
-          "anchor": "Twitter",
-          "icon": "x-twitter",
-          "href": "https://x.com/intodotspace"
-        },
-        {
-          "anchor": "Telegram",
-          "icon": "telegram",
-          "href": "https://t.me/intodotspace"
-        }
-      ]
-    },
-    "tabs": [
+    "languages": [
       {
-        "tab": "Documentation",
-        "icon": "book",
-        "groups": [
+        "language": "en",
+        "global": {
+          "anchors": [
+            {
+              "anchor": "Main Site",
+              "icon": "globe",
+              "href": "https://into.space"
+            },
+            {
+              "anchor": "Twitter",
+              "icon": "x-twitter",
+              "href": "https://x.com/intodotspace"
+            },
+            {
+              "anchor": "Telegram",
+              "icon": "telegram",
+              "href": "https://t.me/intodotspace"
+            }
+          ]
+        },
+        "tabs": [
           {
-            "group": "Start Here",
-            "pages": [
-              "start/origin",
-              "start/what-is-space",
-              "start/vision"
+            "tab": "Documentation",
+            "icon": "book",
+            "groups": [
+              {
+                "group": "Start Here",
+                "pages": [
+                  "en/start/origin",
+                  "en/start/what-is-space",
+                  "en/start/vision"
+                ]
+              },
+              {
+                "group": "Core Concepts",
+                "pages": [
+                  "en/concepts/how-it-works",
+                  "en/concepts/minting-burning",
+                  "en/concepts/makers-takers",
+                  "en/concepts/resolution"
+                ]
+              },
+              {
+                "group": "Features",
+                "pages": [
+                  "en/features/clob",
+                  "en/features/leverage",
+                  "en/features/multi-outcome",
+                  "en/features/continuous",
+                  "en/features/dynamic-fees",
+                  "en/features/rewards",
+                  "en/features/airdrops",
+                  "en/features/categories"
+                ]
+              },
+              {
+                "group": "User Guides",
+                "pages": [
+                  "en/guides/market-order",
+                  "en/guides/limit-order",
+                  "en/guides/managing-orders"
+                ]
+              },
+              {
+                "group": "$SPACE",
+                "pages": [
+                  "en/token/utility",
+                  "en/token/flywheel"
+                ]
+              },
+              {
+                "group": "Resources",
+                "pages": [
+                  "en/resources/support",
+                  "en/resources/partnerships",
+                  "en/resources/creators",
+                  "en/resources/developers",
+                  "en/resources/privacy",
+                  "en/resources/tos"
+                ]
+              }
             ]
           },
           {
-            "group": "Core Concepts",
-            "pages": [
-              "concepts/how-it-works",
-              "concepts/minting-burning",
-              "concepts/makers-takers",
-              "concepts/resolution"
-            ]
-          },
-          {
-            "group": "Features",
-            "pages": [
-              "features/clob",
-              "features/leverage",
-              "features/multi-outcome",
-              "features/continuous",
-              "features/dynamic-fees",
-              "features/rewards",
-              "features/airdrops",
-              "features/categories"
-            ]
-          },
-          {
-            "group": "User Guides",
-            "pages": [
-              "guides/market-order",
-              "guides/limit-order",
-              "guides/managing-orders"
-            ]
-          },
-          {
-            "group": "$SPACE",
-            "pages": [
-              "token/utility",
-              "token/flywheel"
-            ]
-          },
-          {
-            "group": "Resources",
-            "pages": [
-              "resources/support",
-              "resources/partnerships",
-              "resources/creators",
-              "resources/developers",
-              "resources/privacy",
-              "resources/tos"
+            "tab": "Developers",
+            "icon": "code",
+            "groups": [
+              {
+                "group": "Building on Space",
+                "pages": [
+                  "en/build/overview",
+                  "en/build/resources",
+                  "en/build/security"
+                ]
+              },
+              {
+                "group": "Architecture",
+                "pages": [
+                  "en/architecture/clob",
+                  "en/architecture/spl-structure",
+                  "en/architecture/multi-outcome",
+                  "en/architecture/leverage"
+                ]
+              },
+              {
+                "group": "Resolution",
+                "pages": [
+                  "en/resolution/deterministic",
+                  "en/resolution/oracle",
+                  "en/resolution/invalid"
+                ]
+              },
+              {
+                "group": "API Reference",
+                "pages": [
+                  "en/api/rest",
+                  "en/api/websocket"
+                ]
+              }
             ]
           }
         ]
       },
       {
-        "tab": "Developers",
-        "icon": "code",
-        "groups": [
+        "language": "cn",
+        "global": {
+          "anchors": [
+            {
+              "anchor": "Main Site",
+              "icon": "globe",
+              "href": "https://into.space"
+            },
+            {
+              "anchor": "Twitter",
+              "icon": "x-twitter",
+              "href": "https://x.com/intodotspace"
+            },
+            {
+              "anchor": "Telegram",
+              "icon": "telegram",
+              "href": "https://t.me/intodotspace"
+            }
+          ]
+        },
+        "tabs": [
           {
-            "group": "Building on Space",
-            "pages": [
-              "build/overview",
-              "build/resources",
-              "build/security"
+            "tab": "Documentation",
+            "icon": "book",
+            "groups": [
+              {
+                "group": "Start Here",
+                "pages": [
+                  "cn/start/origin",
+                  "cn/start/what-is-space",
+                  "cn/start/vision"
+                ]
+              },
+              {
+                "group": "Core Concepts",
+                "pages": [
+                  "cn/concepts/how-it-works",
+                  "cn/concepts/minting-burning",
+                  "cn/concepts/makers-takers",
+                  "cn/concepts/resolution"
+                ]
+              },
+              {
+                "group": "Features",
+                "pages": [
+                  "cn/features/clob",
+                  "cn/features/leverage",
+                  "cn/features/multi-outcome",
+                  "cn/features/continuous",
+                  "cn/features/dynamic-fees",
+                  "cn/features/rewards",
+                  "cn/features/airdrops",
+                  "cn/features/categories"
+                ]
+              },
+              {
+                "group": "User Guides",
+                "pages": [
+                  "cn/guides/market-order",
+                  "cn/guides/limit-order",
+                  "cn/guides/managing-orders"
+                ]
+              },
+              {
+                "group": "$SPACE",
+                "pages": [
+                  "cn/token/utility",
+                  "cn/token/flywheel"
+                ]
+              },
+              {
+                "group": "Resources",
+                "pages": [
+                  "cn/resources/support",
+                  "cn/resources/partnerships",
+                  "cn/resources/creators",
+                  "cn/resources/developers",
+                  "cn/resources/privacy",
+                  "cn/resources/tos"
+                ]
+              }
             ]
           },
           {
-            "group": "Architecture",
-            "pages": [
-              "architecture/clob",
-              "architecture/spl-structure",
-              "architecture/multi-outcome",
-              "architecture/leverage"
-            ]
-          },
-          {
-            "group": "Resolution",
-            "pages": [
-              "resolution/deterministic",
-              "resolution/oracle",
-              "resolution/invalid"
-            ]
-          },
-          {
-            "group": "API Reference",
-            "pages": [
-              "api/rest",
-              "api/websocket"
+            "tab": "Developers",
+            "icon": "code",
+            "groups": [
+              {
+                "group": "Building on Space",
+                "pages": [
+                  "cn/build/overview",
+                  "cn/build/resources",
+                  "cn/build/security"
+                ]
+              },
+              {
+                "group": "Architecture",
+                "pages": [
+                  "cn/architecture/clob",
+                  "cn/architecture/spl-structure",
+                  "cn/architecture/multi-outcome",
+                  "cn/architecture/leverage"
+                ]
+              },
+              {
+                "group": "Resolution",
+                "pages": [
+                  "cn/resolution/deterministic",
+                  "cn/resolution/oracle",
+                  "cn/resolution/invalid"
+                ]
+              },
+              {
+                "group": "API Reference",
+                "pages": [
+                  "cn/api/rest",
+                  "cn/api/websocket"
+                ]
+              }
             ]
           }
         ]
@@ -137,9 +266,9 @@
   "logo": "/images/logo.png",
   "favicon": "/images/favicon.png",
   "seo": {
-      "metatags": {
-          "description": "The arena where truth wins, capital flows, and minds compete. Trade with leverage, stack rewards, win more when you're right."
-      }
+    "metatags": {
+      "description": "The arena where truth wins, capital flows, and minds compete. Trade with leverage, stack rewards, win more when you're right."
+    }
   },
   "footer": {
     "socials": {
