@@ -409,6 +409,14 @@
                 ]
               },
               {
+                "group": "Resolution",
+                "pages": [
+                  "ko/resolution/deterministic",
+                  "ko/resolution/oracle",
+                  "ko/resolution/invalid"
+                ]
+              },
+              {
                 "group": "API Reference",
                 "pages": [
                   "ko/api/rest",
