@@ -171,3 +171,6 @@ a[href*="mintlify.com"][href*="utm_campaign=poweredBy"]::after {
     align-items: flex-start !important;
   }
 }
+button[aria-label="More actions"] {
+  display: none;
+}
