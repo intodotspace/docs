@@ -184,17 +184,17 @@
         "global": {
           "anchors": [
             {
-              "anchor": "主网站",
+              "anchor": "网站",
               "icon": "globe",
               "href": "https://into.space"
             },
             {
-              "anchor": "Twitter",
+              "anchor": "X",
               "icon": "x-twitter",
               "href": "https://x.com/intodotspace"
             },
             {
-              "anchor": "Telegram",
+              "anchor": "电报",
               "icon": "telegram",
               "href": "https://t.me/intodotspace"
             }
