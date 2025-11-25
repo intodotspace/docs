@@ -184,7 +184,7 @@
         "global": {
           "anchors": [
             {
-              "anchor": "Main Site",
+              "anchor": "主网站",
               "icon": "globe",
               "href": "https://into.space"
             },
@@ -308,7 +308,7 @@
         "global": {
           "anchors": [
             {
-              "anchor": "Main Site",
+              "anchor": "메인 사이트",
               "icon": "globe",
               "href": "https://into.space"
             },
