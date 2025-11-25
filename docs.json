@@ -202,7 +202,7 @@
         },
         "tabs": [
           {
-            "tab": "Documentation",
+            "tab": "文档",
             "icon": "book",
             "groups": [
               {
@@ -264,7 +264,7 @@
             ]
           },
           {
-            "tab": "Developers",
+            "tab": "开发者",
             "icon": "code",
             "groups": [
               {
@@ -326,7 +326,7 @@
         },
         "tabs": [
           {
-            "tab": "Documentation",
+            "tab": "문서",
             "icon": "book",
             "groups": [
               {
@@ -388,7 +388,7 @@
             ]
           },
           {
-            "tab": "Developers",
+            "tab": "개발자",
             "icon": "code",
             "groups": [
               {
